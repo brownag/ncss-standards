@@ -7,15 +7,13 @@ The contents section has brief descriptions and links to specific analyses.
 
 Andrew G. Brown is a soil scientist in the Sonora, CA MLRA Soil Survey office -- with his area of responsibility in the Sierra Nevada Foothills & Mountains (MLRAs 18 & 22A). 
 
-For the past couple years, Andrew has served on the Western Region National Cooperative Soil Survey (NCSS) Regional Standards Committee. The regional committees are tasked with evaluating proposals to identify impacts and provide feedback at the local to regional level. The following link contains this year's proposals in PDF format.
+For the past couple years, Andrew has served on the Western Region National Cooperative Soil Survey (NCSS) Regional Standards Committee. The regional committees are tasked with evaluating proposals to identify impacts and provide feedback at the local to regional level.In reviewing these proposals, Andrew not only represents his local interests, but serves as a representative for the Pacific Soil Survey Region (SSR2). 
+
+The following link contains this year's proposals in PDF format:
 
 ##### [2020 NCSS Regional Standards and Taxonomy Committee Proposals](https://www.nrcs.usda.gov/wps/portal/nrcs/detail/soils/survey/partnership/ncss/?cid=nrcseprd1522014)
 
-In reviewing these proposals, Andrew not only represents his local interests, but serves as a representative for the Pacific Soil Survey Region (SSR2) -- covering California, Nevada, southern Oregon, Hawaii and the Pacific Islands. 
-
-His goal is to ensure that Soil Taxonomy remains rooted in practical reality, while rising to the increasingly data-driven demands of our day. By making his analyses freely available, he hopes others will follow and customize these analyses for their own regions or interests. 
-
-Further, he hopes that individuals who are interested in making proposals in the future take note of the types and kinds of investigations that are possible with modern tools. We can elevate the quality of discourse surrounding potential taxonomic impacts by _novel_ analysis of _existing_ concepts and data.
+Andrew's goal is to ensure that Soil Taxonomy remains rooted in practical reality, while rising to the increasingly data-driven demands of our day. By making his analyses freely available, he hopes others will follow and customize these analyses for their own regions or interests. He hopes that individuals who are interested in making future proposals take note of the types and kinds of investigations that are possible with modern tools. We can elevate the quality of discourse surrounding fundamental changes to Soil Taxonomy by _novel_ analysis of _existing_ concepts and data.
 
 ### Contents
 
