@@ -37,6 +37,6 @@ Andrew's goal is to ensure that Soil Taxonomy remains rooted in practical realit
  
 ##### Establishing Tenumollic Epipedon
 
- - Coming soon - Identifying Potential _Tenumollic Epipedons_ in Series/Pedons/CSomponents
+ - Coming soon - Identifying Potential _Tenumollic Epipedons_ in Series/Pedons/Components
 
  
