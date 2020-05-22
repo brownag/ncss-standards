@@ -5,9 +5,9 @@ The contents section has brief descriptions and links to specific analyses.
 
 ### Purpose
 
-Andrew G. Brown is a soil scientist in the Sonora, CA MLRA Soil Survey office -- with his area of responsibility in the Sierra Nevada Foothills & Mountains (MLRAs 18 & 22A). 
+Andrew G. Brown is a soil scientist in the Sonora, CA MLRA Soil Survey office. His area of responsibility in the Sierra Nevada Foothills & Mountains (MLRAs 18 & 22A). 
 
-For the past couple years, Andrew has served on the Western Region National Cooperative Soil Survey (NCSS) Regional Standards Committee. The regional committees are tasked with evaluating proposals to identify impacts and provide feedback at the local to regional level.In reviewing these proposals, Andrew not only represents his local interests, but serves as a representative for the Pacific Soil Survey Region (SSR2). 
+For the past couple years, Andrew has served on the Western Region National Cooperative Soil Survey (NCSS) Regional Standards Committee. The regional committees are tasked with evaluating proposals to identify impacts and provide feedback at the local to regional level. In reviewing these proposals, Andrew not only represents his local interests, but serves as a representative for the Southwest Soil Survey Region. 
 
 The following link contains this year's proposals in PDF format:
 
@@ -30,6 +30,8 @@ Andrew's goal is to ensure that Soil Taxonomy remains rooted in practical realit
 ##### Simplifying the Mollic Epipedon
 
  - __[mollic_KSSL_data.R](mollic_KSSL_data.R)__ - Investigation of 1:1 and CaCl2 pH as _Surrogates for Base Saturation by Ammonium Acetate_ (pH 7)
+ 
+  - __[mollic_NASIS_data.R](mollic_OSD_data.R)__ - Investigation of NASIS data to assess mollic thickness requirement sensitivity and effect on presence/absence of epipedon (coming soon)
  
  - __[mollic_OSD_data.R](mollic_OSD_data.R)__ - Investigation of OSD Type Locations of Xeric Mollisols and near-Mollisols for _Structure, Color and Thickness of Mollic Materials_
  
