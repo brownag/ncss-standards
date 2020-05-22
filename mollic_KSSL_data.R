@@ -3,13 +3,14 @@ library(soilDB)
 library(magrittr)
 
 # California MLRAs
-mlras <- rgdal::readOGR("F:/Geodata/soils/MLRA_Boundaries_CA/mlra_a_ca.shp")$MLRARSYM
+mlras <- unique(rgdal::readOGR("C:/Geodata/soils/mlra_a_ca.shp")$MLRARSYM)
 
 # get the data
-l <- lapply(as.list(mlras), function(m) fetchKSSL(mlra = m))
+#l <- fetchKSSL(mlra=mlras)
+save(l, file = "ca_kssl.Rda")
+load(file = "ca_kssl.Rda")
 
-# get several MLRAs
-kssl <- union(l)
+kssl <- l
 
 # take 25cm section of surface mineral soil material
 f <- glomApply(kssl, .fun = function(p) {
@@ -27,7 +28,7 @@ f <- glomApply(kssl, .fun = function(p) {
 #   and all subhorizons have 1:1 H2O OR CaCl2 pH
 f2 <- f  %>%
   filter(thickness == 25) %>% 
-  mutate_profile(ocreq = all(estimated_oc >= 0.6),
+  mutate_profile(ocreq = all(!is.na(estimated_oc)) & all(estimated_oc >= 0.6),
                  hasbs = all(!is.na(bs7)),
                  hasph = all(!is.na(ph_h2o) | !is.na(ph_cacl2))) %>%
   filter(ocreq, hasbs, hasph)
@@ -39,11 +40,12 @@ f.sub <- f2
 f3 <-  f %>% filter(thickness > 25)
 
 df <- horizons(f.sub)
-plot(data=df, jitter(bs7) ~ jitter(ph_h2o), xlim=c(3,10), pch=19, cex=0.1, col="RED",
+plot(data=df, jitter(bs7) ~ jitter(ph_h2o), xlim=c(3,9), pch=19, cex=0.1, col="RED",
      xlab="pH (1:1 H2O or CaCl2)", ylab="Ammonium Acetate Base Saturation % @ pH 7",
-     main="Upper 25cm Mineral Soil Surface All KSSL Data\nMLRAs 4B, 5, 15, 17, 18, 20, 22A, 22B")
-points(data=df, jitter(bs7) ~ jitter(ph_cacl2), xlim=c(3,10), pch=19, cex=0.1, col="BLUE")
-lines(smooth.spline(df$ph_h2o, df$bs7), lwd=2, lty=2, col="RED")
+     main=paste0("Upper 25cm Mineral Soil, OC >=0.6%\nKSSL Data All MLRAs in California\n(n=",length(f.sub),"; n.hz=",nrow(f.sub),")"))
+points(data=df, jitter(bs7) ~ jitter(ph_cacl2), xlim=c(3,9), pch=19, cex=0.1, col="BLUE")
+df.h2o <- df[which(!is.na(df$ph_h2o)),]
+lines(smooth.spline(df.h2o$ph_h2o, df.h2o$bs7), lwd=2, lty=2, col="RED")
 df.cacl <- df[which(!is.na(df$ph_cacl2)),]
 lines(smooth.spline(df.cacl$ph_cacl2, df.cacl$bs7), lwd=2, lty=2, col="BLUE")
 abline(h=c(50,75))
@@ -53,17 +55,21 @@ legend("bottomright",
        col=c('RED','BLUE','RED','BLUE','RED','BLUE'),
        pch=c(19,19,NA,NA,NA,NA), lty=c(NA,NA,1,1,2,2), lwd=c(NA,NA,2,2,2,2))
 
+table(f.sub$ph_h2o >= 6.5 & f.sub$bs7 <= 50)
+table(f.sub$ph_cacl2 >= 6 & f.sub$bs7 <= 50)
 
 df <- horizons(f.sub)
 df <- df[!is.na(df$ph_h2o) & !is.na(df$ph_cacl2),]
-plot(data=df, jitter(ph_cacl2) ~ jitter(ph_h2o), xlim=c(3,10), ylim=c(3,10), pch=19, cex=0.1, col="RED",
+plot(data=df, jitter(ph_cacl2) ~ jitter(ph_h2o), xlim=c(3,11), ylim=c(3,11), pch=19, cex=0.1, col="RED",
      xlab="pH (1:1 H2O)", ylab="pH (CaCl2)",
-     main="Relationship between KSSL 1:1 and CaCl2 pH\nMLRAs 4B, 5, 15, 17, 18, 20, 22A, 22B")
+     main="Relationship between KSSL water and CaCl2 pH")
 lines(smooth.spline(df$ph_h2o, df$ph_cacl2), lwd=2, lty=2)
 m <- lm(data=df, ph_cacl2 ~ ph_h2o)
 abline(v=6.5, h=6)
 abline(m)
-legend("bottomright", 
-       legend=c("pH Limit H2O","pH Limit CaCl2","Spline"), 
-       col="BLACK",
-       pch=c(NA,NA,NA), lty=c(1,1,1,1,2,2), lwd=c(NA,NA,2,2,2,2))
+abline(0,1, lty=2)
+legend("topleft", bty = "n",
+       legend=c("1:1","Linear fit","Spline fit"), 
+       col="BLACK", 
+       pch=c(NA,NA,NA), lty=c(2,1,2), lwd=c(1,1,2))
+

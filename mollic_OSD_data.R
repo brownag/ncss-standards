@@ -49,7 +49,9 @@ osd$mollic_criteria <- factor(osd$mollic_criteria,
 osd25 <- glomApply(osd, function(x) c(0,25+1))
 
 par(mar=c(0,0,4,0))
-groupedProfilePlot(osd25[1:20,], cex.names=0.6,
+groupedProfilePlot(osd25[1:12,], 
+                   cex.names=0.6,
+                   group.name.offset=c(-5, -10),
                    color="mollic_criteria", 
                    groups = "tax_partsize")
 abline(h=25, lty=2, lwd=2, col="red")
