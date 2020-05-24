@@ -6,7 +6,8 @@ library(magrittr)
 mlras <- unique(rgdal::readOGR("C:/Geodata/soils/mlra_a_ca.shp")$MLRARSYM)
 
 # get the data
-#l <- fetchKSSL(mlra=mlras)
+# mlras <- c("17","18","22A","22B")
+# l <- fetchKSSL(mlra=mlras)
 save(l, file = "ca_kssl.Rda")
 load(file = "ca_kssl.Rda")
 

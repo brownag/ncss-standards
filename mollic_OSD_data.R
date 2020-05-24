@@ -1,8 +1,11 @@
 library(soilDB)
 
-# get series names ofr haploxerolls and argixerolls from MLRA 18
+# get series names using OSDquery -- there are some limits on 
+#  number of results returned from R interface: up to 1000 records per query
+#  also, uses postgresql full text searching markup, and only one mlra at a time
+
 # q <- OSDquery(taxonomic_class = "mollic & haploxeralfs")
-# q <- OSDquery(taxonomic_class = "argixerolls | haploxerolls")
+# q <- OSDquery(taxonomic_class = "argixerolls | haploxerolls", mlra="20")
 # q <- OSDquery(taxonomic_class = "mollic | xerofluvents", mlra="14")
 q <- OSDquery(taxonomic_class = "mollic | xerorthents", mlra="17")
 
