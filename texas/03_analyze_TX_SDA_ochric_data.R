@@ -14,7 +14,7 @@
 library(aqp)
 library(soilDB)
 
-# this file is created by 01_get_TX_SDA_data.R
+# this file is created by 01_get_TX_SDA_data.Rda
 load("texas_SPC_SDA.Rda")
 
 ### ANALYSIS #2
@@ -51,23 +51,32 @@ flatten_structgrp <- function(df) {
 horizons(ochric.subhorizons) <- flatten_structgrp(get_chstructgrp_from_SDA(ochric.subhorizons$chkey))
 
 # get components with massive structure and carbon above mollic requirement
-massive.ochric.subhorizons$oc_est <- massive.ochric.subhorizons$om_r / 1.72 
+ochric.subhorizons$oc_est <- ochric.subhorizons$om_r / 1.72 
 massive.ochric.subhorizons <- filter(ochric.subhorizons, 
                                      grepl("massive", structgrpname),
                                      oc_est > 0.6)
+par(mar=c(1,0,3,0))
+massive.ochric.subhorizons$compname <- factor(massive.ochric.subhorizons$compname)
+groupedProfilePlot(massive.ochric.subhorizons, groups="compname", color="oc_est")
+mtext("massive \"ochric\" epipedons in non-Mollisols of Texas w/ high carbon, ", side = 1)
 
-plot(massive.ochric.subhorizons, color="oc_est")
-
-# get the national mapunit symbols and use them with fetchSDA_spatial
+# # get the national mapunit symbols and use them with fetchSDA_spatial
 spatial.extent <- fetchSDA_spatial(massive.ochric.subhorizons$nationalmusym,
                                    by.col = "nmusym",
                                    add.fields = c("muname","muacres"),
                                    chunk.size = 1)
+save(spatial.extent, file="ochricmassive_extent.Rda")
 
-# inspect extent of high carbon, massive ochrics
+## inspect extent of high (>0.6%) organic carbon, massive ochrics
 maps::map("state","texas")
-plot(spatial.extent, add=TRUE)
 
-# extent in taxa
+## save boundary
+spbound <- sf::st_union(sf::st_as_sf(spatial.extent))
+save(spbound, file="ochricmassive_bound.Rda")
+
+plot(spbound, add=TRUE)
+mtext("massive \"ochric\" epipedons in non-Mollisols of Texas w/ high carbon, ", side = 1)
+
+# "extent" in terms of taxa (compname, great group)
 table(massive.ochric.subhorizons$compname)
 table(massive.ochric.subhorizons$taxgrtgroup)
