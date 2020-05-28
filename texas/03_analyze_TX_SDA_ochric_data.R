@@ -14,6 +14,9 @@
 library(aqp)
 library(soilDB)
 
+library(sf)
+library(units)
+
 # this file is created by 01_get_TX_SDA_data.Rda
 load("texas_SPC_SDA.Rda")
 
@@ -68,15 +71,19 @@ spatial.extent <- fetchSDA_spatial(massive.ochric.subhorizons$nationalmusym,
 save(spatial.extent, file="ochricmassive_extent.Rda")
 
 ## inspect extent of high (>0.6%) organic carbon, massive ochrics
+par(mar=c(0,0,3,0))
 maps::map("state","texas")
 
 ## save boundary
 spbound <- sf::st_union(sf::st_as_sf(spatial.extent))
 save(spbound, file="ochricmassive_bound.Rda")
-
 plot(spbound, add=TRUE)
-mtext("massive \"ochric\" epipedons in non-Mollisols of Texas w/ high carbon, ", side = 1)
+mtext("massive \"ochric\" epipedons in non-Mollisols of Texas\n(w/ organic carbon >0.6%)", side = 3)
 
 # "extent" in terms of taxa (compname, great group)
 table(massive.ochric.subhorizons$compname)
 table(massive.ochric.subhorizons$taxgrtgroup)
+
+# nearly 1.3M acres of these -- some are not candidates to become mollisols -- i.e. organic soil material -- and should be filtered out
+area <- set_units(st_area(spbound), 'acres')
+area
