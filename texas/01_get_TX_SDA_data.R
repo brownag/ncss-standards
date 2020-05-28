@@ -7,7 +7,7 @@
 #
 # We iterate over soil survey area symbols, download and aqp::union the results.
 #   This will take some time. Ideally, you save the result to file for future use
-#   and only do this when you have reason to thing the data are different (after refresh)
+#   and only do this when you have reason to think the data are different (i.e. after refresh)
 #
 
 ### get latest dev versions of aqp and soilDB

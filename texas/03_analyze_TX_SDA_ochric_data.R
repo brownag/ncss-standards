@@ -17,10 +17,10 @@ library(soilDB)
 library(sf)
 library(units)
 
-# this file is created by 01_get_TX_SDA_data.Rda
+# this file is created by 01_get_TX_SDA_data.R
 load("texas_SPC_SDA.Rda")
 
-### ANALYSIS #2
+### ANALYSIS #2 - inspect ochrics that could become mollics
 
 # filter SPC to get just components with ochric epipedons
 diag <- diagnostic_hz(tx.spc)
@@ -61,7 +61,7 @@ massive.ochric.subhorizons <- filter(ochric.subhorizons,
 par(mar=c(1,0,3,0))
 massive.ochric.subhorizons$compname <- factor(massive.ochric.subhorizons$compname)
 groupedProfilePlot(massive.ochric.subhorizons, groups="compname", color="oc_est")
-mtext("massive \"ochric\" epipedons in non-Mollisols of Texas w/ high carbon, ", side = 1)
+mtext("massive \"ochric\" epipedons in non-Mollisols of Texas w/ organic carbon >0.6%, ", side = 1)
 
 # # get the national mapunit symbols and use them with fetchSDA_spatial
 spatial.extent <- fetchSDA_spatial(massive.ochric.subhorizons$nationalmusym,
@@ -84,6 +84,6 @@ mtext("massive \"ochric\" epipedons in non-Mollisols of Texas\n(w/ organic carbo
 table(massive.ochric.subhorizons$compname)
 table(massive.ochric.subhorizons$taxgrtgroup)
 
-# nearly 1.3M acres of these -- some are not candidates to become mollisols -- i.e. organic soil material -- and should be filtered out
+# nearly 1.3M acres of these -- some are not candidates to become mollisols -- i.e. organic soil material -- and should be filtered out; also this is not corrected for comppct_r.
 area <- set_units(st_area(spbound), 'acres')
 area

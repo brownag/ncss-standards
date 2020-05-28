@@ -70,16 +70,16 @@ tx.spc.mollic$texdepth <- profileApply(tx.spc.mollic, estimateSoilDepth,
 tx.spc.mollic$hzdepth <- profileApply(tx.spc.mollic, estimateSoilDepth, p="R|Cr|Cd|m",
                         no.contact.depth=0, no.contact.assigned=NA)
 
-# n=326 components lack bedrock or cemented material textures
+# n=326 components have bedrock or cemented material textures
 sum(!is.na(tx.spc.mollic$texdepth))
 
-# m=344 components lack a horizon designation that _generally_ suggests RLL (R, Cr, Cd, m)
+# m=344 components have a horizon designation that _generally_ suggests RLL (R, Cr, Cd, m)
 sum(!is.na(tx.spc.mollic$hzdepth))
 
 # n=841 components do not appear to have a root limiting layer
 sum(is.na(tx.spc.mollic$hzdepth) & is.na(tx.spc.mollic$texdepth))
 
-# n=26 components have s horizon designation without a inlieu texture
+# n=26 components have a horizon designation without a inlieu texture
 sum(!is.na(tx.spc.mollic$hzdepth) & is.na(tx.spc.mollic$texdepth))
 f.check1 <- filter(tx.spc.mollic, !is.na(hzdepth) & is.na(texdepth))
 # CHECK: looks good -- they are all densics, so they have a texture.
@@ -133,9 +133,9 @@ legend("topright", "carbon threshold (0.6%)", lty=2)
 # spatial.extent <- fetchSDA_spatial(u.nmusym.sub, by.col = "nmusym", method = "point",
 #                                    add.fields = c("muname", "muacres"), chunk.size = 1)
 # 
-# # inspect extent of potential new mollisols
+# # inspect extent
 # maps::map("state","texas")
 # plot(spatial.extent, add = TRUE)
 # 
 # # extent in taxa
-# table(mollic.subhorizons$taxgrtgroup)
+table(mollic.subhorizons$taxgrtgroup)
