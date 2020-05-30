@@ -41,28 +41,28 @@ mollisol.components.by.state <- lapply(mollisol.cokeys.by.state,
   # print out current state
   message(sprintf("===== %s =====", state.abb[i]))
   i <<- i + 1
-  
-  .cokey_set(s$cokey)
+  suppressMessages(.cokey_set(s$cokey))
 })
-
-# save to file
-save(mollisol.components.by.state, file = "components_by_state.Rda")
 
 # some states have a lot of cases of this (*cough* north dakota!)
 #  so, we need to loop through again and chunk up the states that errored out into
 #  several different cokey vectors
 redo.idx <- which(as.logical(lapply(mollisol.components.by.state, inherits, 'try-error')))
+message(sprintf("Re-trying downloads for: %s", paste0(state.abb[redo.idx], collapse=", ")))
 redo.set <- do.call('c', lapply(redo.idx, function(i) {
-  split(mollisol.cokeys.by.state[[i]]$cokey, 
-        f = makeChunks(mollisol.cokeys.by.state[[i]]$cokey, 20000))
+  split(mollisol.cokeys.by.state[[i]]$cokey, f = makeChunks(mollisol.cokeys.by.state[[i]]$cokey, 20000))
 }))
 redo.comp <- lapply(lapply(redo.set, as.character), function(s) .cokey_set(s))
 redo.idx2 <- which(as.logical(lapply(redo.comp, inherits, 'try-error')))
+message(sprintf("Unable to obtain results for: %s", paste0(state.abb[redo.idx[redo.idx2]], collapse=", ")))
 
 # remove duplicate nmusyms shared across state bounds
-res <- union(lunique(c(mollisol.components.by.state)))
+res <- union(lunique(c(mollisol.components.by.state, redo.comp)))
 
-# there are some duplicates still -- these are usually data entry errors with multiple RVs
+# save to file
+save(res, file = "components_by_state.Rda")
+
+# there are some duplicate horizons still -- these usually have multiple RV textures
 depth.tests <- checkHzDepthLogic(res)
 bad.hz.idx <- which(!depth.tests$valid)
 
@@ -71,8 +71,21 @@ res.bad <- res[bad.hz.idx, ]
 res <- filter(res, cokey %in% site(res)$cokey[depth.tests$valid])
 hzidname(res) <- "chkey"
 
-q.legend <- "SELECT muname FROM legend
-              INNER JOIN mapunit ON legend.lkey = mapunit.lkey"
+# query for areasymbol and muname
+#   should be able to do it in a couple chunks... ~50k components
+urcokey <- unique(res$cokey)
+legendsets <- lapply(split(urcokey, f = makeChunks(urcokey, 10000)), function(cokey) {
+  SDA_query(sprintf("SELECT DISTINCT areasymbol, nationalmusym, muname, cokey FROM legend
+              INNER JOIN mapunit ON legend.lkey = mapunit.lkey
+              INNER JOIN component ON mapunit.mukey = component.mukey
+              WHERE cokey IN %s", format_SQL_in_statement(cokey)))
+})
+q.legend <- do.call('rbind', legendsets)
+site(res) <- q.legend
 
 # save to file
 save(res, file="spc_mollic_us.Rda")
+
+# what survey areas have the most mollic epipedons and/or mollisols?
+sort(table(res$areasymbol), decreasing = TRUE)
+
