@@ -62,5 +62,17 @@ redo.idx2 <- which(as.logical(lapply(redo.comp, inherits, 'try-error')))
 # remove duplicate nmusyms shared across state bounds
 res <- union(lunique(c(mollisol.components.by.state)))
 
+# there are some duplicates still -- these are usually data entry errors with multiple RVs
+depth.tests <- checkHzDepthLogic(res)
+bad.hz.idx <- which(!depth.tests$valid)
+
+# n.bad = 258
+res.bad <- res[bad.hz.idx, ]
+res <- filter(res, cokey %in% site(res)$cokey[depth.tests$valid])
+hzidname(res) <- "chkey"
+
+q.legend <- "SELECT muname FROM legend
+              INNER JOIN mapunit ON legend.lkey = mapunit.lkey"
+
 # save to file
 save(res, file="spc_mollic_us.Rda")
