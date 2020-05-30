@@ -135,10 +135,10 @@ t2 <- sort(table(res$taxgrtgroup), decreasing = TRUE)
 res.majors <- filter(res, majcompflag == "Yes")
 
 # get major component PSCS
-res.maj.pscs <- glomApply(res.majors[1:100,], 
+res.maj.pscs <- glomApply(res.majors, 
                           function(p) {
                             estimatePSCS(p, tax_order_field="taxorder",
-                                         clay.attr = "claytotal_r", verbose=F)
+                                         clay.attr = "claytotal_r")
                           }, truncate = TRUE)
 
 write.csv(site(res.majors), file="mollic_us_major_SITE.csv")
