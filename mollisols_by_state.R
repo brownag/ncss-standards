@@ -46,15 +46,22 @@ mollisol.components.by.state <- lapply(mollisol.cokeys.by.state,
 
 # some states have a lot of cases of this (*cough* north dakota!)
 #  so, we need to loop through again and chunk up the states that errored out into
-#  several different cokey vectors
+#  several different cokey vectors. try only once though.
 redo.idx <- which(as.logical(lapply(mollisol.components.by.state, inherits, 'try-error')))
+
 message(sprintf("Re-trying downloads for: %s", paste0(state.abb[redo.idx], collapse=", ")))
+
 redo.set <- do.call('c', lapply(redo.idx, function(i) {
-  split(mollisol.cokeys.by.state[[i]]$cokey, f = makeChunks(mollisol.cokeys.by.state[[i]]$cokey, 20000))
+    split(mollisol.cokeys.by.state[[i]]$cokey, 
+          f = makeChunks(mollisol.cokeys.by.state[[i]]$cokey, 20000))
 }))
+
 redo.comp <- lapply(lapply(redo.set, as.character), function(s) .cokey_set(s))
+  
 redo.idx2 <- which(as.logical(lapply(redo.comp, inherits, 'try-error')))
-message(sprintf("Unable to obtain results for: %s", paste0(state.abb[redo.idx[redo.idx2]], collapse=", ")))
+  
+message(sprintf("Unable to obtain results for: %s", 
+                paste0(state.abb[redo.idx[redo.idx2]], collapse=", ")))
 
 # remove duplicate nmusyms shared across state bounds
 res <- union(lunique(c(mollisol.components.by.state, redo.comp)))
@@ -83,9 +90,56 @@ legendsets <- lapply(split(urcokey, f = makeChunks(urcokey, 10000)), function(co
 q.legend <- do.call('rbind', legendsets)
 site(res) <- q.legend
 
+# set to ideal defaults -- NASIS hzname, and texture class
+hzdesgnname(res) <- "hzname"
+hztexclname(res) <- "texcl"
+
+## TODO: try calculating hzname for H1, H2, H3 type horizons?
+# what are the best rules to use given styles of the time?
+# texclname can be very useful to id OSM, bedrock, cemented etc.
+
 # save to file
-save(res, file="spc_mollic_us.Rda")
+# save(res, file="spc_mollic_us2.Rda")
 
 # what survey areas have the most mollic epipedons and/or mollisols?
-sort(table(res$areasymbol), decreasing = TRUE)
+t1 <- sort(table(res$areasymbol), decreasing = TRUE)
 
+  # north dakota
+  t1[grepl('ND', names(t1))]
+  
+  # indiana
+  t1[grepl('IN', names(t1))]
+  
+  # california
+  t1[grepl('CA', names(t1))]
+  
+  # california
+  t1[grepl('TX', names(t1))]
+
+# what taxa are most common?
+t2 <- sort(table(res$taxgrtgroup), decreasing = TRUE)
+
+  # mollisols only
+  t2[grep('oll', names(t2))]
+  
+  # non-mollisols only
+  t2[grep('oll', names(t2), invert=TRUE)]
+  
+  # ustic only
+  t2[grepl('ust', names(t2))]
+  
+  # xeric only
+  t2[grepl('xer', names(t2))]
+
+# get major components  
+res.majors <- filter(res, majcompflag == "Yes")
+
+# get major component PSCS
+res.maj.pscs <- glomApply(res.majors[1:100,], 
+                          function(p) {
+                            estimatePSCS(p, tax_order_field="taxorder",
+                                         clay.attr = "claytotal_r", verbose=F)
+                          }, truncate = TRUE)
+
+write.csv(site(res.majors), file="mollic_us_major_SITE.csv")
+write.csv(horizons(res.majors), file="mollic_us_major_HORIZON.csv")
