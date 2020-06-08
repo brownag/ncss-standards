@@ -138,8 +138,53 @@ res.majors <- filter(res, majcompflag == "Yes")
 res.maj.pscs <- glomApply(res.majors, 
                           function(p) {
                             estimatePSCS(p, tax_order_field="taxorder",
-                                         clay.attr = "claytotal_r")
+                                         clay.attr = "claytotal_r", verbose=FALSE)
                           }, truncate = TRUE)
+
+# calculate PSCS clay and fragments
+res.maj.pscs <- mutate_profile(res.maj.pscs, 
+                               pscs_clay = weighted.mean(claytotal_r, hzdepb_r - hzdept_r),
+                               pscs_frags = weighted.mean(total_frags_pct, hzdepb_r - hzdept_r))
+
+res.maj.pscs <- mutate_profile(res.maj.pscs, 
+                               pscs_ph = weighted.mean(ph1to1h2o_r, hzdepb_r - hzdept_r))
+
+# obvious depressions at 18 and 35 -- to be clear about pscs placement
+plot(density(res.maj.pscs$pscs_clay, na.rm=T))
+abline(v=c(18,35))
+
+plot(density(res.maj.pscs$pscs_frags, na.rm=T))
+abline(v=35)
+
+plot(density(res.maj.pscs$pscs_ph, na.rm=T))
+abline(v=c(5.5, 7))
+
+summarize(res.maj.pscs[1:100], test = mean(pscs_clay))
+
+# what are these?
+# Warning messages:
+# 1: Invalid bounds (71-0) returning `NULL` (cokey:17617864) 
+# 2: Invalid bounds (0-0) returning `NULL` (cokey:17617864) 
+# 3: Invalid bounds (48-0) returning `NULL` (cokey:17617865) 
+# 4: Invalid bounds (0-0) returning `NULL` (cokey:17617865) 
+# 5: Invalid bounds (71-0) returning `NULL` (cokey:17646386) 
+# 6: Invalid bounds (0-0) returning `NULL` (cokey:17646386) 
+# 7: Invalid bounds (48-0) returning `NULL` (cokey:17646387) 
+# 8: Invalid bounds (0-0) returning `NULL` (cokey:17646387) 
+
+# look at these ones that had weird glom intervals
+f <- filter(res.majors, cokey %in% c(17617864,17617865,17646386,17646387))
+
+# look at the component data
+par(mar=c(1,0,3,1))
+plotSPC(f, alt.label = "cokey", id.style = "side", label="compname", 
+        cex.names=1, x.idx.offset = -0.09, scaling.factor = 0.8)
+mtext(paste0(unique(f$areasymbol), collapse=","), side = 3)
+
+# compare to OSD
+# osds are messed up too! gridley is missing a horizon
+osds <- soilDB::fetchOSD(soils = unique(f$compname))
+plot(osds)
 
 write.csv(site(res.majors), file="mollic_us_major_SITE.csv")
 write.csv(horizons(res.majors), file="mollic_us_major_HORIZON.csv")
