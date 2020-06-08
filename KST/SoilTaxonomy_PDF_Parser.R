@@ -4,7 +4,7 @@
 
 # markers for each chapter
 chapter.markers <- list(
-  ch1 = "The word “soil,” like many common words, has several",
+  ch1 = "like many common words, has several",
   ch2 = "Soil taxonomy differentiates between mineral soils and",
   ch3 = "This chapter defines the horizons and characteristics of",
   ch4 = "The taxonomic class of a specific soil can be determined",
@@ -36,12 +36,12 @@ chtaxa.lut <- list(
   "12" = "Mollisols",
   "13" = "Oxisols",
   "14" = "Spodosols",
-  "15" = "Ultosols",
+  "15" = "Ultisols",
   "16" = "Vertisols"
 )
 
 # # use pdftotext to extract text+metadata from Keys PDF
-pdf <- data.frame(content = readLines(file("KST/2014_Keys_to_Soil_Taxonomy.txt")))
+pdf <- data.frame(content = readLines(file("KST/2014_Keys_to_Soil_Taxonomy.txt")), stringsAsFactors = FALSE)
 
 # use readPDF/xpdf in tm package
 # read <- tm::readPDF("xpdf")
@@ -173,22 +173,17 @@ content_to_clause <- function(st_tree) {
     res <- res[-footnote.idx,]
   
   # classify basic logical operators on complete clauses
-  logic.and <- grepl("and$", res$content) | grepl("[Bb]oth.*[:]$", res$content)
+  logic.and <- grepl("and$", res$content) | grepl("[Bb]oth.*[:]$", res$content) | grepl("[Aa]ll of.*[:]$", res$content)
   logic.or <- (grepl("or$", res$content) | 
-                 grepl("[Ee]ither|[Oo]r.*[:]$", res$content) | 
+                 grepl("[Ee]ither|[Oo]r.*[:]$", res$content) | grepl("[Oo]ne or more.*[:]$", res$content) |
                  grepl("[:] [Ee]ither$", res$content) ) # rare (spodosols)
-  logic.gt1 <- grepl("[Oo]ne or more.*[:]$", res$content)
-  logic.all <- grepl("[Aa]ll.*[:]$", res$content)
   logic.endclause <- grepl("[.]$", res$content)
   logic.newkey <- grepl("p. [0-9]+", res$content)
-  logic.none <- !any(logic.and,logic.or,logic.gt1,
-                     logic.all,logic.endclause,logic.newkey)
+  logic.none <- !any(logic.and,logic.or,logic.endclause,logic.newkey)
   
   lmat <-  data.frame(
     AND = logic.and,
     OR = logic.or,
-    GT1 = logic.gt1,
-    ALL = logic.all,
     END = logic.endclause,
     NEW = logic.newkey,
     NUL = logic.none)
@@ -221,7 +216,8 @@ pgnames <- names(pgidx)[1:length(pgidx) - 1]
 # create a table of text "content," chapter and page number
 st <- data.frame(content = pdf$content,
                  chapter = category_from_index(ch.groups, length(pdf$content), 0:18),
-                 page = category_from_index(pgidx, length(pdf$content), pgnames))
+                 page = category_from_index(pgidx, length(pdf$content), pgnames),
+                 stringsAsFactors = FALSE)
 
 # remove page linefeed markup
 st <- st[-pgidx,]
@@ -329,6 +325,10 @@ crit_levels <- decompose_taxon_ID(c("IFFZb"))
 test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
 (content_to_clause(test))
 
+crit_levels <- decompose_taxon_ID(c("CBA"))
+test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
+(content_to_clause(test))
+
 ## make whole ST database -- unique taxa
 crit_levels <-  decompose_taxon_ID(unique(st_criteria_subgroup$crit))
 crit_levels_u <- lapply(crit_levels, function(cl) return(cl[length(cl)]))
@@ -340,22 +340,30 @@ st_db12 <- lapply(unique(st_criteria_subgroup$crit), function(crit) {
   crit_levels <- decompose_taxon_ID(c(crit))
   content_to_clause(subset_tree(st_criteria_subgroup, crit_levels)[[1]])
 })
+
 names(st_db12) <- unique(st_criteria_subgroup$crit)
-save(st_db12, st_db12_unique, file = "soiltaxonomy_12th_db.Rda")
+names(st_db12_unique) <- unique(st_criteria_subgroup$crit)
+
+save(st_db12, st_db12_unique, file = "KST/soiltaxonomy_12th_db.Rda")
+
+# inspect
 st_db12$ABCD
 st_db12_unique$ABCD
 
-### MINERAL SOIL SURFACE
+### MINERAL SOIL SURFACE (in subgroup keys + other definitions)
 mss.idx <- grep("mineral soil surface", 
                 st_criteria$content, 
                 ignore.case = TRUE)
 mss.sub <- st_criteria[mss.idx,]
 
-# used 2106 times
+# used 2073 times
 length(mss.idx)
-# in 15 chapters
+
+# in 12 chapters 
 length(unique(mss.sub$chapter))
-# in 9 different levels of keys
+
+# in 8 different levels of keys
 length(unique(mss.sub$key))
-# in 1592 different criteria
+
+# in 1590 different criteria
 length(unique(mss.sub$crit))
