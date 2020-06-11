@@ -184,15 +184,15 @@ content_to_clause <- function(st_tree) {
     grepl("[Aa]ll of.*[:]$", res$content)
   logic.or <- (
     grepl("or$", res$content) |
-      grepl("[Ee]ither|[Oo]r.*[:]$", res$content) |
-      grepl("[Oo]ne or more.*[:]$", res$content) |
-      grepl("[:] [Ee]ither$", res$content)
+    grepl("[Ee]ither.*[:]$|[Oo]r.*[:]$", res$content) |
+    grepl("[Oo]ne or more.*[:]$", res$content) |
+    grepl("[:] [Ee]ither$", res$content)
   ) # rare (spodosols)
   logic.endclause <-
-    grepl("[.]$|or more$", res$content) # or more for kandic/kanhaplic ustalfs
+    grepl("[.]$|or more$", res$content) 
+  # or more for kandic/kanhaplic ustalfs
   logic.newkey <- grepl("p. [0-9]+", res$content)
-  logic.none <-
-    !any(logic.and, logic.or, logic.endclause, logic.newkey)
+  logic.none <- !any(logic.and, logic.or, logic.endclause, logic.newkey)
   
   lmat <-  data.frame(
     AND = logic.and,
@@ -210,7 +210,6 @@ content_to_clause <- function(st_tree) {
   lval[is.na(lval) & 1:length(lval) == length(lval)] <- "LAST"
   
   res$logic <- lval
-  
   return(res)
 }
 
@@ -246,7 +245,7 @@ st <- st[-grep("^CHAPTER|^[A-Z]$", st$content), ]
 st <- st[-do.call('c', lapply(chtaxa.lut, function(x)
     grep(sprintf("^%s$", x), st$content))), ]
 
-# fix dangling and/ors
+# fix dangling AND/ORs
 orfix <- grep("^or$", st$content)
 andfix <- grep("^and$", st$content)
 st$content[orfix - 1] <- paste0(st$content[orfix - 1], " or")
