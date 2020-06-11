@@ -394,18 +394,20 @@ taxchar <- as.character(taxa.lut)
 taxchar.pg.idx <- grep("^(.*), p\\..*$", taxchar)
 taxchar[taxchar.pg.idx] <-
   gsub("^(.*), p\\..*$", "\\1", taxchar[taxchar.pg.idx])
-taxchar[1] <- "*"
 names(codes.lut) <- taxchar
 
 names(codes.lut) <- toupper(names(codes.lut))
 
-taxa <- names(codes.lut)[order(nchar(names(codes.lut)), decreasing = TRUE)]
+taxa <- taxchar[order(nchar(names(codes.lut)), decreasing = TRUE)]
 
 # highlight taxa
 highlightTaxa <- function(content) {
   as.character(lapply(content, function(clause) {
-    idx <- which(unlist(lapply(taxa, function(tax) grepl(tax, clause, fixed = TRUE))))[1]
-    gsub(sprintf("(.*)(%s)(.*)", taxa[idx]), "\\1<i>\\2</i>\\3", clause)
+    idx <- which(unlist(lapply(taxa, function(tax) 
+      grepl(tax, clause, fixed = TRUE))))[1]
+    gsub(sprintf("%s", taxa[idx]), 
+         sprintf("<font style=\"font-size:14\"><i>%s</i></font>", taxa[idx]),
+         clause, fixed = TRUE)
   }))
 }
 
@@ -414,7 +416,7 @@ st_db12_html <- lapply(st_db12, function(stdb) {
   stdb$content[newlast.idx] <- highlightTaxa(stdb$content[newlast.idx])
   
   # highlight codes
-  stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<b>\\1</b>\\2", stdb$content)
+  stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<font style=\"font-size:14\"><b>\\1</b></font>\\2", stdb$content)
   stdb$key <- gsub("Key to ", "", stdb$key)
   return(stdb)
 })
@@ -431,7 +433,7 @@ save(st_db12_html, codes.lut,
    file = "KST/KSTLookup/soiltaxonomy_12th_db_HTML.Rda")
 
 # inspect
-st_db12$HADA
+st_db12_html$HADA
 st_db12_unique$ABCD
 # 
 # ### MINERAL SOIL SURFACE (in subgroup keys + other definitions)
