@@ -20,6 +20,7 @@ chapter.markers <- list(
   ch14 = "Spodosols that have aquic conditions for some time in",
   ch15 = "Ultisols that have aquic conditions for some time in",
   ch16 = "Vertisols that have, in one or more horizons within 50",
+  ch17 = "Families and series serve purpose",
   ch18 = "This chapter describes soil layers and genetic soil horizons",
   appendix = "Data Elements Used in Classifying Soils"
 )
@@ -155,7 +156,7 @@ subset_tree <- function(st_tree, crit_levels) {
 }
 
 content_to_clause <- function(st_tree) {
-  clause.idx <- grep(";\\*? and|;\\*? or|[.:]$|p. [0-9]+|[:] [Ee]ither",
+  clause.idx <- grep(";\\*? and|;\\*? or|[\\.:]$|p\\. [0-9]+|[:] [Ee]ither|\\.\\)$",
          st_tree$content)
   st_tree$clause <- category_from_index(
       idx = c(0, clause.idx, length(st_tree$content)),
@@ -230,7 +231,7 @@ pgnames <- names(pgidx)[1:length(pgidx) - 1]
 # create a table of text "content," chapter and page number
 st <- data.frame(
   content = pdf$content,
-  chapter = category_from_index(ch.groups, length(pdf$content), 0:18),
+  chapter = category_from_index(ch.groups, length(pdf$content), 0:19),
   page = category_from_index(pgidx, length(pdf$content), pgnames),
   stringsAsFactors = FALSE
 )
@@ -250,6 +251,10 @@ orfix <- grep("^or$", st$content)
 andfix <- grep("^and$", st$content)
 st$content[orfix - 1] <- paste0(st$content[orfix - 1], " or")
 st$content[andfix - 1] <- paste0(st$content[andfix - 1], " and")
+
+# other fixes
+humustepts.idx <- grep("KDC. Other Ustepts that have an umbric or mollic epipedon", st$content)
+st$content[humustepts.idx] <- paste0(st$content[humustepts.idx],".")
 
 # split by chapter
 ch <- split(st, f = st$chapter) 
@@ -366,18 +371,21 @@ st_db12 <- lapply(unique(st_criteria_subgroup$crit), function(crit) {
     content_to_clause(subset_tree(st_criteria_subgroup, crit_levels)[[1]])
   })
 
+st_db12$`*` <- NULL
+st_db12_unique$`*` <- NULL
+
 names(st_db12) <- unique(st_criteria_subgroup$crit)
 names(st_db12_unique) <- unique(st_criteria_subgroup$crit)
 
 # get full names of taxa for lookuptable
 res <- lapply(st_db12_unique, function(st_sub) {
-  st_sub[which(st_sub$logic %in% c("NEW", "LAST")), ]
+  idx <- which(st_sub$logic %in% c("NEW", "LAST"))
+  st_sub[idx[length(idx)], ]
 })
 
 taxa.lut <- (lapply(res[unlist(lapply(res, function(res_sub) {
   length(res_sub) > 0
-}))], function(x)
-  x$content))
+}))], function(x) x$content))
 
 codes.lut <- names(taxa.lut)
 
@@ -389,15 +397,41 @@ taxchar[taxchar.pg.idx] <-
 taxchar[1] <- "*"
 names(codes.lut) <- taxchar
 
+names(codes.lut) <- toupper(names(codes.lut))
+
+taxa <- names(codes.lut)[order(nchar(names(codes.lut)), decreasing = TRUE)]
+
+# highlight taxa
+highlightTaxa <- function(content) {
+  as.character(lapply(content, function(clause) {
+    idx <- which(unlist(lapply(taxa, function(tax) grepl(tax, clause, fixed = TRUE))))[1]
+    gsub(sprintf("(.*)(%s)(.*)", taxa[idx]), "\\1<i>\\2</i>\\3", clause)
+  }))
+}
+
+st_db12_html <- lapply(st_db12, function(stdb) {
+  newlast.idx <- which(stdb$logic %in% c("NEW","LAST"))
+  stdb$content[newlast.idx] <- highlightTaxa(stdb$content[newlast.idx])
+  
+  # highlight codes
+  stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<b>\\1</b>\\2", stdb$content)
+  stdb$key <- gsub("Key to ", "", stdb$key)
+  return(stdb)
+})
+
 # save to Rda
 save(st_db12,
      st_db12_unique,
+     st_db12_html,
      taxa.lut,
      codes.lut,
      file = "KST/soiltaxonomy_12th_db.Rda")
 
+save(st_db12_html, codes.lut, 
+   file = "KST/KSTLookup/soiltaxonomy_12th_db_HTML.Rda")
+
 # inspect
-st_db12$ABCD
+st_db12$HADA
 st_db12_unique$ABCD
 # 
 # ### MINERAL SOIL SURFACE (in subgroup keys + other definitions)
