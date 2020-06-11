@@ -155,38 +155,52 @@ subset_tree <- function(st_tree, crit_levels) {
 }
 
 content_to_clause <- function(st_tree) {
-  clause.idx <- grep(";\\*? and|;\\*? or|[.:]$|p. [0-9]+|[:] [Ee]ither", st_tree$content)
-  st_tree$clause <- category_from_index(idx = c(0, clause.idx, length(st_tree$content)), 
-                                        n = length(st_tree$content),
-                                        values = 1:(length(clause.idx) + 1))
- 
-  res <- (do.call('rbind',lapply(split(st_tree, st_tree$clause), function(tsub) {
-    newcontent <- paste0(tsub$content, collapse = " ")
-    newtsub <- tsub[1,] # take page where clause starts etc, assume same otherwise
-    newtsub$content <- newcontent
-    return(newtsub)
-  })))
+  clause.idx <- grep(";\\*? and|;\\*? or|[.:]$|p. [0-9]+|[:] [Ee]ither",
+         st_tree$content)
+  st_tree$clause <- category_from_index(
+      idx = c(0, clause.idx, length(st_tree$content)),
+      n = length(st_tree$content),
+      values = 1:(length(clause.idx) + 1)
+    )
+  
+  res <- (do.call('rbind', lapply(split(st_tree, st_tree$clause), 
+                                  function(tsub) {
+      newcontent <- paste0(tsub$content, collapse = " ")
+      newtsub <-
+        tsub[1, ] # take page where clause starts etc, assume same otherwise
+      newtsub$content <- newcontent
+      return(newtsub)
+    })))
   
   # remove footnotes
   footnote.idx <- grep("^\u2020|^\\*", res$content)
   if (length(footnote.idx) > 0)
-    res <- res[-footnote.idx,]
+    res <- res[-footnote.idx, ]
   
   # classify basic logical operators on complete clauses
-  logic.and <- grepl("and$", res$content) | grepl("[Bb]oth.*[:]$", res$content) | grepl("[Aa]ll of.*[:]$", res$content)
-  logic.or <- (grepl("or$", res$content) | 
-                 grepl("[Ee]ither|[Oo]r.*[:]$", res$content) | grepl("[Oo]ne or more.*[:]$", res$content) |
-                 grepl("[:] [Ee]ither$", res$content) ) # rare (spodosols)
-  logic.endclause <- grepl("[.]$", res$content)
+  logic.and <-
+    grepl("and$", res$content) |
+    grepl("[Bb]oth.*[:]$", res$content) |
+    grepl("[Aa]ll of.*[:]$", res$content)
+  logic.or <- (
+    grepl("or$", res$content) |
+      grepl("[Ee]ither|[Oo]r.*[:]$", res$content) |
+      grepl("[Oo]ne or more.*[:]$", res$content) |
+      grepl("[:] [Ee]ither$", res$content)
+  ) # rare (spodosols)
+  logic.endclause <-
+    grepl("[.]$|or more$", res$content) # or more for kandic/kanhaplic ustalfs
   logic.newkey <- grepl("p. [0-9]+", res$content)
-  logic.none <- !any(logic.and,logic.or,logic.endclause,logic.newkey)
+  logic.none <-
+    !any(logic.and, logic.or, logic.endclause, logic.newkey)
   
   lmat <-  data.frame(
     AND = logic.and,
     OR = logic.or,
     END = logic.endclause,
     NEW = logic.newkey,
-    NUL = logic.none)
+    NUL = logic.none
+  )
   
   lval <- names(lmat)[apply(lmat, 1, function(ro) {
     which(ro)[1]
@@ -195,15 +209,16 @@ content_to_clause <- function(st_tree) {
   lval[is.na(lval) & 1:length(lval) == 1] <- "FIRST"
   lval[is.na(lval) & 1:length(lval) == length(lval)] <- "LAST"
   
-  res$logic <- lval 
-
+  res$logic <- lval
+  
   return(res)
 }
 
 # determine line index each chapter starts on
 chidx <- rep(NA, length(chapter.markers))
 for (p in 1:length(chapter.markers)) {
-  chp1 <- as.numeric(first_match_to_page(chapter.markers[p], pdf$content))
+  chp1 <-
+    as.numeric(first_match_to_page(chapter.markers[p], pdf$content))
   chidx[p] <- page_to_index(pdf$content, chp1)
 }
 
@@ -214,19 +229,22 @@ pgidx <- c(0, get_page_breaks(pdf$content))
 pgnames <- names(pgidx)[1:length(pgidx) - 1]
 
 # create a table of text "content," chapter and page number
-st <- data.frame(content = pdf$content,
-                 chapter = category_from_index(ch.groups, length(pdf$content), 0:18),
-                 page = category_from_index(pgidx, length(pdf$content), pgnames),
-                 stringsAsFactors = FALSE)
+st <- data.frame(
+  content = pdf$content,
+  chapter = category_from_index(ch.groups, length(pdf$content), 0:18),
+  page = category_from_index(pgidx, length(pdf$content), pgnames),
+  stringsAsFactors = FALSE
+)
 
 # remove page linefeed markup
-st <- st[-pgidx,]
+st <- st[-pgidx, ]
 
 # remove three-letter abbreviated headers and CHAPTER X
-st <- st[-grep("^CHAPTER|^[A-Z]$", st$content),]
+st <- st[-grep("^CHAPTER|^[A-Z]$", st$content), ]
 
 # remove floating order names (chapter names)
-st <- st[-do.call('c',lapply(chtaxa.lut, function(x) grep(sprintf("^%s$", x), st$content))),]
+st <- st[-do.call('c', lapply(chtaxa.lut, function(x)
+    grep(sprintf("^%s$", x), st$content))), ]
 
 # fix dangling and/ors
 orfix <- grep("^or$", st$content)
@@ -240,7 +258,6 @@ ch <- split(st, f = st$chapter)
 # indexes 5 to 17 are the Keys to Order, Suborder, Great Group, Subgroup...
 #  indexes offset by 1 from their "true" chapter number in table
 keys <- lapply(ch[5:17], function(h) {
-  
   # show what chapter we are processing
   print(unique(h$chapter))
   
@@ -255,21 +272,25 @@ keys <- lapply(ch[5:17], function(h) {
   
   if (length(key.idx) == 1) {
     # this is the Key to Soil Orders
-    key.to.what <- gsub("^(Key to [A-Z a-z]*)$","\\1", h$content[key.idx])
+    key.to.what <-
+      gsub("^(Key to [A-Z a-z]*)$", "\\1", h$content[key.idx])
     h$key <- key.to.what
     h$taxa <- "*"
   } else if (length(key.idx) > 0) {
     # all other Keys
-    key.to.what <- gsub("^(Key to [A-Z a-z]*)$","\\1", h$content[key.idx])
+    key.to.what <-
+      gsub("^(Key to [A-Z a-z]*)$", "\\1", h$content[key.idx])
     
     key.taxa.idx <- key.idx
-    key.taxa.idx[key.taxa.idx > 1] <- key.taxa.idx[key.taxa.idx > 1] - 1
+    key.taxa.idx[key.taxa.idx > 1] <-
+      key.taxa.idx[key.taxa.idx > 1] - 1
     
     key.taxa <- h$content[key.taxa.idx]
     
     if (length(key.to.what) > 0) {
       taxsub.l <- key.to.what == "Key to Suborders"
-      key.taxa[taxsub.l] <- as.character(chtaxa.lut[as.character(unique(h$chapter))])
+      key.taxa[taxsub.l] <-
+        as.character(chtaxa.lut[as.character(unique(h$chapter))])
     }
     
     key.groups <- c(0, key.idx,  length(h$content))
@@ -277,12 +298,14 @@ keys <- lapply(ch[5:17], function(h) {
     key.group.names <- c("None", key.to.what, 'None')
     key.taxa.names <- c("None", key.taxa, 'None')
     
-    h$key <- category_from_index(key.groups, length(h$content),  key.group.names)
-    h$taxa <- category_from_index(key.groups, length(h$content),  key.taxa.names)
+    h$key <-
+      category_from_index(key.groups, length(h$content),  key.group.names)
+    h$taxa <-
+      category_from_index(key.groups, length(h$content),  key.taxa.names)
   }
   
-  # remove Key to ... and 
-  return(h[-c(key.idx, key.idx - 1),])
+  # remove Key to ... and
+  return(h[-c(key.idx, key.idx - 1), ])
 })
 
 ## identify indices of each taxon
@@ -292,8 +315,9 @@ crits <- lapply(keys, function(kk) {
   
   if (length(crit.idx) > 0 & length(crit.to.what) > 0) {
     crit.groups <- c(0, crit.idx - 1, length(kk$content))
-    crit.group.names <- c("*", crit.to.what ,"*")
-    kk$crit <- category_from_index(crit.groups, length(kk$content), crit.group.names)
+    crit.group.names <- c("*", crit.to.what , "*")
+    kk$crit <-
+      category_from_index(crit.groups, length(kk$content), crit.group.names)
   } else {
     kk$crit <- "None"
   }
@@ -313,21 +337,21 @@ st_criteria_other <- st_criteria[!subgroup.key.l,]
 
 # decompose a taxon into its parent taxon tree
 # then view the clauses that define the whole taxon
-crit_levels <- decompose_taxon_ID(c("EACB"))
-test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
-(content_to_clause(test))
+# crit_levels <- decompose_taxon_ID(c("EACB"))
+# test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
+# (content_to_clause(test))
 
-crit_levels <- decompose_taxon_ID(c("KAFA"))
-test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
-(content_to_clause(test))
-
-crit_levels <- decompose_taxon_ID(c("IFFZb"))
-test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
-(content_to_clause(test))
-
-crit_levels <- decompose_taxon_ID(c("CBA"))
-test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
-(content_to_clause(test))
+# crit_levels <- decompose_taxon_ID(c("KAFA"))
+# test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
+# (content_to_clause(test))
+# 
+# crit_levels <- decompose_taxon_ID(c("IFFZb"))
+# test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
+# (content_to_clause(test))
+# 
+# crit_levels <- decompose_taxon_ID(c("CBA"))
+# test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
+# (content_to_clause(test))
 
 ## make whole ST database -- unique taxa
 crit_levels <-  decompose_taxon_ID(unique(st_criteria_subgroup$crit))
@@ -335,35 +359,62 @@ crit_levels_u <- lapply(crit_levels, function(cl) return(cl[length(cl)]))
 st_db12_unique <- lapply(crit_levels_u, function(clu) {
   content_to_clause(subset_tree(st_criteria_subgroup, clu)[[1]]) } )
 
-## make whole ST database -- with each taxon fully constructed at each level (redundant)
+
+## make whole ST database
+## first with each taxon fully constructed at each level (redundant)
 st_db12 <- lapply(unique(st_criteria_subgroup$crit), function(crit) {
-  crit_levels <- decompose_taxon_ID(c(crit))
-  content_to_clause(subset_tree(st_criteria_subgroup, crit_levels)[[1]])
-})
+    crit_levels <- decompose_taxon_ID(c(crit))
+    content_to_clause(subset_tree(st_criteria_subgroup, crit_levels)[[1]])
+  })
 
 names(st_db12) <- unique(st_criteria_subgroup$crit)
 names(st_db12_unique) <- unique(st_criteria_subgroup$crit)
 
-save(st_db12, st_db12_unique, file = "KST/soiltaxonomy_12th_db.Rda")
+# get full names of taxa for lookuptable
+res <- lapply(st_db12_unique, function(st_sub) {
+  st_sub[which(st_sub$logic %in% c("NEW", "LAST")), ]
+})
+
+taxa.lut <- (lapply(res[unlist(lapply(res, function(res_sub) {
+  length(res_sub) > 0
+}))], function(x)
+  x$content))
+
+codes.lut <- names(taxa.lut)
+
+# process to remove page numbers
+taxchar <- as.character(taxa.lut)
+taxchar.pg.idx <- grep("^(.*), p\\..*$", taxchar)
+taxchar[taxchar.pg.idx] <-
+  gsub("^(.*), p\\..*$", "\\1", taxchar[taxchar.pg.idx])
+taxchar[1] <- "*"
+names(codes.lut) <- taxchar
+
+# save to Rda
+save(st_db12,
+     st_db12_unique,
+     taxa.lut,
+     codes.lut,
+     file = "KST/soiltaxonomy_12th_db.Rda")
 
 # inspect
 st_db12$ABCD
 st_db12_unique$ABCD
-
-### MINERAL SOIL SURFACE (in subgroup keys + other definitions)
-mss.idx <- grep("mineral soil surface", 
-                st_criteria$content, 
-                ignore.case = TRUE)
-mss.sub <- st_criteria[mss.idx,]
-
-# used 2073 times
-length(mss.idx)
-
-# in 12 chapters 
-length(unique(mss.sub$chapter))
-
-# in 8 different levels of keys
-length(unique(mss.sub$key))
-
-# in 1590 different criteria
-length(unique(mss.sub$crit))
+# 
+# ### MINERAL SOIL SURFACE (in subgroup keys + other definitions)
+# mss.idx <- grep("mineral soil surface",
+#                 st_criteria$content,
+#                 ignore.case = TRUE)
+# mss.sub <- st_criteria[mss.idx, ]
+# 
+# # used 2073 times
+# length(mss.idx)
+# 
+# # in 12 chapters
+# length(unique(mss.sub$chapter))
+# 
+# # in 8 different levels of keys
+# length(unique(mss.sub$key))
+# 
+# # in 1590 different criteria
+# length(unique(mss.sub$crit))
