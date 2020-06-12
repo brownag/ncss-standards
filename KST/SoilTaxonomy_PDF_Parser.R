@@ -256,6 +256,11 @@ st$content[andfix - 1] <- paste0(st$content[andfix - 1], " and")
 humustepts.idx <- grep("KDC. Other Ustepts that have an umbric or mollic epipedon", st$content)
 st$content[humustepts.idx] <- paste0(st$content[humustepts.idx],".")
 
+lit.idx <- grep("Literature Cited", st$content)
+bad.lit.idx <- lit.idx[3] + 0:(grep("Key to", 
+                                    st$content[lit.idx[3] + 0:10]) - 2)
+st <- st[-bad.lit.idx,]
+
 # split by chapter
 ch <- split(st, f = st$chapter) 
 
@@ -374,9 +379,6 @@ st_db12 <- lapply(unique(st_criteria_subgroup$crit), function(crit) {
 st_db12$`*` <- NULL
 st_db12_unique$`*` <- NULL
 
-names(st_db12) <- unique(st_criteria_subgroup$crit)
-names(st_db12_unique) <- unique(st_criteria_subgroup$crit)
-
 # get full names of taxa for lookuptable
 res <- lapply(st_db12_unique, function(st_sub) {
   idx <- which(st_sub$logic %in% c("NEW", "LAST"))
@@ -395,8 +397,6 @@ taxchar.pg.idx <- grep("^(.*), p\\..*$", taxchar)
 taxchar[taxchar.pg.idx] <-
   gsub("^(.*), p\\..*$", "\\1", taxchar[taxchar.pg.idx])
 names(codes.lut) <- taxchar
-
-names(codes.lut) <- toupper(names(codes.lut))
 
 taxa <- taxchar[order(nchar(names(codes.lut)), decreasing = TRUE)]
 
