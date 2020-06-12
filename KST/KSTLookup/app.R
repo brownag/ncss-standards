@@ -4,13 +4,14 @@ library(DT)
 load("soiltaxonomy_12th_db_HTML.Rda")
 
 ui <- fluidPage(
+    titlePanel("Keys to Soil Taxonomy (12th) - Taxon Criteria Lookup Tool [alpha]"),
     
-    titlePanel("Keys to Soil Taxonomy - Taxon Criteria Lookup Tool [alpha]"),
+    selectizeInput("taxonname", "Enter a name of a Subgroup, Great Group, Suborder or Order level taxon: ", 
+                   choices = as.list(c("", codes.lut))),
     
-    selectizeInput("taxonname", "Taxon Name [subgroup to order]: ",             choices = as.list(c("", codes.lut))),
+    fluidRow(column(12, DT::dataTableOutput('taxonCriteria'))),
     
-    fluidRow(column(12, DT::dataTableOutput('taxonCriteria')))
-    
+    actionButton("show", "About")
 )
 
 # handy function to use lookup table for taxon-name based searches
@@ -63,6 +64,25 @@ server <- function(input, output) {
             " 'color': '#fff'",
             "});","}"), searchHighlight = TRUE), 
     escape = FALSE, filter = "bottom")
+    
+    observeEvent(input$show, {
+        showModal(modalDialog(
+            title = "About the App",
+            "This is alpha version of the \"KSTLookup\" Shiny app -- a prototype tool for viewing criteria associated with taxa at the subgroup to order level in U.S. Soil Taxonomy. An new feature classifies the type of logic contained within the clause into the following classes:
+
+ - FIRST - first clause in a key; 
+ - AND - this clause, AND the next clause; 
+ - OR - this clause, OR the next clause; 
+ - END - last clause in a sequence of clauses (that may be connected at multiple levels with AND/OR); 
+ - NEW - last clause in a higher order key -- directs to another page; 
+ - LAST - last clause in a key (only used for Subgroup level taxa); 
+
+The tool is otherwise an exact derivative of the Keys that only shows a subset of the criteria, and thus, does not stand \"on its own\" in its current form. This is intentional -- and this tool should be considered a companion to the Keys. It is thought that this way of viewing criteria associated with particular taxa will make it easier to traverse, and conceptualize, the structure of the Keys.
+
+Additional semantic logic will soon be added to link to glossary entries, diagnostic features and other properties and definitions of interest. (Andrew G. Brown; 2020/06/11)",
+            easyClose = TRUE
+        ))
+    })
 }
 
 # Run the application 
