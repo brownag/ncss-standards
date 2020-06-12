@@ -7,9 +7,10 @@ ui <- fluidPage(
     
     titlePanel("Keys to Soil Taxonomy - Taxon Criteria Lookup Tool [alpha]"),
     
-    textInput("taxonname", "Taxon Name [subgroup to order]: ", value = ""),
+    selectizeInput("taxonname", "Taxon Name [subgroup to order]: ",             choices = as.list(c("", codes.lut))),
     
     fluidRow(column(12, DT::dataTableOutput('taxonCriteria')))
+    
 )
 
 # handy function to use lookup table for taxon-name based searches
@@ -24,21 +25,20 @@ do_ST_lookup <- function(db, lut, taxon) {
             crit = character(0),
             clause = numeric(0),
             logic = character(0))
+    
     if (taxon == "")
         return(emptydf)
     
-    code <- try(lut[[taxon]])
-    
-    if (inherits(code, 'try-error'))
+    if (inherits(taxon, 'try-error'))
         return(emptydf)
     
-    res <- db[[code]]
+    res <- db[[taxon]]
     
     if (is.null(res))
-        stop(sprintf("error: code %s not found in database", code))
+        stop(sprintf("error: code %s not found in database", taxon))
     
     if (nrow(res) == 0)
-        warning(sprintf("warning: empty result for code %s", code))
+        warning(sprintf("warning: empty result for code %s", taxon))
     
     return(res)
 }
