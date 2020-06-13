@@ -147,6 +147,41 @@ decompose_taxon_ID <- function(crit) {
   return(out)
 }
 
+preceding_taxon_ID <- function(ids) {
+  lapply(ids, function(i) {
+    out <- vector(mode = 'list',
+                  length = nchar(i))
+    parenttaxon <- character(0)
+    for (j in 1:nchar(i)) {
+      idx <- which(LETTERS == substr(i, j, j))
+      idx.ex <- which(letters == substr(i, j, j))
+      if (length(idx)) {
+          previoustaxa <- LETTERS[1:idx[1] - 1]
+          out[[j]] <- previoustaxa 
+          if (length(parenttaxon) > 0) {
+            out[[j]] <- paste0(parenttaxon, previoustaxa)
+            parenttaxon <- paste0(parenttaxon, LETTERS[idx[1]])
+          } else {
+            parenttaxon <- LETTERS[idx[1]]
+          }
+      } else if (length(idx.ex)) {
+        previoustaxa <- letters[1:idx.ex[1] - 1]
+        out[[j]] <- previoustaxa 
+        if (length(parenttaxon) > 0) {
+          out[[j]] <- paste0(parenttaxon, previoustaxa)
+          parenttaxon <- paste0(parenttaxon, letters[idx.ex[1]])
+        } else {
+          parenttaxon <- letters[idx.ex[1]]
+        }        
+      } else {
+        out[[j]] <- NA
+      }
+    }
+    
+    return(do.call('c', out))
+  })
+}
+
 subset_tree <- function(st_tree, crit_levels) {
   lapply(crit_levels, function(crit_level) { 
     do.call('rbind', lapply(crit_level, function(cl) {
@@ -352,6 +387,8 @@ test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
 content_to_clause(test)
 
 crit_levels <- decompose_taxon_ID(c("IGGL"))
+preceding_levels <- preceding_taxon_ID(crit_levels)
+
 test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
 (content_to_clause(test))
 # 
@@ -447,21 +484,4 @@ save(st_db12_html, codes.lut,
 # inspect
 st_db12_html$HADA
 st_db12_unique$ABCD
-# 
-# ### MINERAL SOIL SURFACE (in subgroup keys + other definitions)
-# mss.idx <- grep("mineral soil surface",
-#                 st_criteria$content,
-#                 ignore.case = TRUE)
-# mss.sub <- st_criteria[mss.idx, ]
-# 
-# # used 2073 times
-# length(mss.idx)
-# 
-# # in 12 chapters
-# length(unique(mss.sub$chapter))
-# 
-# # in 8 different levels of keys
-# length(unique(mss.sub$key))
-# 
-# # in 1590 different criteria
-# length(unique(mss.sub$crit))
+
