@@ -159,13 +159,16 @@ preceding_taxon_ID <- function(ids) {
           previoustaxa <- LETTERS[1:idx[1] - 1]
           out[[j]] <- previoustaxa 
           if (length(parenttaxon) > 0) {
-            out[[j]] <- paste0(parenttaxon, previoustaxa)
-            parenttaxon <- paste0(parenttaxon, LETTERS[idx[1]])
+            if(length(previoustaxa))
+               out[[j]] <- paste0(parenttaxon, previoustaxa)
+            newparent <- LETTERS[idx[1]]
+            if(length(newparent))
+              parenttaxon <- paste0(parenttaxon, newparent)
           } else {
             parenttaxon <- LETTERS[idx[1]]
           }
       } else if (length(idx.ex)) {
-        previoustaxa <- letters[1:idx.ex[1] - 1]
+        previoustaxa <- c("", letters[1:idx.ex[1]])
         out[[j]] <- previoustaxa 
         if (length(parenttaxon) > 0) {
           out[[j]] <- paste0(parenttaxon, previoustaxa)
@@ -227,7 +230,7 @@ content_to_clause <- function(st_tree) {
   logic.endclause <-
     grepl("[.]$|or more$", res$content) 
   # or more for kandic/kanhaplic ustalfs
-  logic.newkey <- grepl("p. [0-9]+", res$content)
+  logic.newkey <- grepl("p\\. [0-9]+", res$content)
   logic.none <- !any(logic.and, logic.or, logic.endclause, logic.newkey)
   
   lmat <-  data.frame(
@@ -386,12 +389,9 @@ crit_levels <- decompose_taxon_ID(c("JA"))
 test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
 content_to_clause(test)
 
-crit_levels <- decompose_taxon_ID(c("IGGL"))
-preceding_levels <- preceding_taxon_ID(crit_levels)
-
 test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
 (content_to_clause(test))
-# 
+
 # crit_levels <- decompose_taxon_ID(c("IFFZb"))
 # test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
 # (content_to_clause(test))
@@ -403,9 +403,14 @@ test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
 ## make whole ST database -- unique taxa
 crit_levels <-  decompose_taxon_ID(unique(st_criteria_subgroup$crit))
 crit_levels_u <- lapply(crit_levels, function(cl) return(cl[length(cl)]))
-st_db12_unique <- lapply(crit_levels_u, function(clu) {
-  content_to_clause(subset_tree(st_criteria_subgroup, clu)[[1]]) } )
 
+st_db12_unique <- lapply(crit_levels_u, function(clu) {
+  content_to_clause(subset_tree(st_criteria_subgroup, clu)[[1]]) 
+} )
+
+st_db12_taxaonly <- lapply(st_db12_unique, function(stdb) {
+  subset(stdb, stdb$logic %in% c("LAST", "NEW"))
+})
 
 ## make whole ST database
 ## first with each taxon fully constructed at each level (redundant)
@@ -413,9 +418,6 @@ st_db12 <- lapply(unique(st_criteria_subgroup$crit), function(crit) {
     crit_levels <- decompose_taxon_ID(c(crit))
     content_to_clause(subset_tree(st_criteria_subgroup, crit_levels)[[1]])
   })
-
-st_db12$`*` <- NULL
-st_db12_unique$`*` <- NULL
 
 # get full names of taxa for lookuptable
 res <- lapply(st_db12_unique, function(st_sub) {
@@ -452,36 +454,70 @@ highlightTaxa <- function(content, taxon) {
 
 # temporarily use group names for matching
 names(st_db12) <- names(codes.lut) 
-st_db12_html <- lapply(names(st_db12), function(stdbnm) {
-  stdb <- st_db12[[stdbnm]]
-  
-  newlast.idx <- which(stdb$logic %in% c("NEW","LAST"))
-  if(length(newlast.idx)) {
-    stdb$content <- highlightTaxa(stdb$content, stdbnm)
-  }
-  # highlight codes
-  stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<b>\\1</b>\\2", 
-                       stdb$content)
-  stdb$key <- gsub("Key to ", "", stdb$key)
-  return(stdb)
-})
+names(st_db12_unique) <- names(codes.lut) 
+names(st_db12_taxaonly) <- names(codes.lut) 
+
+do_HTML_postprocess <- function(stdb) {
+  lapply(names(stdb), function(stdbnm) {
+    stdb <- stdb[[stdbnm]]
+    
+    newlast.idx <- which(stdb$logic %in% c("NEW","LAST"))
+    if(length(newlast.idx)) {
+      stdb$content <- highlightTaxa(stdb$content, stdbnm)
+    }
+    # highlight codes
+    stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<b>\\1</b>\\2", 
+                         stdb$content)
+    stdb$key <- gsub("Key to ", "", stdb$key)
+    return(stdb)
+  })
+}
+
+st_db12_html <- do_HTML_postprocess(st_db12)
+st_db12_unique <- do_HTML_postprocess(st_db12_unique) 
+st_db12_taxaonly <- do_HTML_postprocess(st_db12_taxaonly)
+st_db12_preceding <- preceding_taxon_ID(codes.lut)
 
 # go back to codes for output
 names(st_db12) <- codes.lut
 names(st_db12_html) <- codes.lut
+names(st_db12_unique) <- codes.lut
+names(st_db12_taxaonly) <- codes.lut
+names(st_db12_preceding) <- codes.lut
+
+# remove front matter
+st_db12[[1]] <- NULL
+st_db12_html[[1]] <- NULL
+st_db12_taxaonly[[1]] <- NULL
+st_db12_preceding[[1]] <- NULL
+codes.lut <- codes.lut[2:length(codes.lut)]
+taxa.lut <- names(codes.lut)
+names(taxa.lut) <- codes.lut
 
 # save to Rda
 save(st_db12,
      st_db12_unique,
      st_db12_html,
+     st_db12_preceding,
      taxa.lut,
      codes.lut,
      file = "KST/soiltaxonomy_12th_db.Rda")
 
-save(st_db12_html, codes.lut, 
+save(st_db12_html, codes.lut, taxa.lut,
    file = "KST/KSTLookup/soiltaxonomy_12th_db_HTML.Rda")
 
+save(st_db12_preceding, codes.lut, taxa.lut, st_db12_taxaonly,
+     file = "KST/KSTPreceding/soiltaxonomy_12th_db_preceding.Rda")
+
 # inspect
-st_db12_html$HADA
-st_db12_unique$ABCD
+#st_db12_html$HADA
+#st_db12_unique$ABCD
+
+# typic hapludalfs and typic haploxerolls are tied 
+#  for number of preceding taxa (n = 51)
+n.preceding <- unlist(lapply(st_db12_preceding, length))
+which(n.preceding == max(n.preceding))
+
+# View(st_db12_unique[['JEJZd']])
+# View(st_db12_unique[['IFFZh']])
 

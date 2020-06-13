@@ -6,8 +6,10 @@ load("soiltaxonomy_12th_db_HTML.Rda")
 ui <- fluidPage(
     titlePanel("Keys to Soil Taxonomy (12th) - Taxon Criteria Lookup Tool [alpha]"),
     
-    selectizeInput("taxonname", "Enter a name of a Subgroup, Great Group, Suborder or Order level taxon: ", 
-                   choices = as.list(c("", codes.lut))),
+    selectizeInput("taxonname", 
+                   "Enter a name of a Subgroup, Great Group, Suborder or Order level taxon: ", 
+                   choices = as.list(c("", codes.lut)),
+                   width = "500px"),
     
     fluidRow(column(12, DT::dataTableOutput('taxonCriteria'))),
     
@@ -57,13 +59,16 @@ server <- function(input, output) {
         }
         return(res)
     }, options = list(
+        lengthMenu = list(c(10, 25, 50, -1), c('10', '25', '50', 'All')),
+        pageLength = 25,
         initComplete = JS(
             "function(settings, json) {",
             "$(this.api().table().header()).css( {",
             " 'background-color': '#216734',", # javascript for DT style
             " 'color': '#fff'",
-            "});","}"), searchHighlight = TRUE), 
-    escape = FALSE, filter = "bottom")
+            "});",
+            "}"), searchHighlight = TRUE), 
+    escape = 1, filter = "bottom")
     
     observeEvent(input$show, {
         showModal(modalDialog(
