@@ -156,7 +156,7 @@ subset_tree <- function(st_tree, crit_levels) {
 }
 
 content_to_clause <- function(st_tree) {
-  clause.idx <- grep(";\\*? and|;\\*? or|[\\.:]$|p\\. [0-9]+|[:] [Ee]ither|\\.\\)$",
+  clause.idx <- grep(";\\*? and$|;\\*? or$|[\\.:]$|p\\. [0-9]+|[:] [Ee]ither|[.:]$|\\.\\)$",
          st_tree$content)
   st_tree$clause <- category_from_index(
       idx = c(0, clause.idx, length(st_tree$content)),
@@ -251,7 +251,8 @@ orfix <- grep("^or$", st$content)
 andfix <- grep("^and$", st$content)
 st$content[orfix - 1] <- paste0(st$content[orfix - 1], " or")
 st$content[andfix - 1] <- paste0(st$content[andfix - 1], " and")
-
+grep("and one of the following within the upper 12.5 cm of", st$content)
+st$content[3655:3665]
 # other fixes
 humustepts.idx <- grep("KDC. Other Ustepts that have an umbric or mollic epipedon", st$content)
 st$content[humustepts.idx] <- paste0(st$content[humustepts.idx],".")
@@ -346,13 +347,13 @@ st_criteria_other <- st_criteria[!subgroup.key.l,]
 
 # decompose a taxon into its parent taxon tree
 # then view the clauses that define the whole taxon
-# crit_levels <- decompose_taxon_ID(c("EACB"))
-# test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
-# (content_to_clause(test))
+crit_levels <- decompose_taxon_ID(c("JA"))
+test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
+content_to_clause(test)
 
-# crit_levels <- decompose_taxon_ID(c("KAFA"))
-# test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
-# (content_to_clause(test))
+crit_levels <- decompose_taxon_ID(c("IGGL"))
+test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
+(content_to_clause(test))
 # 
 # crit_levels <- decompose_taxon_ID(c("IFFZb"))
 # test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
@@ -401,25 +402,36 @@ names(codes.lut) <- taxchar
 taxa <- taxchar[order(nchar(names(codes.lut)), decreasing = TRUE)]
 
 # highlight taxa
-highlightTaxa <- function(content) {
-  as.character(lapply(content, function(clause) {
-    idx <- which(unlist(lapply(taxa, function(tax) 
-      grepl(tax, clause, fixed = TRUE))))[1]
-    gsub(sprintf("%s", taxa[idx]), 
-         sprintf("<font style=\"font-size:14\"><i>%s</i></font>", taxa[idx]),
-         clause, fixed = TRUE)
-  }))
+highlightTaxa <- function(content, taxon) {
+  out <- content
+  idx <- grepl(taxon, content, fixed = TRUE)
+  
+  if (length(idx)) {
+    out <- gsub(sprintf("%s", taxon), sprintf("<i>%s</i>", taxon),
+                out, fixed = TRUE)
+  }
+  return(out)
 }
 
-st_db12_html <- lapply(st_db12, function(stdb) {
-  newlast.idx <- which(stdb$logic %in% c("NEW","LAST"))
-  stdb$content[newlast.idx] <- highlightTaxa(stdb$content[newlast.idx])
+# temporarily use group names for matching
+names(st_db12) <- names(codes.lut) 
+st_db12_html <- lapply(names(st_db12), function(stdbnm) {
+  stdb <- st_db12[[stdbnm]]
   
+  newlast.idx <- which(stdb$logic %in% c("NEW","LAST"))
+  if(length(newlast.idx)) {
+    stdb$content <- highlightTaxa(stdb$content, stdbnm)
+  }
   # highlight codes
-  stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<font style=\"font-size:14\"><b>\\1</b></font>\\2", stdb$content)
+  stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<b>\\1</b>\\2", 
+                       stdb$content)
   stdb$key <- gsub("Key to ", "", stdb$key)
   return(stdb)
 })
+
+# go back to codes for output
+names(st_db12) <- codes.lut
+names(st_db12_html) <- codes.lut
 
 # save to Rda
 save(st_db12,
