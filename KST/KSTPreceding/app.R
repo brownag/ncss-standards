@@ -6,19 +6,30 @@ load("soiltaxonomy_12th_db_preceding.Rda")
 ui <- fluidPage(
     titlePanel("Keys to Soil Taxonomy (12th) - Preceding Taxa Lookup Tool [alpha]"),
     
-    selectizeInput("taxonname", 
-                   "Enter a name of a Subgroup, Great Group, Suborder or Order level taxon: ", 
-                   choices = as.list(c("", codes.lut)),
-                   width="500px"),
+    fluidRow(column(width = 6, selectizeInput("taxonname", 
+                   "Enter a taxon name: ", 
+                   choices = as.list(c(codes.lut))),
+                   shiny::helpText("Enter or choose a name of a Subgroup, Great Group",
+                                   shiny::br(),
+                                   "Suborder or Order level taxon.")),
+             
+             column(width = 6, h4("Showing taxa that key out before: "), 
+                    em(h4(textOutput("resulttext", inline = FALSE))))),
     
     fluidRow(column(12, DT::dataTableOutput('taxaPreceding'))),
-    
     actionButton("show", "About")
 )
 
 server <- function(input, output) {
     length.menu <- c(10, 25, 50, -1)
     names(length.menu) <- c(10, 25, 50, "All")
+    
+    output$resulttext <- renderText( {
+        res <- (taxa.lut[input$taxonname])
+        if (!is.na(res))
+          sprintf("%s", res)
+    })
+    
     output$taxaPreceding <- DT::renderDataTable( {
         res <- do.call('rbind', st_db12_taxaonly[st_db12_preceding[[input$taxonname]]])
         if (length(res) == 0) {
@@ -27,8 +38,11 @@ server <- function(input, output) {
         colnames(res) <- c("Content","Ch.","Pg.",
                                "Key","Taxa","Code",
                                "#","Logic")
-        return(res)
+        return(res[,-7])
     }, options = list(
+        columnDefs = list(list(width = "75%", targets = 1),
+                          list(width = "5%", targets = 2:7),
+                          list(className = 'dt-center', targets = 2:7)),
         lengthMenu = list(c(10, 25, 50, -1), c('10', '25', '50', 'All')),
         pageLength = 25,
         initComplete = JS(

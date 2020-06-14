@@ -6,10 +6,15 @@ load("soiltaxonomy_12th_db_HTML.Rda")
 ui <- fluidPage(
     titlePanel("Keys to Soil Taxonomy (12th) - Taxon Criteria Lookup Tool [alpha]"),
     
-    selectizeInput("taxonname", 
-                   "Enter a name of a Subgroup, Great Group, Suborder or Order level taxon: ", 
-                   choices = as.list(c("", codes.lut)),
-                   width = "500px"),
+    fluidRow(column(width = 6, selectizeInput("taxonname", 
+                                              "Enter a taxon name: ", 
+                                              choices = as.list(c(codes.lut))),
+                    shiny::helpText("Enter or choose a name of a Subgroup, Great Group",
+                                    shiny::br(),
+                                    "Suborder or Order level taxon.")),
+             
+             column(width = 6, h4("Showing results for: "), 
+                    em(h4(textOutput("resulttext", inline = FALSE))))),
     
     fluidRow(column(12, DT::dataTableOutput('taxonCriteria'))),
     
@@ -47,7 +52,13 @@ do_ST_lookup <- function(db, lut, taxon) {
 }
 
 server <- function(input, output) {
-
+    
+    output$resulttext <- renderText( {
+        res <- (taxa.lut[input$taxonname])
+        if (!is.na(res))
+            sprintf("%s", res)
+    })
+    
     output$taxonCriteria <- DT::renderDataTable( {
         res <- do_ST_lookup(db = st_db12_html, 
                             lut = codes.lut, 
@@ -57,8 +68,11 @@ server <- function(input, output) {
                            "Key","Taxa","Code",
                            "#","Logic")
         }
-        return(res)
+        return(res[,-7])
     }, options = list(
+        columnDefs = list(list(width = "75%", targets = 1),
+                          list(width = "5%", targets = 2:7),
+            list(className = 'dt-center', targets = 2:7)),
         lengthMenu = list(c(10, 25, 50, -1), c('10', '25', '50', 'All')),
         pageLength = 25,
         initComplete = JS(
