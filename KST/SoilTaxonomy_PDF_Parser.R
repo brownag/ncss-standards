@@ -477,7 +477,8 @@ do_HTML_postprocess <- function(stdb) {
                          stdb$content)
     stdb$content <- gsub("^(\\([a-z]*\\))(.*)$", "&nbsp;&nbsp;&nbsp;&nbsp;<b>\\1</b>\\2", 
                          stdb$content)
-    
+    stdb$content <- gsub("^(.*)(\\; and|\\; or)$", "\\1<i>\\2</i>", 
+                         stdb$content)
     stdb$key <- gsub("Key to ", "", stdb$key)
     return(stdb)
   })
@@ -495,14 +496,18 @@ names(st_db12_unique) <- codes.lut
 names(st_db12_taxaonly) <- codes.lut
 names(st_db12_preceding) <- codes.lut
 
-# remove front matter
-st_db12[[1]] <- NULL
-st_db12_html[[1]] <- NULL
-st_db12_taxaonly[[1]] <- NULL
-st_db12_preceding[[1]] <- NULL
-codes.lut <- codes.lut[2:length(codes.lut)]
-taxa.lut <- names(codes.lut)
-names(taxa.lut) <- codes.lut
+# remove front matter if present
+if (names(st_db12[1]) == "*") {
+  st_db12[[1]] <- NULL
+  st_db12_html[[1]] <- NULL
+  st_db12_taxaonly[[1]] <- NULL
+  st_db12_preceding[[1]] <- NULL
+  codes.lut <- codes.lut[2:length(codes.lut)]
+  taxa.lut <- names(codes.lut)
+  names(taxa.lut) <- codes.lut
+} else if (names(st_db12[1]) != "A") {
+  stop("somehow Gelisols are not first")
+}
 
 # save to Rda
 save(st_db12,
