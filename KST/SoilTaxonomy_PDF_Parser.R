@@ -294,11 +294,12 @@ st$content[3655:3665]
 # other fixes
 humustepts.idx <- grep("KDC. Other Ustepts that have an umbric or mollic epipedon", st$content)
 st$content[humustepts.idx] <- paste0(st$content[humustepts.idx],".")
-
+grep("2. An Ap", st$content)
 lit.idx <- grep("Literature Cited", st$content)
 bad.lit.idx <- lit.idx[3] + 0:(grep("Key to", 
                                     st$content[lit.idx[3] + 0:10]) - 2)
-st <- st[-bad.lit.idx,]
+# remove the baddies
+st <- st[-c(orfix, andfix, bad.lit.idx),]
 
 # split by chapter
 ch <- split(st, f = st$chapter) 
@@ -466,8 +467,17 @@ do_HTML_postprocess <- function(stdb) {
       stdb$content <- highlightTaxa(stdb$content, stdbnm)
     }
     # highlight codes
-    stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<b>\\1</b>\\2", 
+    stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<b><u>\\1</u></b>\\2", 
                          stdb$content)
+    stdb$content <- gsub("^([1-9]*\\.)(.*)$", "&nbsp;<b>\\1</b>\\2", 
+                         stdb$content)
+    stdb$content <- gsub("^([^A-Z][a-z]*\\.)(.*)$", "&nbsp;&nbsp;<b>\\1</b>\\2", 
+                         stdb$content)
+    stdb$content <- gsub("^(\\([1-9]*\\))(.*)$", "&nbsp;&nbsp;&nbsp;<b>\\1</b>\\2", 
+                         stdb$content)
+    stdb$content <- gsub("^(\\([a-z]*\\))(.*)$", "&nbsp;&nbsp;&nbsp;&nbsp;<b>\\1</b>\\2", 
+                         stdb$content)
+    
     stdb$key <- gsub("Key to ", "", stdb$key)
     return(stdb)
   })

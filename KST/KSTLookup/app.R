@@ -9,9 +9,7 @@ ui <- fluidPage(
     fluidRow(column(width = 6, selectizeInput("taxonname", 
                                               "Enter a taxon name: ", 
                                               choices = as.list(c(codes.lut))),
-                    shiny::helpText("Enter or choose a name of a Subgroup, Great Group",
-                                    shiny::br(),
-                                    "Suborder or Order level taxon.")),
+                    shiny::helpText("Subgroup, Great Group, Suborder or Order level taxon.")),
              
              column(width = 6, h4("Showing results for: "), 
                     em(h4(textOutput("resulttext", inline = FALSE))))),
