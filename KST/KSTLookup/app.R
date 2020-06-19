@@ -60,7 +60,7 @@ server <- function(input, output) {
     output$taxonCriteria <- DT::renderDataTable( {
         res <- do_ST_lookup(db = st_db12_html, 
                             lut = codes.lut, 
-                            taxon = toupper(input$taxonname))
+                            taxon = input$taxonname)
         if (length(res) > 0) {
             colnames(res) <- c("Content","Ch.","Pg.",
                            "Key","Taxa","Code",
