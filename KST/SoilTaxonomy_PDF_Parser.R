@@ -3,7 +3,7 @@
 # @last update: 2020/06/20
 #  new: testing support for spanish language version of keys
 
-language <- "EN"
+language <- "SP"
 
 # markers for each chapter
 chapter.markers.en <- list(
@@ -249,7 +249,7 @@ content_to_clause <- function(st_tree) {
     })))
   
   # remove footnotes
-  footnote.idx <- grep("^\u2020|^\\*", res$content)
+  footnote.idx <- grep("^\u2020|^\\*|[_]+ \u2020", res$content)
   if (length(footnote.idx) > 0)
     res <- res[-footnote.idx, ]
   
@@ -260,9 +260,9 @@ content_to_clause <- function(st_tree) {
     grepl("[Aa]ll of.*[:]$|[Tt]odos.*[:]", res$content)
   logic.or <- (
     grepl("or$| o$", res$content) |
-    grepl("[Ee]ither.*[:]$|[Oo]r.*[:]$|y ya sea.*[:]$$", res$content) |
+    grepl("[Ee]ither.*[:]$|[Oo]r.*[:]$|[Yy]a sea.*[:]$$", res$content) |
     grepl("[Oo]ne or more.*[:]$|[Uu]na o más.*[:]$", res$content) |
-    grepl("[:] [Ee]ither$|[;] [Yy]a sea[:]$", res$content)
+    grepl("[:] [Ee]ither$|[Yy]a sea[:]$", res$content)
   ) # rare (spodosols)
   logic.endclause <-
     grepl("[.]$|or more$", res$content) 
@@ -547,6 +547,11 @@ taxchar <- as.character(taxa.lut)
 taxchar.pg.idx <- grep("^(.*), p\\..*$|^(.*), pág\\..*$", taxchar)
 taxchar[taxchar.pg.idx] <-
   gsub("^(.*), p\\..*$|^(.*), pág\\..*$", "\\1\\2", taxchar[taxchar.pg.idx])
+
+# couple fixes
+taxchar <- (gsub("aqnalfs", "aqualfs", taxchar))
+taxa.lut <- taxchar
+names(taxa.lut) <- codes.lut
 names(codes.lut) <- taxchar
 
 # highlight taxa
@@ -631,6 +636,9 @@ save(st_db12,
 
 save(st_db12_html, codes.lut, taxa.lut,
    file = sprintf("KST/KSTLookup/soiltaxonomy_12th_db_HTML_%s.Rda", language))
+
+save(codes.lut, taxa.lut,
+     file = sprintf("KST/KSTLookup/soiltaxonomy_12th_db_codes.Rda", language))
 
 save(st_db12_html, codes.lut, taxa.lut,
      file = sprintf("KST/KSTEspanol/soiltaxonomy_12th_db_HTML_%s.Rda", language))
