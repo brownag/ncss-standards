@@ -8,7 +8,8 @@ ui <- fluidPage(
     
     fluidRow(column(width = 6, selectizeInput("taxonname", 
                    "Enter a taxon name: ", 
-                   choices = as.list(c(codes.lut))),
+                   choices = as.list(c(codes.lut)),
+                   options = list(highlight = FALSE)),
                    shiny::helpText("Subgroup, Great Group, Suborder or Order level taxon.")),
              
              column(width = 6, h4("Showing taxa that key out before: "), 

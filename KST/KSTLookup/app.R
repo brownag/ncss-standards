@@ -10,16 +10,18 @@ library(DT)
 #  - NEW - last clause in a higher order key -- directs to another page;
 #  - LAST - last clause in a key (only used for Subgroup level taxa);
 # 
-# The tool is otherwise an exact derivative of the Keys that only shows a subset of the criteria, and thus, does not stand \"on its own\" in its current form. This is intentional -- and this tool should be considered a companion to the Keys. It is thought that this way of viewing criteria associated with particular taxa will make it easier to traverse, and conceptualize, the structure of the Keys.Additional semantic logic will soon be added to link to glossary entries, diagnostic features and other properties and definitions of interest. (Andrew G. Brown; 2020/06/11)
+# The tool is otherwise an exact derivative of the Keys that only shows a subset of the criteria, and thus, does not stand \"on its own\" in its current form. This is intentional -- and this tool should be considered a companion to the Keys. It is thought that this way of viewing criteria associated with particular taxa will make it easier to traverse, and conceptualize, the structure of the Keys. Additional semantic logic will soon be added to link to glossary entries, diagnostic features and other properties and definitions of interest. (Andrew G. Brown; 2020/06/11)
+load("soiltaxonomy_12th_db_codes.Rda")
 
 ui <- fluidPage(
     
-    titlePanel(textOutput("title")),
+    titlePanel(textOutput("title"), windowTitle = "KSTLookup"),
     
     fluidRow(column(width = 5, 
                     selectizeInput("taxonname", 
                                    textOutput("entertaxon"), 
-                                   choices = as.list(c(codes.lut))),
+                                   choices = as.list(c(codes.lut)),
+                                   options = list(highlight = FALSE)),
                     shiny::helpText(textOutput("taxonhelptext"))),
              column(width = 5,
                     h4(textOutput("resultheader")), 
@@ -63,7 +65,7 @@ server <- function(input, output) {
             EN = "English",
             SP = "Spanish",
             aboutheader = "About the App",
-            abouttext = "This is alpha version of the \"KSTLookup\" Shiny app -- a prototype tool for viewing criteria associated with taxa at the subgroup to order level in U.S. Soil Taxonomy. Contact Andrew G. Brown (andrew.g.brown@usda.gov) with any questions, bugs or feature requests. New developments are in the work. This tool is a basic demonstration of a database that leverages the structure of the Keys. (2020/06/20)"),
+            abouttext = "This is alpha version of the \"KSTLookup\" Shiny app -- a prototype tool for viewing criteria associated with taxa at the subgroup to order level in U.S. Soil Taxonomy. Contact Andrew G. Brown (andrew.g.brown@usda.gov) with any questions, bugs or feature requests. This tool is a basic demonstration of a database that leverages the structure of the Keys. (2020/06/20)"),
         
         "SP" = list(
             title = sprintf("Claves para la Taxonomía de Suelos (12th) - Buscar Criterios de Taxón [%s]", app.version),
@@ -80,7 +82,7 @@ server <- function(input, output) {
             SP = "Español",
             aboutheader = "Acerca de la App",
             abouttext = "Esta es la versión alfa de la aplicación Shiny \"KSTLookup\", una herramienta prototipo para ver los criterios asociados con los taxones en el subgrupo a nivel de pedido en la taxonomía de suelos de EE.UU. Póngase en contacto con Andrew G. Brown (andrew.g.brown@usda.gov) con cualquier pregunta, error o solicitud de características. 
-This tool is a basic demonstration of a database that leverages the structure of the Keys. Esta herramienta es una demostración básica de una database que aprovecha la estructura de las Claves. (2020/06/20)"))
+Esta herramienta es una demostración básica de una database que aprovecha la estructura de las Claves. (2020/06/20)"))
     
     # render ui text
     output$title <- renderText({
@@ -204,8 +206,20 @@ This tool is a basic demonstration of a database that leverages the structure of
     
     observeEvent(input$show, {
         showModal(modalDialog(
-            title = chstr("aboutheader"),
-            chstr("abouttext"),
+            title = renderText({
+                if (input$language == "SP") {
+                    ch.str$SP$aboutheader
+                } else {
+                    ch.str$EN$aboutheader
+                }
+                }),
+            renderText({
+                if (input$language == "SP") {
+                    ch.str$SP$abouttext
+                } else {
+                    ch.str$EN$abouttext
+                }
+            }),
             easyClose = TRUE
         ))
     })
