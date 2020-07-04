@@ -1,5 +1,6 @@
 library(shiny)
 library(DT)
+library(httr)
 # 
 # This is alpha version of the \"KSTLookup\" Shiny app -- a prototype tool for viewing criteria associated with taxa at the subgroup to order level in U.S. Soil Taxonomy. A new feature classifies the type of logic contained within the clause into the following classes:
 # 
@@ -42,8 +43,8 @@ ui <- fluidPage(
 server <- function(input, output) {
     
     observeEvent(input$language, { 
-        load(sprintf("soiltaxonomy_12th_db_HTML_%s.Rda", 
-                                          input$language), .GlobalEnv)
+        # load(sprintf("soiltaxonomy_12th_db_HTML_%s.Rda", 
+        #                                   input$language), .GlobalEnv)
         
         message("changed language: ", input$language)
     })
@@ -81,7 +82,7 @@ server <- function(input, output) {
             EN = "Inglés",
             SP = "Español",
             aboutheader = "Acerca de la App",
-            abouttext = "Esta es la versión alfa de la aplicación Shiny \"KSTLookup\", una herramienta prototipo para ver los criterios asociados con los taxones en el subgrupo a nivel de pedido en la taxonomía de suelos de EE.UU. Póngase en contacto con Andrew G. Brown (andrew.g.brown@usda.gov) con cualquier pregunta, error o solicitud de características. 
+            abouttext = "Esta es la versión alfa de la aplicación Shiny \"KSTLookup\", una herramienta prototipo para ver los criterios asociados con los taxones en la taxonomía de suelos de EE.UU. Póngase en contacto con Andrew G. Brown (andrew.g.brown@usda.gov) con cualquier pregunta, error o solicitud de características. 
 Esta herramienta es una demostración básica de una database que aprovecha la estructura de las Claves. (2020/06/20)"))
     
     # render ui text
@@ -129,7 +130,7 @@ Esta herramienta es una demostración básica de una database que aprovecha la e
     })
     
     # handy function to use lookup table for taxon-name based searches
-    do_ST_lookup <- function(db, lut, taxon) {
+    do_ST_lookup <- function(language, taxon) {
         emptydf <-  data.frame(
             content = character(0),
             chapter = numeric(0),
@@ -140,13 +141,16 @@ Esta herramienta es una demostración básica de una database que aprovecha la e
             clause = numeric(0),
             logic = character(0))
         
-        if (taxon == "")
+        if (length(taxon) == 0 | taxon == "")
             return(emptydf)
         
         if (inherits(taxon, 'try-error'))
             return(emptydf)
         
-        res <- db[[taxon]]
+        #res <- db[[taxon]]
+        response <- httr::GET(sprintf("http://127.0.0.1:9339/kstl?code=%s&language=%s", taxon, language))
+        r.content <- httr::content(response, as = "text", encoding = "UTF-8")
+        res <- jsonlite::fromJSON(r.content)[[1]]
         
         if (is.null(res)) {
             if (input$language == "SP") {
@@ -156,13 +160,14 @@ Esta herramienta es una demostración básica de una database que aprovecha la e
             }
         }
         
-        if (nrow(res) == 0) {
+        if (length(res) == 0) {
             if (input$language == "SP") {
                 warning(sprintf(ch.str$SP$errempty, taxon))
             } else {
                 warning(sprintf(ch.str$EN$errempty, taxon))
             }
         }
+        
         return(res)
     }
     
@@ -178,8 +183,7 @@ Esta herramienta es una demostración básica de una database que aprovecha la e
     
     output$taxonCriteria <- DT::renderDataTable( {
         
-        res <- do_ST_lookup(db = st_db12_html, 
-                            lut = codes.lut, 
+        res <- do_ST_lookup(language = input$language,
                             taxon = input$taxonname)
         if (length(res) > 0) {
             if (input$language == "SP") {
