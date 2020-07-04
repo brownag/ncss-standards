@@ -1,9 +1,9 @@
 # parser for keys to soil taxonomy (12th edition)
 # @author: andrew brown
-# @last update: 2020/06/20
+# @last update: 2020/07/04
 #  new: testing support for spanish language version of keys
 
-language <- "SP"
+language <- "EN"
 
 # markers for each chapter
 chapter.markers.en <- list(
@@ -86,7 +86,7 @@ if (language == "SP")
 pages.idx <- which(grepl("\\f", pdf$content))
 
 # number of page breaks
-length(pages.idx) 
+length(pages.idx)
 
 # number of lines
 length(pdf$content)
@@ -101,7 +101,7 @@ get_page_breaks <- function(content) {
   idx.break <- grep("\\f", content)
   ispage <- gsub("\\f[\\D]*([0-9iv]*).?", "\\1", content[idx.break])
   numbered.pages <- suppressWarnings(as.numeric(gsub("[\\D]*", "", ispage)))
-  .pages.idx <- idx.break 
+  .pages.idx <- idx.break
   names(.pages.idx) <- numbered.pages
   return(.pages.idx)
 }
@@ -151,7 +151,7 @@ category_from_index <- function(idx, n, values = NULL) {
 get_taxon_breaks <-  function(content, key) {
   crit.idx <- which(grepl("^([A-Z]+[abcdefgh]*)\\..*$", content))
   crit.to.what <- gsub("^([A-Z]+[abcdefgh]*)\\..*$", "\\1", content[crit.idx])
-  bad.idx <- which(nchar(crit.to.what) == 1 & 
+  bad.idx <- which(nchar(crit.to.what) == 1 &
                      key[crit.idx] != "Key to Soil Orders" &
                      key[crit.idx] != "Claves para Órdenes de Suelo")
   names(crit.idx) <- crit.to.what
@@ -191,7 +191,7 @@ preceding_taxon_ID <- function(ids) {
       idx.ex <- which(letters == substr(i, j, j))
       if (length(idx)) {
           previoustaxa <- LETTERS[1:idx[1] - 1]
-          out[[j]] <- previoustaxa 
+          out[[j]] <- previoustaxa
           if (length(parenttaxon) > 0) {
             if(length(previoustaxa))
                out[[j]] <- paste0(parenttaxon, previoustaxa)
@@ -203,26 +203,26 @@ preceding_taxon_ID <- function(ids) {
           }
       } else if (length(idx.ex)) {
         previoustaxa <- c("", letters[1:idx.ex[1]])
-        out[[j]] <- previoustaxa 
+        out[[j]] <- previoustaxa
         if (length(parenttaxon) > 0) {
           out[[j]] <- paste0(parenttaxon, previoustaxa)
           parenttaxon <- paste0(parenttaxon, letters[idx.ex[1]])
         } else {
           parenttaxon <- letters[idx.ex[1]]
-        }        
+        }
       } else {
         out[[j]] <- NA
       }
     }
-    
+
     return(do.call('c', out))
   })
 }
 
 subset_tree <- function(st_tree, crit_levels) {
-  lapply(crit_levels, function(crit_level) { 
+  lapply(crit_levels, function(crit_level) {
     do.call('rbind', lapply(crit_level, function(cl) {
-      print(cl)
+      # print(cl)
       subset(st_tree, st_tree$crit == cl)
     }))
   })
@@ -232,14 +232,14 @@ content_to_clause <- function(st_tree) {
   clause.en <- ";\\*? and$|;\\*? or$|[\\.:]$|p\\. [0-9]+|[:] [Ee]ither|[.:]$|\\.\\)$"
   clause.sp <- ";\\*? y$|;\\*? o$|[\\.:]$|pág\\. [0-9]+|[:] [Yy]a sea|[.:]$|\\.\\)$"
   clause.idx <- grep(paste0(clause.en,"|",clause.sp), st_tree$content)
-  
+
   st_tree$clause <- category_from_index(
       idx = c(0, clause.idx, length(st_tree$content)),
       n = length(st_tree$content),
       values = 1:(length(clause.idx) + 1)
     )
-  
-  res <- (do.call('rbind', lapply(split(st_tree, st_tree$clause), 
+
+  res <- (do.call('rbind', lapply(split(st_tree, st_tree$clause),
                                   function(tsub) {
       newcontent <- paste0(tsub$content, collapse = " ")
       newtsub <-
@@ -247,12 +247,12 @@ content_to_clause <- function(st_tree) {
       newtsub$content <- newcontent
       return(newtsub)
     })))
-  
+
   # remove footnotes
   footnote.idx <- grep("^\u2020|^\\*|[_]+ \u2020", res$content)
   if (length(footnote.idx) > 0)
     res <- res[-footnote.idx, ]
-  
+
   # classify basic logical operators on complete clauses
   logic.and <-
     grepl("and$| y$", res$content) |
@@ -265,11 +265,11 @@ content_to_clause <- function(st_tree) {
     grepl("[:] [Ee]ither$|[Yy]a sea[:]$", res$content)
   ) # rare (spodosols)
   logic.endclause <-
-    grepl("[.]$|or more$", res$content) 
+    grepl("[.]$|or more$", res$content)
   # or more for kandic/kanhaplic ustalfs
   logic.newkey <- grepl("p\\. [0-9]+|pág\\. [0-9]+", res$content)
   logic.none <- !any(logic.and, logic.or, logic.endclause, logic.newkey)
-  
+
   lmat <-  data.frame(
     AND = logic.and,
     OR = logic.or,
@@ -277,20 +277,20 @@ content_to_clause <- function(st_tree) {
     NEW = logic.newkey,
     NUL = logic.none
   )
-  
+
   if (language == "SP")
     colnames(lmat) <- c("Y","O","FIN","NUEVA","NULL")
-  
+
   lval <- names(lmat)[apply(lmat, 1, function(ro) {
     which(ro)[1]
   })]
-  
+
   firsttext <- ifelse(language == "SP", "PRIMERA", "FIRST")
   lasttext <- ifelse(language == "SP", "ULTIMA", "LAST")
-  
+
   lval[is.na(lval) & 1:length(lval) == 1] <- firsttext
   lval[is.na(lval) & 1:length(lval) == length(lval)] <- lasttext
-  
+
   res$logic <- lval
   return(res)
 }
@@ -364,16 +364,16 @@ bad.codes.fix <- list(
 bad.codes.idx <- lapply(bad.codes.fix, function(x) {
     idx <- grep(x[1], st$content)[1]
     st$content[idx] <<- gsub(x[2], x[3], st$content[idx])
-    print(st[idx,])
+    # print(st[idx,])
     if (length(idx))
       return(idx)
     return(numeric(0))
   })
 message(sprintf("fixed bad codes: %s ", paste0(bad.codes.idx, collapse = ",")))
- 
+
 # general fixes
 lit.idx <- grep("Literature Cited|Literatura Citada", st$content)
-bad.lit.idx <- lit.idx[3] + 0:(grep("Key to|Clave para", 
+bad.lit.idx <- lit.idx[3] + 0:(grep("Key to|Clave para",
                                     st$content[lit.idx[3] + 0:10]) - 2)
 # remove the baddies
 st <- st[-c(orfix, andfix, bad.lit.idx),]
@@ -393,30 +393,36 @@ if (length(idx)) {
   st <- rbind(st.top, st.new, st.bot)
 }
 
+# fix dangling order labels
+dangling.orders.pat <- c("Endoaqualfs, ","Fluvents, ","Vermaquepts, ","Endoaquerts,")
+dangling.orders.idx <- as.numeric(lapply(dangling.orders.pat, grep, st$content)) + 1
+if(language == "EN")
+  st <- st[-dangling.orders.idx,]
+
 # inspect
 st[grep("Aquic Ferrudalfs", st$content),]
 
 st[grep("Typic Udorthents", st$content),]
 
 # split by chapter
-ch <- split(st, f = st$chapter) 
+ch <- split(st, f = st$chapter)
 
 # indexes 5 to 17 are the Keys to Order, Suborder, Great Group, Subgroup...
 #  indexes offset by 1 from their "true" chapter number in table
 keys <- lapply(ch[5:17], function(h) {
   # show what chapter we are processing
   print(unique(h$chapter))
-  
+
   # identify indices of each key in the chapter (order)
   m <- grepl("^(Key to [A-z A-z]*)$|^(Claves* para .*)$", h$content)
-  
+
   if (!any(m)) {
     h$key <- "None"
     return(h)
   }
-  
+
   key.idx <- which(m)
-  
+
   if (length(key.idx) == 1) {
     # this is the Key to Soil Orders
     key.to.what <-
@@ -427,31 +433,31 @@ keys <- lapply(ch[5:17], function(h) {
     # all other Keys
     key.to.what <-
       gsub("^(Key to [A-Z a-z]*)$|^(Claves* para .*)$", "\\1\\2", h$content[key.idx])
-  
+
     key.taxa.idx <- key.idx
     key.taxa.idx[key.taxa.idx > 1] <-
       key.taxa.idx[key.taxa.idx > 1] - 1
-    
+
     key.taxa <- h$content[key.taxa.idx]
-    
+
     if (length(key.to.what) > 0) {
-      taxsub.l <- key.to.what == "Key to Suborders" | 
+      taxsub.l <- key.to.what == "Key to Suborders" |
                     key.to.what == "Clave para Subórdenes"
       key.taxa[taxsub.l] <-
         as.character(chtaxa.lut[as.character(unique(h$chapter))])
     }
-    
+
     key.groups <- c(0, key.idx,  length(h$content))
-    
+
     key.group.names <- c("None", key.to.what, 'None')
     key.taxa.names <- c("None", key.taxa, 'None')
-    
+
     h$key <-
       category_from_index(key.groups, length(h$content),  key.group.names)
     h$taxa <-
       category_from_index(key.groups, length(h$content),  key.taxa.names)
   }
-  
+
   # remove Key to ... and
   return(h[-c(key.idx, key.idx - 1), ])
 })
@@ -460,7 +466,7 @@ keys <- lapply(ch[5:17], function(h) {
 crits <- lapply(keys, function(kk) {
   crit.idx <- get_taxon_breaks(kk$content, kk$key)
   crit.to.what <- names(crit.idx)
-  
+
   if (length(crit.idx) > 0 & length(crit.to.what) > 0) {
     crit.groups <- c(0, crit.idx - 1, length(kk$content))
     crit.group.names <- c("*", crit.to.what , "*")
@@ -516,7 +522,7 @@ crit_levels <-  decompose_taxon_ID(unique(st_criteria_subgroup$crit))
 crit_levels_u <- lapply(crit_levels, function(cl) return(cl[length(cl)]))
 
 st_db12_unique <- lapply(crit_levels_u, function(clu) {
-  content_to_clause(subset_tree(st_criteria_subgroup, clu)[[1]]) 
+  content_to_clause(subset_tree(st_criteria_subgroup, clu)[[1]])
 } )
 
 st_db12_taxaonly <- lapply(st_db12_unique, function(stdb) {
@@ -558,7 +564,7 @@ names(codes.lut) <- taxchar
 highlightTaxa <- function(content, taxon) {
   out <- content
   idx <- grepl(taxon, content, fixed = TRUE)
-  
+
   if (length(idx)) {
     out <- gsub(sprintf("%s", taxon), sprintf("<i>%s</i>", taxon),
                 out, fixed = TRUE)
@@ -567,32 +573,32 @@ highlightTaxa <- function(content, taxon) {
 }
 
 # temporarily use group names for matching
-names(st_db12) <- names(codes.lut) 
-names(st_db12_unique) <- names(codes.lut) 
-names(st_db12_taxaonly) <- names(codes.lut) 
+names(st_db12) <- names(codes.lut)
+names(st_db12_unique) <- names(codes.lut)
+names(st_db12_taxaonly) <- names(codes.lut)
 
 do_HTML_postprocess <- function(stdb) {
   lapply(names(stdb), function(stdbnm) {
     stdb <- stdb[[stdbnm]]
-    
+
     newlast.idx <- which(stdb$logic %in% c("NEW","LAST","NUEVA","ULTIMA"))
     if(length(newlast.idx)) {
       stdb$content <- highlightTaxa(stdb$content, stdbnm)
     }
     # highlight codes
-    stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<b><u>\\1</u></b>\\2", 
+    stdb$content <- gsub("^([A-Z]+[a-z]*\\.)(.*)$", "<b><u>\\1</u></b>\\2",
                          stdb$content)
-    stdb$content <- gsub("^([1-9]*\\.)(.*)$", "&nbsp;<b>\\1</b>\\2", 
+    stdb$content <- gsub("^([1-9]*\\.)(.*)$", "&nbsp;<b>\\1</b>\\2",
                          stdb$content)
-    stdb$content <- gsub("^([^A-Z][a-z]*\\.)(.*)$", "&nbsp;&nbsp;<b>\\1</b>\\2", 
+    stdb$content <- gsub("^([^A-Z][a-z]*\\.)(.*)$", "&nbsp;&nbsp;<b>\\1</b>\\2",
                          stdb$content)
-    stdb$content <- gsub("^(\\([1-9]*\\))(.*)$", "&nbsp;&nbsp;&nbsp;<b>\\1</b>\\2", 
+    stdb$content <- gsub("^(\\([1-9]*\\))(.*)$", "&nbsp;&nbsp;&nbsp;<b>\\1</b>\\2",
                          stdb$content)
-    stdb$content <- gsub("^(\\([a-z]*\\))(.*)$", "&nbsp;&nbsp;&nbsp;&nbsp;<b>\\1</b>\\2", 
+    stdb$content <- gsub("^(\\([a-z]*\\))(.*)$", "&nbsp;&nbsp;&nbsp;&nbsp;<b>\\1</b>\\2",
                          stdb$content)
-    stdb$content <- gsub("^(.*)(\\; and|\\; or)$", "\\1<i>\\2</i>", 
+    stdb$content <- gsub("^(.*)(\\; and|\\; or)$", "\\1<i>\\2</i>",
                          stdb$content)
-    stdb$content <- gsub("^(.*)(\\; y|\\; o)$", "\\1<i>\\2</i>", 
+    stdb$content <- gsub("^(.*)(\\; y|\\; o)$", "\\1<i>\\2</i>",
                          stdb$content)
     stdb$key <- gsub("Key to |Claves* para ", "", stdb$key)
     return(stdb)
@@ -600,7 +606,7 @@ do_HTML_postprocess <- function(stdb) {
 }
 
 st_db12_html <- do_HTML_postprocess(st_db12)
-st_db12_unique <- do_HTML_postprocess(st_db12_unique) 
+st_db12_unique <- do_HTML_postprocess(st_db12_unique)
 st_db12_taxaonly <- do_HTML_postprocess(st_db12_taxaonly)
 st_db12_preceding <- preceding_taxon_ID(codes.lut)
 
@@ -640,17 +646,14 @@ save(st_db12_html, codes.lut, taxa.lut,
 save(codes.lut, taxa.lut,
      file = sprintf("KST/KSTLookup/soiltaxonomy_12th_db_codes.Rda", language))
 
-save(st_db12_html, codes.lut, taxa.lut,
-     file = sprintf("KST/KSTEspanol/soiltaxonomy_12th_db_HTML_%s.Rda", language))
-
 save(st_db12_preceding, codes.lut, taxa.lut, st_db12_taxaonly,
-     file = sprintf("KST/KSTLookup/soiltaxonomy_12th_db_preceding_%s.Rda", language))
+     file = sprintf("KST/KSTPreceding/soiltaxonomy_12th_db_preceding_%s.Rda", language))
 
 # inspect
 #st_db12_html$HADA
 #st_db12_unique$ABCD
 
-# typic hapludalfs and typic haploxerolls are tied 
+# typic hapludalfs and typic haploxerolls are tied
 #  for number of preceding taxa (n = 51)
 n.preceding <- unlist(lapply(st_db12_preceding, length))
 which(n.preceding == max(n.preceding))
