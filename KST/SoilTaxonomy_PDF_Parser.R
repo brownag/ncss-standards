@@ -230,7 +230,7 @@ subset_tree <- function(st_tree, crit_levels) {
 
 content_to_clause <- function(st_tree) {
   clause.en <- ";\\*? and$|;\\*? or$|[\\.:]$|p\\. [0-9]+|[:] [Ee]ither|[.:]$|\\.\\)$"
-  clause.sp <- ";\\*? y$|;\\*? o$|[\\.:]$|pág\\. [0-9]+|[:] [Yy]a sea|[.:]$|\\.\\)$"
+  clause.sp <- ";\\*? y$|;\\*? o$|[\\.:]$|pág\\. [0-9]+|[:] [Yy]a sea|[.:]$|\\.\\)|artificial\\)$|ción\\)$"
   clause.idx <- grep(paste0(clause.en,"|",clause.sp), st_tree$content)
   
   st_tree$clause <- category_from_index(
@@ -291,6 +291,10 @@ content_to_clause <- function(st_tree) {
   lval[is.na(lval) & 1:length(lval) == 1] <- firsttext
   lval[is.na(lval) & 1:length(lval) == length(lval)] <- lasttext
   
+  # fix for single-criterion taxa
+  if (length(lval) == 2)
+    lval <- c(firsttext, lasttext)
+  
   res$logic <- lval
   return(res)
 }
@@ -307,7 +311,8 @@ for (p in 1:length(chapter.markers)) {
 ch.groups <- c(0, chidx, length(pdf$content))
 
 pgidx <- c(0, get_page_breaks(pdf$content))
-pgnames <- as.numeric(gsub("[^0-9]*([0-9]+)[^0-9]*|^([^0-9]*)$","\\1", pdf$content[pgidx]))
+pgnames <- as.numeric(gsub("[^0-9]*([0-9]+)[^0-9]*|^([^0-9]*)$","\\1",
+                           pdf$content[pgidx]))
 
 if(language == "SP")
   pgnames <- pgnames - 1 # correct index offset of linebreaks in spanish version
@@ -380,7 +385,7 @@ st <- st[-c(orfix, andfix, bad.lit.idx),]
 
 # insert errata
 idx <- grep("LEFE. ",st$content)[1]
-if (length(idx)) {
+if (length(idx) & language == "EN") {
   st.top <- st[1:(idx - 1),]
   st.bot <- st[idx:nrow(st),]
 
@@ -397,6 +402,8 @@ if (length(idx)) {
 st[grep("Aquic Ferrudalfs", st$content),]
 
 st[grep("Typic Udorthents", st$content),]
+
+st[grep("Vitrigelands", st$content),]
 
 # split by chapter
 ch <- split(st, f = st$chapter) 
@@ -419,41 +426,53 @@ keys <- lapply(ch[5:17], function(h) {
   
   if (length(key.idx) == 1) {
     # this is the Key to Soil Orders
-    key.to.what <-
-      gsub("^(Key to [A-Z a-z]*)$|^(Claves* para .*)$", "\\1\\2", h$content[key.idx])
+    key.to.what <- gsub("^(Key to [A-Z a-z]*)$|^(Claves* para .*)$", 
+                        "\\1\\2", 
+                        h$content[key.idx])
     h$key <- key.to.what
     h$taxa <- "*"
   } else if (length(key.idx) > 0) {
     # all other Keys
-    key.to.what <-
-      gsub("^(Key to [A-Z a-z]*)$|^(Claves* para .*)$", "\\1\\2", h$content[key.idx])
+    key.to.what <- gsub("^(Key to [A-Z a-z]*)$|^(Claves* para .*)$", 
+                        "\\1\\2", 
+                        h$content[key.idx])
   
     key.taxa.idx <- key.idx
-    key.taxa.idx[key.taxa.idx > 1] <-
-      key.taxa.idx[key.taxa.idx > 1] - 1
+    key.taxa.idx[key.taxa.idx > 1] <- key.taxa.idx[key.taxa.idx > 1] - 1
+    
     
     key.taxa <- h$content[key.taxa.idx]
     
     if (length(key.to.what) > 0) {
       taxsub.l <- key.to.what == "Key to Suborders" | 
                     key.to.what == "Clave para Subórdenes"
-      key.taxa[taxsub.l] <-
-        as.character(chtaxa.lut[as.character(unique(h$chapter))])
+      key.taxa[taxsub.l] <-  as.character(chtaxa.lut[as.character(unique(h$chapter))])
     }
     
     key.groups <- c(0, key.idx,  length(h$content))
     
+    # all Gelands are Vitrigelands
+    key.taxa[grep("Vitrigelands\\,", key.taxa)] <- "Vitrigelands"
+    
     key.group.names <- c("None", key.to.what, 'None')
     key.taxa.names <- c("None", key.taxa, 'None')
     
-    h$key <-
-      category_from_index(key.groups, length(h$content),  key.group.names)
-    h$taxa <-
-      category_from_index(key.groups, length(h$content),  key.taxa.names)
+    h$key <-  category_from_index(key.groups, length(h$content),  
+                                  key.group.names)
+    h$taxa <-  category_from_index(key.groups, length(h$content),  
+                                   key.taxa.names)
   }
   
-  # remove Key to ... and
-  return(h[-c(key.idx, key.idx - 1), ])
+  # remove Key to ... and higher level taxon name
+  bad.idx <- c(key.idx, key.idx - 1)
+  skip.idx <- grep("Vitrigelands\\,", h$content)
+  
+  if (length(skip.idx)) {
+    has.idx <- which(bad.idx == skip.idx)
+    if(length(has.idx))
+      bad.idx <- bad.idx[-has.idx]
+  }
+  return(h[-bad.idx, ])
 })
 
 ## identify indices of each taxon
@@ -464,8 +483,7 @@ crits <- lapply(keys, function(kk) {
   if (length(crit.idx) > 0 & length(crit.to.what) > 0) {
     crit.groups <- c(0, crit.idx - 1, length(kk$content))
     crit.group.names <- c("*", crit.to.what , "*")
-    kk$crit <-
-      category_from_index(crit.groups, length(kk$content), crit.group.names)
+    kk$crit <-  category_from_index(crit.groups, length(kk$content), crit.group.names)
   } else {
     kk$crit <- "None"
   }
@@ -477,9 +495,12 @@ st_criteria <- do.call('rbind', crits)
 # inspect fixed IDs if relevant
 st_criteria[grep("Oxyaquic Vertic Haplustalfs", st_criteria$content), 'crit'] == "JCHC"
 st_criteria[grep("Typic Udorthents", st_criteria$content), 'crit'] == "LEFJ"
+st_criteria[grep("Vitrigelands", st_criteria$content), 'crit'] == "DBA"
+st_criteria[grep("Oxic Haplustolls", st_criteria$content), 'crit']
 
 # final cleanup
 subgroup.key.l <- grepl("[Oo]rder|[Gg]roup|[Óó]rden|[Gg]rupo", st_criteria$key)
+
 st_criteria_subgroup <- st_criteria[subgroup.key.l,]
 st_criteria_other <- st_criteria[!subgroup.key.l,]
 
@@ -508,6 +529,14 @@ test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
 (content_to_clause(test))
 
 crit_levels <- decompose_taxon_ID(c("HB"))
+test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
+(content_to_clause(test))
+
+crit_levels <- decompose_taxon_ID(c("DBA"))
+test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
+(content_to_clause(test))
+
+crit_levels <- decompose_taxon_ID(c("IGGL"))
 test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
 (content_to_clause(test))
 
@@ -545,8 +574,7 @@ codes.lut <- names(taxa.lut)
 # process to remove page numbers
 taxchar <- as.character(taxa.lut)
 taxchar.pg.idx <- grep("^(.*), p\\..*$|^(.*), pág\\..*$", taxchar)
-taxchar[taxchar.pg.idx] <-
-  gsub("^(.*), p\\..*$|^(.*), pág\\..*$", "\\1\\2", taxchar[taxchar.pg.idx])
+taxchar[taxchar.pg.idx] <-  gsub("^(.*), p\\..*$|^(.*), pág\\..*$", "\\1\\2", taxchar[taxchar.pg.idx])
 
 # couple fixes
 taxchar <- (gsub("aqnalfs", "aqualfs", taxchar))
@@ -557,7 +585,7 @@ names(codes.lut) <- taxchar
 # highlight taxa
 highlightTaxa <- function(content, taxon) {
   out <- content
-  idx <- grepl(taxon, content, fixed = TRUE)
+  idx <- grepl(sprintf("%s[^\\.]", taxon), content, fixed = TRUE)
   
   if (length(idx)) {
     out <- gsub(sprintf("%s", taxon), sprintf("<i>%s</i>", taxon),
@@ -637,7 +665,8 @@ save(st_db12,
 save(st_db12_html, codes.lut, taxa.lut,
    file = sprintf("KST/KSTLookup/soiltaxonomy_12th_db_HTML_%s.Rda", language))
 
-save(codes.lut, taxa.lut,
+if (language == "EN")
+  save(codes.lut, taxa.lut,
      file = sprintf("KST/KSTLookup/soiltaxonomy_12th_db_codes.Rda", language))
 
 save(st_db12_html, codes.lut, taxa.lut,
