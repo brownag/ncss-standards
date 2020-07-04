@@ -3,7 +3,7 @@
 # @last update: 2020/07/04
 #  new: testing support for spanish language version of keys
 
-language <- "EN"
+language <- "SP"
 
 # markers for each chapter
 chapter.markers.en <- list(
@@ -294,7 +294,7 @@ content_to_clause <- function(st_tree) {
   # fix for single-criterion taxa
   if (length(lval) == 2)
     lval <- c(firsttext, lasttext)
-  
+
   res$logic <- lval
   return(res)
 }
@@ -432,21 +432,21 @@ keys <- lapply(ch[5:17], function(h) {
 
   if (length(key.idx) == 1) {
     # this is the Key to Soil Orders
-    key.to.what <- gsub("^(Key to [A-Z a-z]*)$|^(Claves* para .*)$", 
-                        "\\1\\2", 
+    key.to.what <- gsub("^(Key to [A-Z a-z]*)$|^(Claves* para .*)$",
+                        "\\1\\2",
                         h$content[key.idx])
     h$key <- key.to.what
     h$taxa <- "*"
   } else if (length(key.idx) > 0) {
     # all other Keys
-    # 
-    key.to.what <- gsub("^(Key to [A-Z a-z]*)$|^(Claves* para .*)$", 
-                        "\\1\\2", 
+    #
+    key.to.what <- gsub("^(Key to [A-Z a-z]*)$|^(Claves* para .*)$",
+                        "\\1\\2",
                         h$content[key.idx])
-  
+
     key.taxa.idx <- key.idx
     key.taxa.idx[key.taxa.idx > 1] <- key.taxa.idx[key.taxa.idx > 1] - 1
-    
+
     key.taxa <- h$content[key.taxa.idx]
 
     if (length(key.to.what) > 0) {
@@ -459,20 +459,20 @@ keys <- lapply(ch[5:17], function(h) {
 
     # all Gelands are Vitrigelands
     key.taxa[grep("Vitrigelands\\,", key.taxa)] <- "Vitrigelands"
-    
+
     key.group.names <- c("None", key.to.what, 'None')
     key.taxa.names <- c("None", key.taxa, 'None')
-    
-    h$key <-  category_from_index(key.groups, length(h$content),  
+
+    h$key <-  category_from_index(key.groups, length(h$content),
                                   key.group.names)
-    h$taxa <-  category_from_index(key.groups, length(h$content),  
+    h$taxa <-  category_from_index(key.groups, length(h$content),
                                    key.taxa.names)
   }
-  
+
   # remove Key to ... and higher level taxon name
   bad.idx <- c(key.idx, key.idx - 1)
   skip.idx <- grep("Vitrigelands\\,", h$content)
-  
+
   if (length(skip.idx)) {
     has.idx <- which(bad.idx == skip.idx)
     if(length(has.idx))
@@ -592,7 +592,7 @@ names(codes.lut) <- taxchar
 highlightTaxa <- function(content, taxon) {
   out <- content
   idx <- grepl(sprintf("%s[^\\.]", taxon), content, fixed = TRUE)
-  
+
   if (length(idx)) {
     out <- gsub(sprintf("%s", taxon), sprintf("<i>%s</i>", taxon),
                 out, fixed = TRUE)
