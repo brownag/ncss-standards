@@ -9,11 +9,18 @@ if (file.exists("soiltaxonomy_12th_db_HTML_EN.Rda"))
 if (file.exists("soiltaxonomy_12th_db_HTML_SP.Rda"))
   load("soiltaxonomy_12th_db_HTML_SP.Rda", spanish.env)
 
-#* @kstl Keys to Soil Taxonomy Plumber API
-#* @param language Language database to use
+#* @apiTitle Keys to Soil Taxonomy Plumber API
+
+#* Get criteria by taxon code and language
 #* @param code Taxon code to query
-#* @get /kstl/<language>/<code>
-function(code = "", language = "") {
+#* @param language Language database to use
+#* @get /kstl
+function(code = "A", language = "EN") {
+ res <- NULL
+ if(missing(code))
+    code = "A"
+ if(missing(language))
+    language = "EN"
  if (language == "SP") {
    res <- list(res = spanish.env$st_db12_html[[code]])
    names(res) <- code
