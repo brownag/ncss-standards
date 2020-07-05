@@ -86,5 +86,5 @@ library(analogsea)
     analogsea::droplet_ssh(droplet, "systemctl reload nginx")
   }
 
-  new_deploy_api(droplet, "kstl", "KST/KSTLookup/plumber", 8001)
+  new_deploy_api(droplet, "kstl", "KST/Plumber/plumber", 8001)
 

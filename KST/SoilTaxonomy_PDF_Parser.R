@@ -314,8 +314,8 @@ pgidx <- c(0, get_page_breaks(pdf$content))
 pgnames <- as.numeric(gsub("[^0-9]*([0-9]+)[^0-9]*|^([^0-9]*)$","\\1",
                            pdf$content[pgidx]))
 
-if(language == "SP")
-  pgnames <- pgnames - 1 # correct index offset of linebreaks in spanish version
+# correct index offset of linebreaks
+pgnames <- pgnames - 1
 
 # create a table of text "content," chapter and page number
 st <- data.frame(
@@ -330,6 +330,9 @@ st <- st[-pgidx, ]
 
 # remove three-letter abbreviated headers and CHAPTER X
 st <- st[-grep("^CHAPTER|^[A-Z]$|^CAPÍTULO", st$content), ]
+
+# remove multi underscore footnote markup (spanish)
+st <- st[-grep("\\_\\_+", st$content),]
 
 # remove floating order names (chapter names)
 # chordernames <- do.call('c', lapply(chtaxa.lut, function(x)
@@ -392,7 +395,7 @@ if (length(idx) & language == "EN") {
   # insert anthropic udorthents
   #  errata (missing in english edition)
   new.content <- c("LEFD. Other Udorthents that have an anthropic epipedon.",
-                   "                                   Anthropic Udorthents")
+                   "Anthropic Udorthents")
   st.new <- data.frame(content = new.content,
                        chapter = 8, page = ifelse(language == "SP", 164, 147))
   st <- rbind(st.top, st.new, st.bot)
@@ -669,7 +672,7 @@ save(st_db12,
      file = sprintf("KST/soiltaxonomy_12th_db_%s.Rda", language))
 
 save(st_db12_html, codes.lut, taxa.lut,
-   file = sprintf("KST/KSTLookup/soiltaxonomy_12th_db_HTML_%s.Rda", language))
+   file = sprintf("KST/Plumber/plumber/soiltaxonomy_12th_db_HTML_%s.Rda", language))
 
 if (language == "EN")
   write.csv(data.frame(code = as.character(codes.lut),
