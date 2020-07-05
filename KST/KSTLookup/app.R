@@ -12,10 +12,12 @@ library(httr)
 #  - LAST - last clause in a key (only used for Subgroup level taxa);
 #
 # The tool is otherwise an exact derivative of the Keys that only shows a subset of the criteria, and thus, does not stand \"on its own\" in its current form. This is intentional -- and this tool should be considered a companion to the Keys. It is thought that this way of viewing criteria associated with particular taxa will make it easier to traverse, and conceptualize, the structure of the Keys. Additional semantic logic will soon be added to link to glossary entries, diagnostic features and other properties and definitions of interest. (Andrew G. Brown; 2020/06/11)
-load("soiltaxonomy_12th_db_codes.Rda")
+
+code.table <- read.csv("soiltaxonomy_12th_db_codes.csv")
+codes.lut <- code.table$code
+names(codes.lut) <- code.table$name
 
 ui <- fluidPage(
-
     titlePanel(textOutput("title"), windowTitle = "KSTLookup"),
 
     fluidRow(column(width = 5,
@@ -54,7 +56,8 @@ server <- function(input, output) {
 
     ch.str <- list(
         "EN" = list(
-            title = sprintf("Keys to Soil Taxonomy (12th) - Taxon Criteria Lookup Tool [%s]", app.version),
+            title = sprintf("Keys to Soil Taxonomy (12th) - Taxon Criteria Lookup Tool [%s]",
+                            app.version),
             entertaxon = "Enter a taxon name:",
             taxonhelptext = "Subgroup, Great Group, Suborder or Order level taxon.",
             resultheader = "Results for",
@@ -179,7 +182,7 @@ Esta herramienta es una demostración básica de una database que aprovecha la e
         })
 
     output$resulttext <- renderText( {
-        res <- (taxa.lut[input$taxonname])
+        res <- names(codes.lut)[which(codes.lut == input$taxonname)[1]]
         if (!is.na(res))
             sprintf("%s", res)
     })

@@ -672,8 +672,10 @@ save(st_db12_html, codes.lut, taxa.lut,
    file = sprintf("KST/KSTLookup/soiltaxonomy_12th_db_HTML_%s.Rda", language))
 
 if (language == "EN")
-  save(codes.lut, taxa.lut,
-     file = sprintf("KST/KSTLookup/soiltaxonomy_12th_db_codes.Rda", language))
+  write.csv(data.frame(code = as.character(codes.lut),
+                       name = names(codes.lut)),
+            row.names = FALSE, quote = FALSE,
+            file = "KST/KSTLookup/soiltaxonomy_12th_db_codes.csv")
 
 save(st_db12_preceding, codes.lut, taxa.lut, st_db12_taxaonly,
      file = sprintf("KST/KSTPreceding/soiltaxonomy_12th_db_preceding_%s.Rda", language))

@@ -1,0 +1,3083 @@
+code,name
+A,Gelisols
+B,Histosols
+C,Spodosols
+D,Andisols
+E,Oxisols
+F,Vertisols
+G,Aridisols
+H,Ultisols
+I,Mollisols
+J,Alfisols
+K,Inceptisols
+L,Entisols
+JA,Aqualfs
+JB,Cryalfs
+JC,Ustalfs
+JD,Xeralfs
+JE,Udalfs
+JAA,Cryaqualfs
+JAB,Plinthaqualfs
+JAC,Duraqualfs
+JAD,Natraqualfs
+JAE,Fragiaqualfs
+JAF,Kandiaqualfs
+JAG,Vermaqualfs
+JAH,Albaqualfs
+JAI,Glossaqualfs
+JAJ,Epiaqualfs
+JAK,Endoaqualfs
+JAHA,Arenic Albaqualfs
+JAHB,Aeric Vertic Albaqualfs
+JAHC,Chromic Vertic Albaqualfs
+JAHD,Vertic Albaqualfs
+JAHE,Udollic Albaqualfs
+JAHF,Aeric Albaqualfs
+JAHG,Aquandic Albaqualfs
+JAHH,Mollic Albaqualfs
+JAHI,Umbric Albaqualfs
+JAHJ,Typic Albaqualfs
+JAAA,Typic Cryaqualfs
+JACA,Typic Duraqualfs
+JAKA,Aquandic Endoaqualfs
+JAKB,Chromic Vertic Endoaqualfs
+JAKC,Vertic Endoaqualfs
+JAKD,Aeric Fragic Endoaqualfs
+JAKE,Fragic Endoaqualfs
+JAKF,Arenic Endoaqualfs
+JAKG,Grossarenic Endoaqualfs
+JAKH,Udollic Endoaqualfs
+JAKI,Aeric Umbric Endoaqualfs
+JAKJ,Aeric Endoaqualfs
+JAKK,Mollic Endoaqualfs
+JAKL,Umbric Endoaqualfs
+JAKM,Typic Endoaqualfs
+JAJA,Aeric Chromic Vertic Epiaqualfs
+JAJB,Aeric Vertic Epiaqualfs
+JAJC,Chromic Vertic Epiaqualfs
+JAJD,Vertic Epiaqualfs
+JAJE,Aquandic Epiaqualfs
+JAJF,Aeric Fragic Epiaqualfs
+JAJG,Fragic Epiaqualfs
+JAJH,Arenic Epiaqualfs
+JAJI,Grossarenic Epiaqualfs
+JAJJ,Aeric Umbric Epiaqualfs
+JAJK,Udollic Epiaqualfs
+JAJL,Aeric Epiaqualfs
+JAJM,Mollic Epiaqualfs
+JAJN,Umbric Epiaqualfs
+JAJO,Typic Epiaqualfs
+JAEA,Vermic Fragiaqualfs
+JAEB,Aeric Fragiaqualfs
+JAEC,Plinthic Fragiaqualfs
+JAED,Humic Fragiaqualfs
+JAEE,Typic Fragiaqualfs
+JAIA,Histic Glossaqualfs
+JAIB,Arenic Glossaqualfs
+JAIC,Aeric Fragic Glossaqualfs
+JAID,Fragic Glossaqualfs
+JAIE,Aeric Glossaqualfs
+JAIF,Mollic Glossaqualfs
+JAIG,Typic Glossaqualfs
+JAFA,Arenic Kandiaqualfs
+JAFB,Grossarenic Kandiaqualfs
+JAFC,Plinthic Kandiaqualfs
+JAFD,Aeric Umbric Kandiaqualfs
+JAFE,Aeric Kandiaqualfs
+JAFF,Umbric Kandiaqualfs
+JAFG,Typic Kandiaqualfs
+JADA,Vertic Natraqualfs
+JADB,Vermic Natraqualfs
+JADC,Albic Glossic Natraqualfs
+JADD,Albic Natraqualfs
+JADE,Glossic Natraqualfs
+JADF,Mollic Natraqualfs
+JADG,Typic Natraqualfs
+JABA,Typic Plinthaqualfs
+JAGA,Natric Vermaqualfs
+JAGB,Typic Vermaqualfs
+JBA,Palecryalfs
+JBB,Glossocryalfs
+JBC,Haplocryalfs
+JBBA,Lithic Glossocryalfs
+JBBB,Vertic Glossocryalfs
+JBBC,Andic Glossocryalfs
+JBBD,Vitrandic Glossocryalfs
+JBBE,Aquic Glossocryalfs
+JBBF,Oxyaquic Glossocryalfs
+JBBG,Fragic Glossocryalfs
+JBBH,Xerollic Glossocryalfs
+JBBI,Umbric Xeric Glossocryalfs
+JBBJ,Ustollic Glossocryalfs
+JBBK,Xeric Glossocryalfs
+JBBL,Ustic Glossocryalfs
+JBBM,Mollic Glossocryalfs
+JBBN,Umbric Glossocryalfs
+JBBO,Eutric Glossocryalfs
+JBBP,Typic Glossocryalfs
+JBCA,Lithic Haplocryalfs
+JBCB,Vertic Haplocryalfs
+JBCC,Andic Haplocryalfs
+JBCD,Vitrandic Haplocryalfs
+JBCE,Aquic Haplocryalfs
+JBCF,Oxyaquic Haplocryalfs
+JBCG,Lamellic Haplocryalfs
+JBCH,Psammentic Haplocryalfs
+JBCI,Inceptic Haplocryalfs
+JBCJ,Xerollic Haplocryalfs
+JBCK,Umbric Xeric Haplocryalfs
+JBCL,Ustollic Haplocryalfs
+JBCM,Xeric Haplocryalfs
+JBCN,Ustic Haplocryalfs
+JBCO,Mollic Haplocryalfs
+JBCP,Umbric Haplocryalfs
+JBCQ,Eutric Haplocryalfs
+JBCR,Typic Haplocryalfs
+JBAA,Andic Palecryalfs
+JBAB,Vitrandic Palecryalfs
+JBAC,Aquic Palecryalfs
+JBAD,Oxyaquic Palecryalfs
+JBAE,Xeric Palecryalfs
+JBAF,Ustic Palecryalfs
+JBAG,Mollic Palecryalfs
+JBAH,Umbric Palecryalfs
+JBAI,Typic Palecryalfs
+JEA,Natrudalfs
+JEB,Ferrudalfs
+JEC,Fraglossudalfs
+JED,Fragiudalfs
+JEE,Kandiudalfs
+JEF,Kanhapludalfs
+JEG,Paleudalfs
+JEH,Rhodudalfs
+JEI,Glossudalfs
+JEJ,Hapludalfs
+JEBA,Aquic Ferrudalfs
+JEBB,Typic Ferrudalfs
+JEDA,Andic Fragiudalfs
+JEDB,Vitrandic Fragiudalfs
+JEDC,Aquic Fragiudalfs
+JEDD,Oxyaquic Fragiudalfs
+JEDE,Typic Fragiudalfs
+JECA,Andic Fraglossudalfs
+JECB,Vitrandic Fraglossudalfs
+JECC,Aquic Fraglossudalfs
+JECD,Oxyaquic Fraglossudalfs
+JECE,Typic Fraglossudalfs
+JEIA,Aquertic Glossudalfs
+JEIB,Oxyaquic Vertic Glossudalfs
+JEIC,Vertic Glossudalfs
+JEID,Aquandic Glossudalfs
+JEIE,Andic Glossudalfs
+JEIF,Vitrandic Glossudalfs
+JEIG,Fragiaquic Glossudalfs
+JEIH,Aquic Arenic Glossudalfs
+JEII,Aquic Glossudalfs
+JEIJ,Arenic Oxyaquic Glossudalfs
+JEIK,Oxyaquic Glossudalfs
+JEIL,Fragic Glossudalfs
+JEIM,Arenic Glossudalfs
+JEIN,Haplic Glossudalfs
+JEIO,Typic Glossudalfs
+JEJA,Lithic Hapludalfs
+JEJB,Aquertic Chromic Hapludalfs
+JEJC,Aquertic Hapludalfs
+JEJD,Oxyaquic Vertic Hapludalfs
+JEJE,Chromic Vertic Hapludalfs
+JEJF,Vertic Hapludalfs
+JEJG,Andic Hapludalfs
+JEJH,Vitrandic Hapludalfs
+JEJI,Fragiaquic Hapludalfs
+JEJJ,Fragic Oxyaquic Hapludalfs
+JEJK,Aquic Arenic Hapludalfs
+JEJL,Arenic Oxyaquic Hapludalfs
+JEJM,Anthraquic Hapludalfs
+JEJN,Albaquultic Hapludalfs
+JEJO,Albaquic Hapludalfs
+JEJP,Glossaquic Hapludalfs
+JEJQ,Aquultic Hapludalfs
+JEJR,Aquollic Hapludalfs
+JEJS,Aquic Hapludalfs
+JEJT,Mollic Oxyaquic Hapludalfs
+JEJU,Oxyaquic Hapludalfs
+JEJV,Fragic Hapludalfs
+JEJW,Lamellic Hapludalfs
+JEJX,Psammentic Hapludalfs
+JEJY,Arenic Hapludalfs
+JEJZ,Glossic Hapludalfs
+JEJZa,Inceptic Hapludalfs
+JEJZb,Ultic Hapludalfs
+JEJZc,Mollic Hapludalfs
+JEJZd,Typic Hapludalfs
+JEEA,Plinthaquic Kandiudalfs
+JEEB,Aquic Kandiudalfs
+JEEC,Oxyaquic Kandiudalfs
+JEED,Arenic Plinthic Kandiudalfs
+JEEE,Grossarenic Plinthic Kandiudalfs
+JEEF,Arenic Kandiudalfs
+JEEG,Grossarenic Kandiudalfs
+JEEH,Plinthic Kandiudalfs
+JEEI,Rhodic Kandiudalfs
+JEEJ,Mollic Kandiudalfs
+JEEK,Typic Kandiudalfs
+JEFA,Lithic Kanhapludalfs
+JEFB,Aquic Kanhapludalfs
+JEFC,Oxyaquic Kanhapludalfs
+JEFD,Rhodic Kanhapludalfs
+JEFE,Typic Kanhapludalfs
+JEAA,Vertic Natrudalfs
+JEAB,Glossaquic Natrudalfs
+JEAC,Aquic Natrudalfs
+JEAD,Typic Natrudalfs
+JEGA,Vertic Paleudalfs
+JEGB,Andic Paleudalfs
+JEGC,Vitrandic Paleudalfs
+JEGD,Anthraquic Paleudalfs
+JEGE,Fragiaquic Paleudalfs
+JEGF,Plinthaquic Paleudalfs
+JEGG,Glossaquic Paleudalfs
+JEGH,Albaquic Paleudalfs
+JEGI,Aquic Paleudalfs
+JEGJ,Oxyaquic Paleudalfs
+JEGK,Fragic Paleudalfs
+JEGL,Arenic Plinthic Paleudalfs
+JEGM,Grossarenic Plinthic Paleudalfs
+JEGN,Lamellic Paleudalfs
+JEGO,Psammentic Paleudalfs
+JEGP,Arenic Paleudalfs
+JEGQ,Grossarenic Paleudalfs
+JEGR,Plinthic Paleudalfs
+JEGS,Glossic Paleudalfs
+JEGT,Rhodic Paleudalfs
+JEGU,Mollic Paleudalfs
+JEGV,Typic Paleudalfs
+JEHA,Typic Rhodudalfs
+JCA,Durustalfs
+JCB,Plinthustalfs
+JCC,Natrustalfs
+JCD,Kandiustalfs
+JCE,Kanhaplustalfs
+JCF,Paleustalfs
+JCG,Rhodustalfs
+JCH,Haplustalfs
+JCAA,Typic Durustalfs
+JCHA,Lithic Haplustalfs
+JCHB,Aquertic Haplustalfs
+JCHC,Oxyaquic Vertic Haplustalfs
+JCHD,Torrertic Haplustalfs
+JCHE,Udertic Haplustalfs
+JCHF,Vertic Haplustalfs
+JCHG,Aquic Arenic Haplustalfs
+JCHH,Aquultic Haplustalfs
+JCHI,Aquic Haplustalfs
+JCHJ,Oxyaquic Haplustalfs
+JCHK,Vitrandic Haplustalfs
+JCHL,Lamellic Haplustalfs
+JCHM,Psammentic Haplustalfs
+JCHN,Arenic Aridic Haplustalfs
+JCHO,Arenic Haplustalfs
+JCHP,Calcidic Haplustalfs
+JCHQ,Aridic Haplustalfs
+JCHR,Kanhaplic Haplustalfs
+JCHS,Inceptic Haplustalfs
+JCHT,Calcic Udic Haplustalfs
+JCHU,Ultic Haplustalfs
+JCHV,Calcic Haplustalfs
+JCHW,Udic Haplustalfs
+JCHX,Typic Haplustalfs
+JCDA,Grossarenic Kandiustalfs
+JCDB,Aquic Arenic Kandiustalfs
+JCDC,Plinthic Kandiustalfs
+JCDD,Aquic Kandiustalfs
+JCDE,Arenic Aridic Kandiustalfs
+JCDF,Arenic Kandiustalfs
+JCDG,Aridic Kandiustalfs
+JCDH,Udic Kandiustalfs
+JCDI,Rhodic Kandiustalfs
+JCDJ,Typic Kandiustalfs
+JCEA,Lithic Kanhaplustalfs
+JCEB,Aquic Kanhaplustalfs
+JCEC,Aridic Kanhaplustalfs
+JCED,Udic Kanhaplustalfs
+JCEE,Rhodic Kanhaplustalfs
+JCEF,Typic Kanhaplustalfs
+JCCA,Salidic Natrustalfs
+JCCB,Leptic Torrertic Natrustalfs
+JCCC,Torrertic Natrustalfs
+JCCD,Aquertic Natrustalfs
+JCCE,Aridic Leptic Natrustalfs
+JCCF,Vertic Natrustalfs
+JCCG,Aquic Arenic Natrustalfs
+JCCH,Aquic Natrustalfs
+JCCI,Arenic Natrustalfs
+JCCJ,Petrocalcic Natrustalfs
+JCCK,Leptic Natrustalfs
+JCCL,Haplargidic Natrustalfs
+JCCM,Aridic Glossic Natrustalfs
+JCCN,Aridic Natrustalfs
+JCCO,Mollic Natrustalfs
+JCCP,Typic Natrustalfs
+JCFA,Aquertic Paleustalfs
+JCFB,Oxyaquic Vertic Paleustalfs
+JCFC,Udertic Paleustalfs
+JCFD,Vertic Paleustalfs
+JCFE,Aquic Arenic Paleustalfs
+JCFF,Aquic Paleustalfs
+JCFG,Oxyaquic Paleustalfs
+JCFH,Lamellic Paleustalfs
+JCFI,Psammentic Paleustalfs
+JCFJ,Arenic Aridic Paleustalfs
+JCFK,Grossarenic Paleustalfs
+JCFL,Arenic Paleustalfs
+JCFM,Plinthic Paleustalfs
+JCFN,Petrocalcic Paleustalfs
+JCFO,Calcidic Paleustalfs
+JCFP,Aridic Paleustalfs
+JCFQ,Kandic Paleustalfs
+JCFR,Rhodic Paleustalfs
+JCFS,Ultic Paleustalfs
+JCFT,Udic Paleustalfs
+JCFU,Typic Paleustalfs
+JCBA,Typic Plinthustalfs
+JCGA,Lithic Rhodustalfs
+JCGB,Kanhaplic Rhodustalfs
+JCGC,Udic Rhodustalfs
+JCGD,Typic Rhodustalfs
+JDA,Durixeralfs
+JDB,Natrixeralfs
+JDC,Fragixeralfs
+JDD,Plinthoxeralfs
+JDE,Rhodoxeralfs
+JDF,Palexeralfs
+JDG,Haploxeralfs
+JDAA,Natric Durixeralfs
+JDAB,Vertic Durixeralfs
+JDAC,Aquic Durixeralfs
+JDAD,Abruptic Haplic Durixeralfs
+JDAE,Abruptic Durixeralfs
+JDAF,Haplic Durixeralfs
+JDAG,Typic Durixeralfs
+JDCA,Andic Fragixeralfs
+JDCB,Vitrandic Fragixeralfs
+JDCC,Mollic Fragixeralfs
+JDCD,Aquic Fragixeralfs
+JDCE,Inceptic Fragixeralfs
+JDCF,Typic Fragixeralfs
+JDGA,Lithic Mollic Haploxeralfs
+JDGB,Lithic Ruptic-Inceptic Haploxeralfs
+JDGC,Lithic Haploxeralfs
+JDGD,Vertic Haploxeralfs
+JDGE,Aquandic Haploxeralfs
+JDGF,Andic Haploxeralfs
+JDGG,Vitrandic Haploxeralfs
+JDGH,Fragiaquic Haploxeralfs
+JDGI,Aquultic Haploxeralfs
+JDGJ,Aquic Haploxeralfs
+JDGK,Natric Haploxeralfs
+JDGL,Fragic Haploxeralfs
+JDGM,Lamellic Haploxeralfs
+JDGN,Psammentic Haploxeralfs
+JDGO,Plinthic Haploxeralfs
+JDGP,Calcic Haploxeralfs
+JDGQ,Inceptic Haploxeralfs
+JDGR,Ultic Haploxeralfs
+JDGS,Mollic Haploxeralfs
+JDGT,Typic Haploxeralfs
+JDBA,Vertic Natrixeralfs
+JDBB,Aquic Natrixeralfs
+JDBC,Typic Natrixeralfs
+JDFA,Vertic Palexeralfs
+JDFB,Aquandic Palexeralfs
+JDFC,Andic Palexeralfs
+JDFD,Vitrandic Palexeralfs
+JDFE,Fragiaquic Palexeralfs
+JDFF,Aquic Palexeralfs
+JDFG,Petrocalcic Palexeralfs
+JDFH,Lamellic Palexeralfs
+JDFI,Psammentic Palexeralfs
+JDFJ,Arenic Palexeralfs
+JDFK,Natric Palexeralfs
+JDFL,Fragic Palexeralfs
+JDFM,Calcic Palexeralfs
+JDFN,Plinthic Palexeralfs
+JDFO,Ultic Palexeralfs
+JDFP,Haplic Palexeralfs
+JDFQ,Mollic Palexeralfs
+JDFR,Typic Palexeralfs
+JDDA,Typic Plinthoxeralfs
+JDEA,Lithic Rhodoxeralfs
+JDEB,Vertic Rhodoxeralfs
+JDEC,Petrocalcic Rhodoxeralfs
+JDED,Calcic Rhodoxeralfs
+JDEE,Inceptic Rhodoxeralfs
+JDEF,Typic Rhodoxeralfs
+DA,Aquands
+DB,Gelands
+DC,Cryands
+DD,Torrands
+DE,Xerands
+DF,Vitrands
+DG,Ustands
+DH,Udands
+DAA,Gelaquands
+DAB,Cryaquands
+DAC,Placaquands
+DAD,Duraquands
+DAE,Vitraquands
+DAF,Melanaquands
+DAG,Epiaquands
+DAH,Endoaquands
+DABA,Lithic Cryaquands
+DABB,Histic Cryaquands
+DABC,Thaptic Cryaquands
+DABD,Typic Cryaquands
+DADA,Histic Duraquands
+DADB,Acraquoxic Duraquands
+DADC,Thaptic Duraquands
+DADD,Typic Duraquands
+DAHA,Lithic Endoaquands
+DAHB,Duric Endoaquands
+DAHC,Histic Endoaquands
+DAHD,Alic Endoaquands
+DAHE,Hydric Endoaquands
+DAHF,Thaptic Endoaquands
+DAHG,Typic Endoaquands
+DAGA,Duric Epiaquands
+DAGB,Histic Epiaquands
+DAGC,Alic Epiaquands
+DAGD,Hydric Epiaquands
+DAGE,Thaptic Epiaquands
+DAGF,Typic Epiaquands
+DAAA,Histic Gelaquands
+DAAB,Turbic Gelaquands
+DAAC,Thaptic Gelaquands
+DAAD,Typic Gelaquands
+DAFA,Lithic Melanaquands
+DAFB,Acraquoxic Melanaquands
+DAFC,Hydric Pachic Melanaquands
+DAFD,Hydric Melanaquands
+DAFE,Pachic Melanaquands
+DAFF,Thaptic Melanaquands
+DAFG,Typic Melanaquands
+DACA,Lithic Placaquands
+DACB,Duric Histic Placaquands
+DACC,Duric Placaquands
+DACD,Histic Placaquands
+DACE,Thaptic Placaquands
+DACF,Typic Placaquands
+DAEA,Lithic Vitraquands
+DAEB,Duric Vitraquands
+DAEC,Histic Vitraquands
+DAED,Thaptic Vitraquands
+DAEE,Typic Vitraquands
+DCA,Duricryands
+DCB,Hydrocryands
+DCC,Melanocryands
+DCD,Fulvicryands
+DCE,Vitricryands
+DCF,Haplocryands
+DCAA,Aquic Duricryands
+DCAB,Eutric Oxyaquic Duricryands
+DCAC,Oxyaquic Duricryands
+DCAD,Eutric Duricryands
+DCAE,Typic Duricryands
+DCDA,Lithic Fulvicryands
+DCDB,Folistic Fulvicryands
+DCDC,Eutric Pachic Fulvicryands
+DCDD,Eutric Fulvicryands
+DCDE,Pachic Fulvicryands
+DCDF,Vitric Fulvicryands
+DCDG,Typic Fulvicryands
+DCFA,Lithic Haplocryands
+DCFB,Folistic Haplocryands
+DCFC,Aquic Haplocryands
+DCFD,Oxyaquic Haplocryands
+DCFE,Alic Haplocryands
+DCFF,Spodic Haplocryands
+DCFG,Acrudoxic Haplocryands
+DCFH,Vitric Haplocryands
+DCFI,Thaptic Haplocryands
+DCFJ,Xeric Haplocryands
+DCFK,Typic Haplocryands
+DCBA,Lithic Hydrocryands
+DCBB,Placic Hydrocryands
+DCBC,Aquic Hydrocryands
+DCBD,Thaptic Hydrocryands
+DCBE,Typic Hydrocryands
+DCCA,Lithic Melanocryands
+DCCB,Vitric Melanocryands
+DCCC,Typic Melanocryands
+DCEA,Lithic Vitricryands
+DCEB,Folistic Vitricryands
+DCEC,Aquic Vitricryands
+DCED,Oxyaquic Vitricryands
+DCEE,Spodic Vitricryands
+DCEF,Thaptic Vitricryands
+DCEG,Humic Xeric Vitricryands
+DCEH,Xeric Vitricryands
+DCEI,Ultic Vitricryands
+DCEJ,Alfic Vitricryands
+DCEK,Humic Vitricryands
+DCEL,Typic Vitricryands
+DBA,Vitrigelands
+DBAA,Humic Vitrigelands
+DBAB,Turbic Vitrigelands
+DBAC,Typic Vitrigelands
+DDA,Duritorrands
+DDB,Vitritorrands
+DDC,Haplotorrands
+DDAA,Petrocalcic Duritorrands
+DDAB,Vitric Duritorrands
+DDAC,Typic Duritorrands
+DDCA,Lithic Haplotorrands
+DDCB,Duric Haplotorrands
+DDCC,Calcic Haplotorrands
+DDCD,Typic Haplotorrands
+DDBA,Lithic Vitritorrands
+DDBB,Duric Vitritorrands
+DDBC,Aquic Vitritorrands
+DDBD,Calcic Vitritorrands
+DDBE,Typic Vitritorrands
+DHA,Placudands
+DHB,Durudands
+DHC,Melanudands
+DHD,Hydrudands
+DHE,Fulvudands
+DHF,Hapludands
+DHBA,Aquic Durudands
+DHBB,Eutric Durudands
+DHBC,Acrudoxic Durudands
+DHBD,Hydric Durudands
+DHBE,Pachic Durudands
+DHBF,Typic Durudands
+DHEA,Eutric Lithic Fulvudands
+DHEB,Lithic Fulvudands
+DHEC,Aquic Fulvudands
+DHED,Oxyaquic Fulvudands
+DHEE,Hydric Fulvudands
+DHEF,Acrudoxic Fulvudands
+DHEG,Ultic Fulvudands
+DHEH,Eutric Pachic Fulvudands
+DHEI,Eutric Fulvudands
+DHEJ,Pachic Fulvudands
+DHEK,Thaptic Fulvudands
+DHEL,Typic Fulvudands
+DHFA,Lithic Hapludands
+DHFB,Anthraquic Hapludands
+DHFC,Aquic Duric Hapludands
+DHFD,Duric Hapludands
+DHFE,Aquic Hapludands
+DHFF,Oxyaquic Hapludands
+DHFG,Alic Hapludands
+DHFH,Acrudoxic Hydric Hapludands
+DHFI,Acrudoxic Thaptic Hapludands
+DHFJ,Acrudoxic Ultic Hapludands
+DHFK,Acrudoxic Hapludands
+DHFL,Vitric Hapludands
+DHFM,Hydric Thaptic Hapludands
+DHFN,Hydric Hapludands
+DHFO,Eutric Thaptic Hapludands
+DHFP,Thaptic Hapludands
+DHFQ,Eutric Hapludands
+DHFR,Oxic Hapludands
+DHFS,Ultic Hapludands
+DHFT,Alfic Hapludands
+DHFU,Typic Hapludands
+DHDA,Lithic Hydrudands
+DHDB,Aquic Hydrudands
+DHDC,Acrudoxic Thaptic Hydrudands
+DHDD,Acrudoxic Hydrudands
+DHDE,Thaptic Hydrudands
+DHDF,Eutric Hydrudands
+DHDG,Ultic Hydrudands
+DHDH,Typic Hydrudands
+DHCA,Lithic Melanudands
+DHCB,Anthraquic Melanudands
+DHCC,Aquic Melanudands
+DHCD,Acrudoxic Vitric Melanudands
+DHCE,Acrudoxic Hydric Melanudands
+DHCF,Acrudoxic Melanudands
+DHCG,Pachic Vitric Melanudands
+DHCH,Vitric Melanudands
+DHCI,Hydric Pachic Melanudands
+DHCJ,Pachic Melanudands
+DHCK,Hydric Melanudands
+DHCL,Thaptic Melanudands
+DHCM,Ultic Melanudands
+DHCN,Eutric Melanudands
+DHCO,Typic Melanudands
+DHAA,Lithic Placudands
+DHAB,Aquic Placudands
+DHAC,Acrudoxic Placudands
+DHAD,Hydric Placudands
+DHAE,Typic Placudands
+DGA,Durustands
+DGB,Haplustands
+DGAA,Aquic Durustands
+DGAB,Thaptic Durustands
+DGAC,Humic Durustands
+DGAD,Typic Durustands
+DGBA,Lithic Haplustands
+DGBB,Aquic Haplustands
+DGBC,Dystric Vitric Haplustands
+DGBD,Vitric Haplustands
+DGBE,Pachic Haplustands
+DGBF,Thaptic Haplustands
+DGBG,Calcic Haplustands
+DGBH,Dystric Haplustands
+DGBI,Oxic Haplustands
+DGBJ,Ultic Haplustands
+DGBK,Alfic Haplustands
+DGBL,Humic Haplustands
+DGBM,Typic Haplustands
+DFA,Ustivitrands
+DFB,Udivitrands
+DFBA,Lithic Udivitrands
+DFBB,Aquic Udivitrands
+DFBC,Oxyaquic Udivitrands
+DFBD,Thaptic Udivitrands
+DFBE,Ultic Udivitrands
+DFBF,Alfic Udivitrands
+DFBG,Humic Udivitrands
+DFBH,Typic Udivitrands
+DFAA,Lithic Ustivitrands
+DFAB,Aquic Ustivitrands
+DFAC,Thaptic Ustivitrands
+DFAD,Calcic Ustivitrands
+DFAE,Humic Ustivitrands
+DFAF,Typic Ustivitrands
+DEA,Vitrixerands
+DEB,Melanoxerands
+DEC,Haploxerands
+DECA,Lithic Haploxerands
+DECB,Aquic Haploxerands
+DECC,Thaptic Haploxerands
+DECD,Calcic Haploxerands
+DECE,Ultic Haploxerands
+DECF,Alfic Humic Haploxerands
+DECG,Alfic Haploxerands
+DECH,Humic Haploxerands
+DECI,Typic Haploxerands
+DEBA,Pachic Melanoxerands
+DEBB,Typic Melanoxerands
+DEAA,Lithic Vitrixerands
+DEAB,Aquic Vitrixerands
+DEAC,Thaptic Vitrixerands
+DEAD,Alfic Humic Vitrixerands
+DEAE,Ultic Vitrixerands
+DEAF,Alfic Vitrixerands
+DEAG,Humic Vitrixerands
+DEAH,Typic Vitrixerands
+GA,Cryids
+GB,Salids
+GC,Durids
+GD,Gypsids
+GE,Argids
+GF,Calcids
+GG,Cambids
+GEA,Petroargids
+GEB,Natrargids
+GEC,Paleargids
+GED,Gypsiargids
+GEE,Calciargids
+GEF,Haplargids
+GEEA,Lithic Calciargids
+GEEB,Xerertic Calciargids
+GEEC,Ustertic Calciargids
+GEED,Vertic Calciargids
+GEEE,Aquic Calciargids
+GEEF,Arenic Ustic Calciargids
+GEEG,Arenic Calciargids
+GEEH,Durinodic Xeric Calciargids
+GEEI,Durinodic Calciargids
+GEEJ,Petronodic Xeric Calciargids
+GEEK,Petronodic Ustic Calciargids
+GEEL,Petronodic Calciargids
+GEEM,Vitrixerandic Calciargids
+GEEN,Vitrandic Calciargids
+GEEO,Xeric Calciargids
+GEEP,Ustic Calciargids
+GEEQ,Typic Calciargids
+GEDA,Aquic Gypsiargids
+GEDB,Durinodic Gypsiargids
+GEDC,Vitrixerandic Gypsiargids
+GEDD,Vitrandic Gypsiargids
+GEDE,Xeric Gypsiargids
+GEDF,Ustic Gypsiargids
+GEDG,Typic Gypsiargids
+GEFA,Lithic Ruptic-Entic Haplargids
+GEFB,Lithic Xeric Haplargids
+GEFC,Lithic Ustic Haplargids
+GEFD,Lithic Haplargids
+GEFE,Xerertic Haplargids
+GEFF,Ustertic Haplargids
+GEFG,Vertic Haplargids
+GEFH,Aquic Haplargids
+GEFI,Arenic Ustic Haplargids
+GEFJ,Arenic Haplargids
+GEFK,Durinodic Xeric Haplargids
+GEFL,Durinodic Haplargids
+GEFM,Petronodic Ustic Haplargids
+GEFN,Petronodic Haplargids
+GEFO,Vitrixerandic Haplargids
+GEFP,Vitrandic Haplargids
+GEFQ,Xeric Haplargids
+GEFR,Ustic Haplargids
+GEFS,Typic Haplargids
+GEBA,Lithic Xeric Natrargids
+GEBB,Lithic Ustic Natrargids
+GEBC,Lithic Natrargids
+GEBD,Xerertic Natrargids
+GEBE,Ustertic Natrargids
+GEBF,Vertic Natrargids
+GEBG,Aquic Natrargids
+GEBH,Durinodic Xeric Natrargids
+GEBI,Durinodic Natrargids
+GEBJ,Petronodic Natrargids
+GEBK,Glossic Ustic Natrargids
+GEBL,Haplic Ustic Natrargids
+GEBM,Haploxeralfic Natrargids
+GEBN,Haplic Natrargids
+GEBO,Vitrixerandic Natrargids
+GEBP,Vitrandic Natrargids
+GEBQ,Xeric Natrargids
+GEBR,Ustic Natrargids
+GEBS,Glossic Natrargids
+GEBT,Typic Natrargids
+GECA,Vertic Paleargids
+GECB,Aquic Paleargids
+GECC,Arenic Ustic Paleargids
+GECD,Arenic Paleargids
+GECE,Calcic Paleargids
+GECF,Durinodic Xeric Paleargids
+GECG,Durinodic Paleargids
+GECH,Petronodic Ustic Paleargids
+GECI,Petronodic Paleargids
+GECJ,Vitrixerandic Paleargids
+GECK,Vitrandic Paleargids
+GECL,Xeric Paleargids
+GECM,Ustic Paleargids
+GECN,Typic Paleargids
+GEAA,Petrogypsic Ustic Petroargids
+GEAB,Petrogypsic Petroargids
+GEAC,Duric Xeric Petroargids
+GEAD,Duric Petroargids
+GEAE,Natric Petroargids
+GEAF,Xeric Petroargids
+GEAG,Ustic Petroargids
+GEAH,Typic Petroargids
+GFA,Petrocalcids
+GFB,Haplocalcids
+GFBA,Lithic Xeric Haplocalcids
+GFBB,Lithic Ustic Haplocalcids
+GFBC,Lithic Haplocalcids
+GFBD,Vertic Haplocalcids
+GFBE,Aquic Durinodic Haplocalcids
+GFBF,Aquic Haplocalcids
+GFBG,Duric Xeric Haplocalcids
+GFBH,Duric Haplocalcids
+GFBI,Durinodic Xeric Haplocalcids
+GFBJ,Durinodic Haplocalcids
+GFBK,Petronodic Xeric Haplocalcids
+GFBL,Petronodic Ustic Haplocalcids
+GFBM,Petronodic Haplocalcids
+GFBN,Sodic Xeric Haplocalcids
+GFBO,Sodic Ustic Haplocalcids
+GFBP,Sodic Haplocalcids
+GFBQ,Vitrixerandic Haplocalcids
+GFBR,Vitrandic Haplocalcids
+GFBS,Xeric Haplocalcids
+GFBT,Ustic Haplocalcids
+GFBU,Typic Haplocalcids
+GFAA,Aquic Petrocalcids
+GFAB,Natric Petrocalcids
+GFAC,Xeralfic Petrocalcids
+GFAD,Ustalfic Petrocalcids
+GFAE,Argic Petrocalcids
+GFAF,Calcic Lithic Petrocalcids
+GFAG,Calcic Petrocalcids
+GFAH,Xeric Petrocalcids
+GFAI,Ustic Petrocalcids
+GFAJ,Typic Petrocalcids
+GGA,Aquicambids
+GGB,Petrocambids
+GGC,Haplocambids
+GGAA,Sodic Aquicambids
+GGAB,Durinodic Xeric Aquicambids
+GGAC,Durinodic Aquicambids
+GGAD,Petronodic Aquicambids
+GGAE,Vitrixerandic Aquicambids
+GGAF,Vitrandic Aquicambids
+GGAG,Fluventic Aquicambids
+GGAH,Xeric Aquicambids
+GGAI,Ustic Aquicambids
+GGAJ,Typic Aquicambids
+GGCA,Lithic Xeric Haplocambids
+GGCB,Lithic Ustic Haplocambids
+GGCC,Lithic Haplocambids
+GGCD,Xerertic Haplocambids
+GGCE,Ustertic Haplocambids
+GGCF,Vertic Haplocambids
+GGCG,Durinodic Xeric Haplocambids
+GGCH,Durinodic Haplocambids
+GGCI,Petronodic Xeric Haplocambids
+GGCJ,Petronodic Ustic Haplocambids
+GGCK,Petronodic Haplocambids
+GGCL,Sodic Xeric Haplocambids
+GGCM,Sodic Ustic Haplocambids
+GGCN,Sodic Haplocambids
+GGCO,Vitrixerandic Haplocambids
+GGCP,Vitrandic Haplocambids
+GGCQ,Xerofluventic Haplocambids
+GGCR,Ustifluventic Haplocambids
+GGCS,Fluventic Haplocambids
+GGCT,Anthropic Haplocambids
+GGCU,Xeric Haplocambids
+GGCV,Ustic Haplocambids
+GGCW,Typic Haplocambids
+GGBA,Sodic Petrocambids
+GGBB,Vitrixerandic Petrocambids
+GGBC,Vitrandic Petrocambids
+GGBD,Xeric Petrocambids
+GGBE,Ustic Petrocambids
+GGBF,Typic Petrocambids
+GAA,Salicryids
+GAB,Petrocryids
+GAC,Gypsicryids
+GAD,Argicryids
+GAE,Calcicryids
+GAF,Haplocryids
+GADA,Lithic Argicryids
+GADB,Vertic Argicryids
+GADC,Natric Argicryids
+GADD,Vitrixerandic Argicryids
+GADE,Vitrandic Argicryids
+GADF,Xeric Argicryids
+GADG,Ustic Argicryids
+GADH,Typic Argicryids
+GAEA,Lithic Calcicryids
+GAEB,Vitrixerandic Calcicryids
+GAEC,Vitrandic Calcicryids
+GAED,Xeric Calcicryids
+GAEE,Ustic Calcicryids
+GAEF,Typic Calcicryids
+GACA,Calcic Gypsicryids
+GACB,Vitrixerandic Gypsicryids
+GACC,Vitrandic Gypsicryids
+GACD,Typic Gypsicryids
+GAFA,Lithic Haplocryids
+GAFB,Vertic Haplocryids
+GAFC,Vitrixerandic Haplocryids
+GAFD,Vitrandic Haplocryids
+GAFE,Xeric Haplocryids
+GAFF,Ustic Haplocryids
+GAFG,Typic Haplocryids
+GABA,Xereptic Petrocryids
+GABB,Duric Xeric Petrocryids
+GABC,Duric Petrocryids
+GABD,Petrogypsic Petrocryids
+GABE,Xeric Petrocryids
+GABF,Ustic Petrocryids
+GABG,Typic Petrocryids
+GAAA,Aquic Salicryids
+GAAB,Typic Salicryids
+GCA,Natridurids
+GCB,Argidurids
+GCC,Haplodurids
+GCBA,Vertic Argidurids
+GCBB,Aquic Argidurids
+GCBC,Abruptic Xeric Argidurids
+GCBD,Abruptic Argidurids
+GCBE,Haploxeralfic Argidurids
+GCBF,Argidic Argidurids
+GCBG,Vitrixerandic Argidurids
+GCBH,Vitrandic Argidurids
+GCBI,Xeric Argidurids
+GCBJ,Ustic Argidurids
+GCBK,Typic Argidurids
+GCCA,Aquicambidic Haplodurids
+GCCB,Aquic Haplodurids
+GCCC,Xereptic Haplodurids
+GCCD,Cambidic Haplodurids
+GCCE,Vitrixerandic Haplodurids
+GCCF,Vitrandic Haplodurids
+GCCG,Xeric Haplodurids
+GCCH,Ustic Haplodurids
+GCCI,Typic Haplodurids
+GCAA,Vertic Natridurids
+GCAB,Aquic Natrargidic Natridurids
+GCAC,Aquic Natridurids
+GCAD,Natrixeralfic Natridurids
+GCAE,Natrargidic Natridurids
+GCAF,Vitrixerandic Natridurids
+GCAG,Vitrandic Natridurids
+GCAH,Xeric Natridurids
+GCAI,Typic Natridurids
+GDA,Petrogypsids
+GDB,Natrigypsids
+GDC,Argigypsids
+GDD,Calcigypsids
+GDE,Haplogypsids
+GDCA,Lithic Argigypsids
+GDCB,Vertic Argigypsids
+GDCC,Calcic Argigypsids
+GDCD,Petronodic Argigypsids
+GDCE,Vitrixerandic Argigypsids
+GDCF,Vitrandic Argigypsids
+GDCG,Xeric Argigypsids
+GDCH,Ustic Argigypsids
+GDCI,Typic Argigypsids
+GDDA,Lithic Calcigypsids
+GDDB,Petronodic Calcigypsids
+GDDC,Vitrixerandic Calcigypsids
+GDDD,Vitrandic Calcigypsids
+GDDE,Xeric Calcigypsids
+GDDF,Ustic Calcigypsids
+GDDG,Typic Calcigypsids
+GDEA,Lithic Haplogypsids
+GDEB,Leptic Haplogypsids
+GDEC,Sodic Haplogypsids
+GDED,Petronodic Haplogypsids
+GDEE,Vitrixerandic Haplogypsids
+GDEF,Vitrandic Haplogypsids
+GDEG,Xeric Haplogypsids
+GDEH,Ustic Haplogypsids
+GDEI,Typic Haplogypsids
+GDBA,Lithic Natrigypsids
+GDBB,Vertic Natrigypsids
+GDBC,Petronodic Natrigypsids
+GDBD,Vitrixerandic Natrigypsids
+GDBE,Vitrandic Natrigypsids
+GDBF,Xeric Natrigypsids
+GDBG,Ustic Natrigypsids
+GDBH,Typic Natrigypsids
+GDAA,Petrocalcic Petrogypsids
+GDAB,Calcic Petrogypsids
+GDAC,Vitrixerandic Petrogypsids
+GDAD,Vitrandic Petrogypsids
+GDAE,Xeric Petrogypsids
+GDAF,Ustic Petrogypsids
+GDAG,Typic Petrogypsids
+GBA,Aquisalids
+GBB,Haplosalids
+GBAA,Anhydritic Aquisalids
+GBAB,Gypsic Aquisalids
+GBAC,Calcic Aquisalids
+GBAD,Typic Aquisalids
+GBBA,Duric Haplosalids
+GBBB,Petrogypsic Haplosalids
+GBBC,Anhydritic Haplosalids
+GBBD,Gypsic Haplosalids
+GBBE,Calcic Haplosalids
+GBBF,Typic Haplosalids
+LA,Wassents
+LB,Aquents
+LC,Psamments
+LD,Fluvents
+LE,Orthents
+LBA,Sulfaquents
+LBB,Hydraquents
+LBC,Gelaquents
+LBD,Cryaquents
+LBE,Psammaquents
+LBF,Fluvaquents
+LBG,Epiaquents
+LBH,Endoaquents
+LBDA,Aquandic Cryaquents
+LBDB,Typic Cryaquents
+LBHA,Sulfic Endoaquents
+LBHB,Lithic Endoaquents
+LBHC,Sodic Endoaquents
+LBHD,Aeric Endoaquents
+LBHE,Humaqueptic Endoaquents
+LBHF,Mollic Endoaquents
+LBHG,Typic Endoaquents
+LBGA,Aeric Epiaquents
+LBGB,Humaqueptic Epiaquents
+LBGC,Mollic Epiaquents
+LBGD,Typic Epiaquents
+LBFA,Sulfic Fluvaquents
+LBFB,Vertic Fluvaquents
+LBFC,Thapto-Histic Fluvaquents
+LBFD,Aquandic Fluvaquents
+LBFE,Aeric Fluvaquents
+LBFF,Humaqueptic Fluvaquents
+LBFG,Mollic Fluvaquents
+LBFH,Typic Fluvaquents
+LBCA,Typic Gelaquents
+LBBA,Sulfic Hydraquents
+LBBB,Sodic Hydraquents
+LBBC,Thapto-Histic Hydraquents
+LBBD,Typic Hydraquents
+LBEA,Lithic Psammaquents
+LBEB,Sodic Psammaquents
+LBEC,Spodic Psammaquents
+LBED,Humaqueptic Psammaquents
+LBEE,Mollic Psammaquents
+LBEF,Typic Psammaquents
+LBAA,Haplic Sulfaquents
+LBAB,Histic Sulfaquents
+LBAC,Thapto-Histic Sulfaquents
+LBAD,Typic Sulfaquents
+LDA,Gelifluvents
+LDB,Cryofluvents
+LDC,Xerofluvents
+LDD,Ustifluvents
+LDE,Torrifluvents
+LDF,Udifluvents
+LDBA,Andic Cryofluvents
+LDBB,Vitrandic Cryofluvents
+LDBC,Aquic Cryofluvents
+LDBD,Oxyaquic Cryofluvents
+LDBE,Mollic Cryofluvents
+LDBF,Typic Cryofluvents
+LDAA,Aquic Gelifluvents
+LDAB,Typic Gelifluvents
+LDEA,Ustertic Torrifluvents
+LDEB,Vertic Torrifluvents
+LDEC,Vitrixerandic Torrifluvents
+LDED,Vitrandic Torrifluvents
+LDEE,Aquic Torrifluvents
+LDEF,Oxyaquic Torrifluvents
+LDEG,Duric Xeric Torrifluvents
+LDEH,Duric Torrifluvents
+LDEI,Ustic Torrifluvents
+LDEJ,Xeric Torrifluvents
+LDEK,Anthropic Torrifluvents
+LDEL,Typic Torrifluvents
+LDFA,Aquertic Udifluvents
+LDFB,Vertic Udifluvents
+LDFC,Andic Udifluvents
+LDFD,Vitrandic Udifluvents
+LDFE,Aquic Udifluvents
+LDFF,Oxyaquic Udifluvents
+LDFG,Mollic Udifluvents
+LDFH,Typic Udifluvents
+LDDA,Aquertic Ustifluvents
+LDDB,Torrertic Ustifluvents
+LDDC,Vertic Ustifluvents
+LDDD,Anthraquic Ustifluvents
+LDDE,Aquic Ustifluvents
+LDDF,Oxyaquic Ustifluvents
+LDDG,Aridic Ustifluvents
+LDDH,Udic Ustifluvents
+LDDI,Mollic Ustifluvents
+LDDJ,Typic Ustifluvents
+LDCA,Vertic Xerofluvents
+LDCB,Aquandic Xerofluvents
+LDCC,Andic Xerofluvents
+LDCD,Vitrandic Xerofluvents
+LDCE,Aquic Xerofluvents
+LDCF,Oxyaquic Xerofluvents
+LDCG,Durinodic Xerofluvents
+LDCH,Mollic Xerofluvents
+LDCI,Typic Xerofluvents
+LEA,Gelorthents
+LEB,Cryorthents
+LEC,Torriorthents
+LED,Xerorthents
+LEE,Ustorthents
+LEF,Udorthents
+LEBA,Lithic Cryorthents
+LEBB,Vitrandic Cryorthents
+LEBC,Aquic Cryorthents
+LEBD,Oxyaquic Cryorthents
+LEBE,Lamellic Cryorthents
+LEBF,Typic Cryorthents
+LEAA,Aquic Gelorthents
+LEAB,Oxyaquic Gelorthents
+LEAC,Typic Gelorthents
+LECA,Lithic Ustic Torriorthents
+LECB,Lithic Xeric Torriorthents
+LECC,Lithic Torriorthents
+LECD,Xerertic Torriorthents
+LECE,Ustertic Torriorthents
+LECF,Vertic Torriorthents
+LECG,Anthraltic Torriorthents
+LECH,Vitrandic Torriorthents
+LECI,Aquic Torriorthents
+LECJ,Oxyaquic Torriorthents
+LECK,Duric Torriorthents
+LECL,Ustic Torriorthents
+LECM,Xeric Torriorthents
+LECN,Typic Torriorthents
+LEFA,Lithic Udorthents
+LEFB,Anthrodensic Sodic Udorthents
+LEFC,Anthrodensic Udorthents
+LEFD,                                   Anthropic Udorthents
+LEFE,Anthroportic Udorthents
+LEFF,Vitrandic Udorthents
+LEFG,Aquic Udorthents
+LEFH,Oxyaquic Udorthents
+LEFI,Vermic Udorthents
+LEFJ,Typic Udorthents
+LEEA,Aridic Lithic Ustorthents
+LEEB,Lithic Ustorthents
+LEEC,Torrertic Ustorthents
+LEED,Vertic Ustorthents
+LEEE,Anthraquic Ustorthents
+LEEF,Anthrodensic Ustorthents
+LEEG,Anthroportic Ustorthents
+LEEH,Aquic Ustorthents
+LEEI,Oxyaquic Ustorthents
+LEEJ,Durinodic Ustorthents
+LEEK,Vitritorrandic Ustorthents
+LEEL,Vitrandic Ustorthents
+LEEM,Aridic Ustorthents
+LEEN,Udic Ustorthents
+LEEO,Vermic Ustorthents
+LEEP,Typic Ustorthents
+LEDA,Lithic Xerorthents
+LEDB,Anthraltic Sodic Xerorthents
+LEDC,Anthraltic Xerorthents
+LEDD,Vitrandic Xerorthents
+LEDE,Aquic Xerorthents
+LEDF,Oxyaquic Xerorthents
+LEDG,Durinodic Xerorthents
+LEDH,Dystric Xerorthents
+LEDI,Typic Xerorthents
+LCA,Cryopsamments
+LCB,Torripsamments
+LCC,Quartzipsamments
+LCD,Ustipsamments
+LCE,Xeropsamments
+LCF,Udipsamments
+LCAA,Lithic Cryopsamments
+LCAB,Aquic Cryopsamments
+LCAC,Oxyaquic Cryopsamments
+LCAD,Vitrandic Cryopsamments
+LCAE,Spodic Cryopsamments
+LCAF,Lamellic Cryopsamments
+LCAG,Typic Cryopsamments
+LCCA,Lithic Quartzipsamments
+LCCB,Aquodic Quartzipsamments
+LCCC,Aquic Quartzipsamments
+LCCD,Oxyaquic Quartzipsamments
+LCCE,Ustoxic Quartzipsamments
+LCCF,Udoxic Quartzipsamments
+LCCG,Plinthic Quartzipsamments
+LCCH,Lamellic Ustic Quartzipsamments
+LCCI,Lamellic Quartzipsamments
+LCCJ,Ustic Quartzipsamments
+LCCK,Xeric Quartzipsamments
+LCCL,Spodic Quartzipsamments
+LCCM,Typic Quartzipsamments
+LCBA,Lithic Torripsamments
+LCBB,Oxyaquic Torripsamments
+LCBC,Vitrandic Torripsamments
+LCBD,Haploduridic Torripsamments
+LCBE,Ustic Torripsamments
+LCBF,Xeric Torripsamments
+LCBG,Rhodic Torripsamments
+LCBH,Typic Torripsamments
+LCFA,Lithic Udipsamments
+LCFB,Aquic Udipsamments
+LCFC,Oxyaquic Udipsamments
+LCFD,Spodic Udipsamments
+LCFE,Lamellic Udipsamments
+LCFF,Haploplaggic Udipsamments
+LCFG,Typic Udipsamments
+LCDA,Lithic Ustipsamments
+LCDB,Aquic Ustipsamments
+LCDC,Oxyaquic Ustipsamments
+LCDD,Aridic Ustipsamments
+LCDE,Lamellic Ustipsamments
+LCDF,Rhodic Ustipsamments
+LCDG,Typic Ustipsamments
+LCEA,Lithic Xeropsamments
+LCEB,Aquic Durinodic Xeropsamments
+LCEC,Aquic Xeropsamments
+LCED,Oxyaquic Xeropsamments
+LCEE,Vitrandic Xeropsamments
+LCEF,Durinodic Xeropsamments
+LCEG,Lamellic Xeropsamments
+LCEH,Dystric Xeropsamments
+LCEI,Typic Xeropsamments
+LAA,Frasiwassents
+LAB,Psammowassents
+LAC,Sulfiwassents
+LAD,Hydrowassents
+LAE,Fluviwassents
+LAF,Haplowassents
+LAEA,Sulfic Fluviwassents
+LAEB,Lithic Fluviwassents
+LAEC,Thapto-Histic Fluviwassents
+LAED,Aeric Fluviwassents
+LAEE,Typic Fluviwassents
+LAAA,Hydric Frasiwassents
+LAAB,Lithic Frasiwassents
+LAAC,Psammentic Frasiwassents
+LAAD,Thapto-Histic Frasiwassents
+LAAE,Fluventic Frasiwassents
+LAAF,Aeric Frasiwassents
+LAAG,Typic Frasiwassents
+LAFA,Sulfic Haplowassents
+LAFB,Lithic Haplowassents
+LAFC,Aeric Haplowassents
+LAFD,Typic Haplowassents
+LADA,Sulfic Hydrowassents
+LADB,Grossic Hydrowassents
+LADC,Lithic Hydrowassents
+LADD,Thapto-Histic Hydrowassents
+LADE,Typic Hydrowassents
+LABA,Sulfic Psammowassents
+LABB,Lithic Psammowassents
+LABC,Fluventic Psammowassents
+LABD,Aeric Psammowassents
+LABE,Typic Psammowassents
+LACA,Lithic Sulfiwassents
+LACB,Haplic Sulfiwassents
+LACC,Thapto-Histic Sulfiwassents
+LACD,Fluventic Sulfiwassents
+LACE,Aeric Sulfiwassents
+LACF,Typic Sulfiwassents
+AA,Histels
+AB,Turbels
+AC,Orthels
+AAA,Folistels
+AAB,Glacistels
+AAC,Fibristels
+AAD,Hemistels
+AAE,Sapristels
+AACA,Lithic Fibristels
+AACB,Terric Fibristels
+AACC,Fluvaquentic Fibristels
+AACD,Sphagnic Fibristels
+AACE,Typic Fibristels
+AAAA,Lithic Folistels
+AAAB,Glacic Folistels
+AAAC,Typic Folistels
+AABA,Hemic Glacistels
+AABB,Sapric Glacistels
+AABC,Typic Glacistels
+AADA,Lithic Hemistels
+AADB,Terric Hemistels
+AADC,Fluvaquentic Hemistels
+AADD,Typic Hemistels
+AAEA,Lithic Sapristels
+AAEB,Terric Sapristels
+AAEC,Fluvaquentic Sapristels
+AAED,Typic Sapristels
+ACA,Historthels
+ACB,Aquorthels
+ACC,Anhyorthels
+ACD,Mollorthels
+ACE,Umbrorthels
+ACF,Argiorthels
+ACG,Psammorthels
+ACH,Haplorthels
+ACCA,Lithic Anhyorthels
+ACCB,Glacic Anhyorthels
+ACCC,Petrogypsic Anhyorthels
+ACCD,Gypsic Anhyorthels
+ACCE,Nitric Anhyorthels
+ACCF,Salic Anhyorthels
+ACCG,Calcic Anhyorthels
+ACCH,Typic Anhyorthels
+ACBA,Lithic Aquorthels
+ACBB,Glacic Aquorthels
+ACBC,Sulfuric Aquorthels
+ACBD,Ruptic-Histic Aquorthels
+ACBE,Andic Aquorthels
+ACBF,Vitrandic Aquorthels
+ACBG,Salic Aquorthels
+ACBH,Psammentic Aquorthels
+ACBI,Fluvaquentic Aquorthels
+ACBJ,Typic Aquorthels
+ACFA,Lithic Argiorthels
+ACFB,Glacic Argiorthels
+ACFC,Natric Argiorthels
+ACFD,Typic Argiorthels
+ACHA,Lithic Haplorthels
+ACHB,Glacic Haplorthels
+ACHC,Fluvaquentic Haplorthels
+ACHD,Folistic Haplorthels
+ACHE,Aquic Haplorthels
+ACHF,Fluventic Haplorthels
+ACHG,Typic Haplorthels
+ACAA,Lithic Historthels
+ACAB,Glacic Historthels
+ACAC,Fluvaquentic Historthels
+ACAD,Fluventic Historthels
+ACAE,Ruptic Historthels
+ACAF,Typic Historthels
+ACDA,Lithic Mollorthels
+ACDB,Glacic Mollorthels
+ACDC,Vertic Mollorthels
+ACDD,Andic Mollorthels
+ACDE,Vitrandic Mollorthels
+ACDF,Folistic Mollorthels
+ACDG,Cumulic Mollorthels
+ACDH,Aquic Mollorthels
+ACDI,Typic Mollorthels
+ACGA,Lithic Psammorthels
+ACGB,Glacic Psammorthels
+ACGC,Spodic Psammorthels
+ACGD,Typic Psammorthels
+ACEA,Lithic Umbrorthels
+ACEB,Glacic Umbrorthels
+ACEC,Vertic Umbrorthels
+ACED,Andic Umbrorthels
+ACEE,Vitrandic Umbrorthels
+ACEF,Folistic Umbrorthels
+ACEG,Cumulic Umbrorthels
+ACEH,Aquic Umbrorthels
+ACEI,Typic Umbrorthels
+ABA,Histoturbels
+ABB,Aquiturbels
+ABC,Anhyturbels
+ABD,Molliturbels
+ABE,Umbriturbels
+ABF,Psammoturbels
+ABG,Haploturbels
+ABCA,Lithic Anhyturbels
+ABCB,Glacic Anhyturbels
+ABCC,Petrogypsic Anhyturbels
+ABCD,Gypsic Anhyturbels
+ABCE,Nitric Anhyturbels
+ABCF,Salic Anhyturbels
+ABCG,Calcic Anhyturbels
+ABCH,Typic Anhyturbels
+ABBA,Lithic Aquiturbels
+ABBB,Glacic Aquiturbels
+ABBC,Sulfuric Aquiturbels
+ABBD,Ruptic-Histic Aquiturbels
+ABBE,Psammentic Aquiturbels
+ABBF,Typic Aquiturbels
+ABGA,Lithic Haploturbels
+ABGB,Glacic Haploturbels
+ABGC,Folistic Haploturbels
+ABGD,Aquic Haploturbels
+ABGE,Typic Haploturbels
+ABAA,Lithic Histoturbels
+ABAB,Glacic Histoturbels
+ABAC,Ruptic Histoturbels
+ABAD,Typic Histoturbels
+ABDA,Lithic Molliturbels
+ABDB,Glacic Molliturbels
+ABDC,Vertic Molliturbels
+ABDD,Andic Molliturbels
+ABDE,Vitrandic Molliturbels
+ABDF,Folistic Molliturbels
+ABDG,Cumulic Molliturbels
+ABDH,Aquic Molliturbels
+ABDI,Typic Molliturbels
+ABFA,Lithic Psammoturbels
+ABFB,Glacic Psammoturbels
+ABFC,Spodic Psammoturbels
+ABFD,Typic Psammoturbels
+ABEA,Lithic Umbriturbels
+ABEB,Glacic Umbriturbels
+ABEC,Vertic Umbriturbels
+ABED,Andic Umbriturbels
+ABEE,Vitrandic Umbriturbels
+ABEF,Folistic Umbriturbels
+ABEG,Cumulic Umbriturbels
+ABEH,Aquic Umbriturbels
+ABEI,Typic Umbriturbels
+BA,Folists
+BB,Wassists
+BC,Fibrists
+BD,Saprists
+BE,Hemists
+BCA,Cryofibrists
+BCB,Sphagnofibrists
+BCC,Haplofibrists
+BCAA,Hydric Cryofibrists
+BCAB,Lithic Cryofibrists
+BCAC,Terric Cryofibrists
+BCAD,Fluvaquentic Cryofibrists
+BCAE,Sphagnic Cryofibrists
+BCAF,Typic Cryofibrists
+BCCA,Hydric Haplofibrists
+BCCB,Lithic Haplofibrists
+BCCC,Limnic Haplofibrists
+BCCD,Terric Haplofibrists
+BCCE,Fluvaquentic Haplofibrists
+BCCF,Hemic Haplofibrists
+BCCG,Typic Haplofibrists
+BCBA,Hydric Sphagnofibrists
+BCBB,Lithic Sphagnofibrists
+BCBC,Limnic Sphagnofibrists
+BCBD,Terric Sphagnofibrists
+BCBE,Fluvaquentic Sphagnofibrists
+BCBF,Hemic Sphagnofibrists
+BCBG,Typic Sphagnofibrists
+BAA,Cryofolists
+BAB,Torrifolists
+BAC,Ustifolists
+BAD,Udifolists
+BAAA,Lithic Cryofolists
+BAAB,Typic Cryofolists
+BABA,Lithic Torrifolists
+BABB,Typic Torrifolists
+BADA,Lithic Udifolists
+BADB,Typic Udifolists
+BACA,Lithic Ustifolists
+BACB,Typic Ustifolists
+BEA,Sulfohemists
+BEB,Sulfihemists
+BEC,Luvihemists
+BED,Cryohemists
+BEE,Haplohemists
+BEDA,Hydric Cryohemists
+BEDB,Lithic Cryohemists
+BEDC,Terric Cryohemists
+BEDD,Fluvaquentic Cryohemists
+BEDE,Typic Cryohemists
+BEEA,Hydric Haplohemists
+BEEB,Lithic Haplohemists
+BEEC,Limnic Haplohemists
+BEED,Terric Haplohemists
+BEEE,Fluvaquentic Haplohemists
+BEEF,Fibric Haplohemists
+BEEG,Sapric Haplohemists
+BEEH,Typic Haplohemists
+BECA,Typic Luvihemists
+BEBA,Terric Sulfihemists
+BEBB,Typic Sulfihemists
+BEAA,Typic Sulfohemists
+BDA,Sulfosaprists
+BDB,Sulfisaprists
+BDC,Cryosaprists
+BDD,Haplosaprists
+BDCA,Lithic Cryosaprists
+BDCB,Limnic Cryosaprists
+BDCC,Terric Cryosaprists
+BDCD,Fluvaquentic Cryosaprists
+BDCE,Typic Cryosaprists
+BDDA,Lithic Haplosaprists
+BDDB,Limnic Haplosaprists
+BDDC,Halic Terric Haplosaprists
+BDDD,Halic Haplosaprists
+BDDE,Terric Haplosaprists
+BDDF,Fluvaquentic Haplosaprists
+BDDG,Hemic Haplosaprists
+BDDH,Typic Haplosaprists
+BDBA,Terric Sulfisaprists
+BDBB,Typic Sulfisaprists
+BDAA,Typic Sulfosaprists
+BBA,Frasiwassists
+BBB,Sulfiwassists
+BBC,Haplowassists
+BBAA,Fibric Frasiwassists
+BBAB,Sapric Frasiwassists
+BBAC,Typic Frasiwassists
+BBCA,Sulfic Haplowassists
+BBCB,Fibric Haplowassists
+BBCC,Sapric Haplowassists
+BBCD,Typic Haplowassists
+BBBA,Fibric Sulfiwassists
+BBBB,Sapric Sulfiwassists
+BBBC,Typic Sulfiwassists
+KA,Aquepts
+KB,Gelepts
+KC,Cryepts
+KD,Ustepts
+KE,Xerepts
+KF,Udepts
+KAA,Sulfaquepts
+KAB,Petraquepts
+KAC,Halaquepts
+KAD,Fragiaquepts
+KAE,Gelaquepts
+KAF,Cryaquepts
+KAG,Vermaquepts
+KAH,Humaquepts
+KAI,Epiaquepts
+KAJ,Endoaquepts
+KAFA,Sulfic Cryaquepts
+KAFB,Histic Lithic Cryaquepts
+KAFC,Lithic Cryaquepts
+KAFD,Vertic Cryaquepts
+KAFE,Histic Cryaquepts
+KAFF,Aquandic Cryaquepts
+KAFG,Fluvaquentic Cryaquepts
+KAFH,Aeric Humic Cryaquepts
+KAFI,Aeric Cryaquepts
+KAFJ,Humic Cryaquepts
+KAFK,Typic Cryaquepts
+KAJA,Sulfic Endoaquepts
+KAJB,Lithic Endoaquepts
+KAJC,Vertic Endoaquepts
+KAJD,Aquandic Endoaquepts
+KAJE,Fluventic Endoaquepts
+KAJF,Fluvaquentic Endoaquepts
+KAJG,Fragic Endoaquepts
+KAJH,Aeric Endoaquepts
+KAJI,Humic Endoaquepts
+KAJJ,Mollic Endoaquepts
+KAJK,Typic Endoaquepts
+KAIA,Vertic Epiaquepts
+KAIB,Aquandic Epiaquepts
+KAIC,Fluvaquentic Epiaquepts
+KAID,Fragic Epiaquepts
+KAIE,Aeric Epiaquepts
+KAIF,Humic Epiaquepts
+KAIG,Mollic Epiaquepts
+KAIH,Typic Epiaquepts
+KADA,Aeric Fragiaquepts
+KADB,Humic Fragiaquepts
+KADC,Typic Fragiaquepts
+KAEA,Lithic Gelaquepts
+KAEB,Histic Gelaquepts
+KAEC,Aquandic Gelaquepts
+KAED,Fluvaquentic Gelaquepts
+KAEE,Humic Gelaquepts
+KAEF,Turbic Gelaquepts
+KAEG,Typic Gelaquepts
+KACA,Vertic Halaquepts
+KACB,Aquandic Halaquepts
+KACC,Duric Halaquepts
+KACD,Aeric Halaquepts
+KACE,Typic Halaquepts
+KAHA,Hydraquentic Humaquepts
+KAHB,Histic Humaquepts
+KAHC,Aquandic Humaquepts
+KAHD,Cumulic Humaquepts
+KAHE,Fluvaquentic Humaquepts
+KAHF,Aeric Humaquepts
+KAHG,Typic Humaquepts
+KABA,Histic Placic Petraquepts
+KABB,Placic Petraquepts
+KABC,Plinthic Petraquepts
+KABD,Typic Petraquepts
+KAAA,Salidic Sulfaquepts
+KAAB,Hydraquentic Sulfaquepts
+KAAC,Typic Sulfaquepts
+KAGA,Sodic Vermaquepts
+KAGB,Typic Vermaquepts
+KCA,Humicryepts
+KCB,Calcicryepts
+KCC,Dystrocryepts
+KCD,Haplocryepts
+KCBA,Lithic Calcicryepts
+KCBB,Oxyaquic Calcicryepts
+KCBC,Xeric Calcicryepts
+KCBD,Ustic Calcicryepts
+KCBE,Typic Calcicryepts
+KCCA,Lithic Dystrocryepts
+KCCB,Aquandic Dystrocryepts
+KCCC,Haploxerandic Dystrocryepts
+KCCD,Vitrixerandic Dystrocryepts
+KCCE,Andic Dystrocryepts
+KCCF,Vitrandic Dystrocryepts
+KCCG,Fluvaquentic Dystrocryepts
+KCCH,Folistic Dystrocryepts
+KCCI,Aquic Dystrocryepts
+KCCJ,Oxyaquic Dystrocryepts
+KCCK,Lamellic Dystrocryepts
+KCCL,Fluventic Dystrocryepts
+KCCM,Spodic Dystrocryepts
+KCCN,Xeric Dystrocryepts
+KCCO,Ustic Dystrocryepts
+KCCP,Eutric Dystrocryepts
+KCCQ,Typic Dystrocryepts
+KCDA,Lithic Haplocryepts
+KCDB,Aquandic Haplocryepts
+KCDC,Haploxerandic Haplocryepts
+KCDD,Vitrixerandic Haplocryepts
+KCDE,Haplustandic Haplocryepts
+KCDF,Ustivitrandic Haplocryepts
+KCDG,Andic Haplocryepts
+KCDH,Vitrandic Haplocryepts
+KCDI,Fluvaquentic Haplocryepts
+KCDJ,Aquic Haplocryepts
+KCDK,Oxyaquic Haplocryepts
+KCDL,Lamellic Haplocryepts
+KCDM,Fluventic Haplocryepts
+KCDN,Calcic Haplocryepts
+KCDO,Xeric Haplocryepts
+KCDP,Ustic Haplocryepts
+KCDQ,Typic Haplocryepts
+KCAA,Lithic Humicryepts
+KCAB,Aquandic Humicryepts
+KCAC,Haploxerandic Humicryepts
+KCAD,Vitrixerandic Humicryepts
+KCAE,Andic Humicryepts
+KCAF,Vitrandic Humicryepts
+KCAG,Fluvaquentic Humicryepts
+KCAH,Aquic Humicryepts
+KCAI,Oxyaquic Humicryepts
+KCAJ,Lamellic Humicryepts
+KCAK,Fluventic Humicryepts
+KCAL,Spodic Humicryepts
+KCAM,Xeric Humicryepts
+KCAN,Eutric Humicryepts
+KCAO,Typic Humicryepts
+KBA,Humigelepts
+KBB,Dystrogelepts
+KBC,Haplogelepts
+KBBA,Lithic Dystrogelepts
+KBBB,Andic Dystrogelepts
+KBBC,Aquic Dystrogelepts
+KBBD,Fluventic Dystrogelepts
+KBBE,Turbic Dystrogelepts
+KBBF,Typic Dystrogelepts
+KBCA,Lithic Haplogelepts
+KBCB,Andic Haplogelepts
+KBCC,Aquic Haplogelepts
+KBCD,Fluventic Haplogelepts
+KBCE,Turbic Haplogelepts
+KBCF,Typic Haplogelepts
+KBAA,Lithic Humigelepts
+KBAB,Andic Humigelepts
+KBAC,Aquic Humigelepts
+KBAD,Oxyaquic Humigelepts
+KBAE,Fluventic Humigelepts
+KBAF,Turbic Humigelepts
+KBAG,Eutric Humigelepts
+KBAH,Typic Humigelepts
+KFA,Sulfudepts
+KFB,Durudepts
+KFC,Fragiudepts
+KFD,Humudepts
+KFE,Eutrudepts
+KFF,Dystrudepts
+KFBA,Aquandic Durudepts
+KFBB,Andic Durudepts
+KFBC,Vitrandic Durudepts
+KFBD,Aquic Durudepts
+KFBE,Typic Durudepts
+KFFA,Humic Lithic Dystrudepts
+KFFB,Lithic Dystrudepts
+KFFC,Vertic Dystrudepts
+KFFD,Aquandic Dystrudepts
+KFFE,Andic Oxyaquic Dystrudepts
+KFFF,Andic Dystrudepts
+KFFG,Vitrandic Dystrudepts
+KFFH,Fragiaquic Dystrudepts
+KFFI,Fluvaquentic Dystrudepts
+KFFJ,Aquic Humic Dystrudepts
+KFFK,Aquic Dystrudepts
+KFFL,Oxyaquic Dystrudepts
+KFFM,Fragic Dystrudepts
+KFFN,Lamellic Dystrudepts
+KFFO,Humic Psammentic Dystrudepts
+KFFP,Fluventic Humic Dystrudepts
+KFFQ,Fluventic Dystrudepts
+KFFR,Spodic Dystrudepts
+KFFS,Oxic Dystrudepts
+KFFT,Ruptic-Alfic Dystrudepts
+KFFU,Ruptic-Ultic Dystrudepts
+KFFV,Humic Dystrudepts
+KFFW,Typic Dystrudepts
+KFEA,Humic Lithic Eutrudepts
+KFEB,Lithic Eutrudepts
+KFEC,Aquertic Eutrudepts
+KFED,Vertic Eutrudepts
+KFEE,Andic Eutrudepts
+KFEF,Vitrandic Eutrudepts
+KFEG,Anthraquic Eutrudepts
+KFEH,Fragiaquic Eutrudepts
+KFEI,Fluvaquentic Eutrudepts
+KFEJ,Aquic Dystric Eutrudepts
+KFEK,Aquic Eutrudepts
+KFEL,Oxyaquic Eutrudepts
+KFEM,Fragic Eutrudepts
+KFEN,Lamellic Eutrudepts
+KFEO,Dystric Fluventic Eutrudepts
+KFEP,Fluventic Eutrudepts
+KFEQ,Arenic Eutrudepts
+KFER,Dystric Eutrudepts
+KFES,Rendollic Eutrudepts
+KFET,Ruptic-Alfic Eutrudepts
+KFEU,Humic Eutrudepts
+KFEV,Typic Eutrudepts
+KFCA,Andic Fragiudepts
+KFCB,Vitrandic Fragiudepts
+KFCC,Aquic Fragiudepts
+KFCD,Humic Fragiudepts
+KFCE,Typic Fragiudepts
+KFDA,Lithic Humudepts
+KFDB,Vertic Humudepts
+KFDC,Aquandic Humudepts
+KFDD,Andic Oxyaquic Humudepts
+KFDE,Andic Humudepts
+KFDF,Vitrandic Humudepts
+KFDG,Fluvaquentic Humudepts
+KFDH,Aquic Humudepts
+KFDI,Oxyaquic Humudepts
+KFDJ,Psammentic Humudepts
+KFDK,Oxic Humudepts
+KFDL,Cumulic Humudepts
+KFDM,Fluventic Humudepts
+KFDN,Pachic Humudepts
+KFDO,Eutric Humudepts
+KFDP,Entic Humudepts
+KFDQ,Typic Humudepts
+KFAA,Typic Sulfudepts
+KDA,Durustepts
+KDB,Calciustepts
+KDC,Humustepts
+KDD,Dystrustepts
+KDE,Haplustepts
+KDBA,Lithic Petrocalcic Calciustepts
+KDBB,Lithic Calciustepts
+KDBC,Torrertic Calciustepts
+KDBD,Vertic Calciustepts
+KDBE,Petrocalcic Calciustepts
+KDBF,Gypsic Calciustepts
+KDBG,Aquic Calciustepts
+KDBH,Aridic Calciustepts
+KDBI,Udic Calciustepts
+KDBJ,Typic Calciustepts
+KDAA,Typic Durustepts
+KDDA,Lithic Dystrustepts
+KDDB,Torrertic Dystrustepts
+KDDC,Vertic Dystrustepts
+KDDD,Andic Dystrustepts
+KDDE,Vitrandic Dystrustepts
+KDDF,Aquic Dystrustepts
+KDDG,Fluventic Dystrustepts
+KDDH,Aridic Dystrustepts
+KDDI,Oxic Dystrustepts
+KDDJ,Humic Dystrustepts
+KDDK,Typic Dystrustepts
+KDEA,Aridic Lithic Haplustepts
+KDEB,Lithic Haplustepts
+KDEC,Udertic Haplustepts
+KDED,Torrertic Haplustepts
+KDEE,Vertic Haplustepts
+KDEF,Andic Haplustepts
+KDEG,Vitrandic Haplustepts
+KDEH,Anthraquic Haplustepts
+KDEI,Aquic Haplustepts
+KDEJ,Oxyaquic Haplustepts
+KDEK,Oxic Haplustepts
+KDEL,Lamellic Haplustepts
+KDEM,Torrifluventic Haplustepts
+KDEN,Udifluventic Haplustepts
+KDEO,Fluventic Haplustepts
+KDEP,Gypsic Haplustepts
+KDEQ,Haplocalcidic Haplustepts
+KDER,Calcic Udic Haplustepts
+KDES,Calcic Haplustepts
+KDET,Aridic Haplustepts
+KDEU,Dystric Haplustepts
+KDEV,Udic Haplustepts
+KDEW,Typic Haplustepts
+KDCA,Lithic Humustepts
+KDCB,Andic Humustepts
+KDCC,Vitrandic Humustepts
+KDCD,Oxyaquic Humustepts
+KDCE,Oxic Humustepts
+KDCF,Aridic Humustepts
+KDCG,Typic Humustepts
+KEA,Durixerepts
+KEB,Fragixerepts
+KEC,Humixerepts
+KED,Calcixerepts
+KEE,Dystroxerepts
+KEF,Haploxerepts
+KEDA,Lithic Calcixerepts
+KEDB,Vertic Calcixerepts
+KEDC,Petrocalcic Calcixerepts
+KEDD,Sodic Calcixerepts
+KEDE,Vitrandic Calcixerepts
+KEDF,Aquic Calcixerepts
+KEDG,Typic Calcixerepts
+KEAA,Aquandic Durixerepts
+KEAB,Andic Durixerepts
+KEAC,Vitrandic Durixerepts
+KEAD,Aquic Durixerepts
+KEAE,Entic Durixerepts
+KEAF,Typic Durixerepts
+KEEA,Humic Lithic Dystroxerepts
+KEEB,Lithic Dystroxerepts
+KEEC,Aquandic Dystroxerepts
+KEED,Andic Dystroxerepts
+KEEE,Vitrandic Dystroxerepts
+KEEF,Fragiaquic Dystroxerepts
+KEEG,Fluvaquentic Dystroxerepts
+KEEH,Aquic Dystroxerepts
+KEEI,Oxyaquic Dystroxerepts
+KEEJ,Fragic Dystroxerepts
+KEEK,Fluventic Humic Dystroxerepts
+KEEL,Fluventic Dystroxerepts
+KEEM,Humic Dystroxerepts
+KEEN,Typic Dystroxerepts
+KEBA,Andic Fragixerepts
+KEBB,Vitrandic Fragixerepts
+KEBC,Aquic Fragixerepts
+KEBD,Humic Fragixerepts
+KEBE,Typic Fragixerepts
+KEFA,Humic Lithic Haploxerepts
+KEFB,Lithic Haploxerepts
+KEFC,Vertic Haploxerepts
+KEFD,Aquandic Haploxerepts
+KEFE,Andic Oxyaquic Haploxerepts
+KEFF,Andic Haploxerepts
+KEFG,Oxyaquic Vitrandic Haploxerepts
+KEFH,Vitrandic Haploxerepts
+KEFI,Gypsic Haploxerepts
+KEFJ,Aquic Haploxerepts
+KEFK,Lamellic Haploxerepts
+KEFL,Fragic Haploxerepts
+KEFM,Fluventic Haploxerepts
+KEFN,Calcic Haploxerepts
+KEFO,Humic Haploxerepts
+KEFP,Typic Haploxerepts
+KECA,Lithic Humixerepts
+KECB,Aquandic Humixerepts
+KECC,Andic Humixerepts
+KECD,Vitrandic Humixerepts
+KECE,Aquic Humixerepts
+KECF,Oxyaquic Humixerepts
+KECG,Cumulic Humixerepts
+KECH,Fluventic Humixerepts
+KECI,Pachic Humixerepts
+KECJ,Entic Humixerepts
+KECK,Typic Humixerepts
+IA,Albolls
+IB,Aquolls
+IC,Rendolls
+ID,Gelolls
+IE,Cryolls
+IF,Xerolls
+IG,Ustolls
+IH,Udolls
+IAA,Natralbolls
+IAB,Argialbolls
+IABA,Xerertic Argialbolls
+IABB,Vertic Argialbolls
+IABC,Argiaquic Xeric Argialbolls
+IABD,Argiaquic Argialbolls
+IABE,Xeric Argialbolls
+IABF,Aquandic Argialbolls
+IABG,Typic Argialbolls
+IAAA,Leptic Natralbolls
+IAAB,Typic Natralbolls
+IBA,Cryaquolls
+IBB,Duraquolls
+IBC,Natraquolls
+IBD,Calciaquolls
+IBE,Argiaquolls
+IBF,Epiaquolls
+IBG,Endoaquolls
+IBEA,Arenic Argiaquolls
+IBEB,Grossarenic Argiaquolls
+IBEC,Vertic Argiaquolls
+IBED,Abruptic Argiaquolls
+IBEE,Typic Argiaquolls
+IBDA,Petrocalcic Calciaquolls
+IBDB,Aeric Calciaquolls
+IBDC,Typic Calciaquolls
+IBAA,Vertic Cryaquolls
+IBAB,Histic Cryaquolls
+IBAC,Thapto-Histic Cryaquolls
+IBAD,Aquandic Cryaquolls
+IBAE,Argic Cryaquolls
+IBAF,Calcic Cryaquolls
+IBAG,Cumulic Cryaquolls
+IBAH,Typic Cryaquolls
+IBBA,Natric Duraquolls
+IBBB,Vertic Duraquolls
+IBBC,Argic Duraquolls
+IBBD,Typic Duraquolls
+IBGA,Lithic Endoaquolls
+IBGB,Cumulic Vertic Endoaquolls
+IBGC,Fluvaquentic Vertic Endoaquolls
+IBGD,Vertic Endoaquolls
+IBGE,Histic Endoaquolls
+IBGF,Thapto-Histic Endoaquolls
+IBGG,Aquandic Endoaquolls
+IBGH,Duric Endoaquolls
+IBGI,Cumulic Endoaquolls
+IBGJ,Fluvaquentic Endoaquolls
+IBGK,Typic Endoaquolls
+IBFA,Cumulic Vertic Epiaquolls
+IBFB,Fluvaquentic Vertic Epiaquolls
+IBFC,Vertic Epiaquolls
+IBFD,Histic Epiaquolls
+IBFE,Thapto-Histic Epiaquolls
+IBFF,Aquandic Epiaquolls
+IBFG,Duric Epiaquolls
+IBFH,Cumulic Epiaquolls
+IBFI,Fluvaquentic Epiaquolls
+IBFJ,Typic Epiaquolls
+IBCA,Petrocalcic Natraquolls
+IBCB,Vertic Natraquolls
+IBCC,Glossic Natraquolls
+IBCD,Typic Natraquolls
+IEA,Duricryolls
+IEB,Natricryolls
+IEC,Palecryolls
+IED,Argicryolls
+IEE,Calcicryolls
+IEF,Haplocryolls
+IEDA,Lithic Argicryolls
+IEDB,Vertic Argicryolls
+IEDC,Andic Argicryolls
+IEDD,Vitrandic Argicryolls
+IEDE,Abruptic Argicryolls
+IEDF,Aquic Argicryolls
+IEDG,Oxyaquic Argicryolls
+IEDH,Calcic Pachic Argicryolls
+IEDI,Pachic Argicryolls
+IEDJ,Calcic Argicryolls
+IEDK,Alfic Argicryolls
+IEDL,Ustic Argicryolls
+IEDM,Xeric Argicryolls
+IEDN,Typic Argicryolls
+IEEA,Lithic Calcicryolls
+IEEB,Vitrandic Calcicryolls
+IEEC,Petrocalcic Calcicryolls
+IEED,Pachic Calcicryolls
+IEEE,Ustic Calcicryolls
+IEEF,Xeric Calcicryolls
+IEEG,Typic Calcicryolls
+IEAA,Argic Duricryolls
+IEAB,Calcic Duricryolls
+IEAC,Typic Duricryolls
+IEFA,Lithic Haplocryolls
+IEFB,Vertic Haplocryolls
+IEFC,Andic Haplocryolls
+IEFD,Vitrandic Haplocryolls
+IEFE,Aquic Cumulic Haplocryolls
+IEFF,Cumulic Haplocryolls
+IEFG,Fluvaquentic Haplocryolls
+IEFH,Aquic Haplocryolls
+IEFI,Oxyaquic Haplocryolls
+IEFJ,Calcic Pachic Haplocryolls
+IEFK,Pachic Haplocryolls
+IEFL,Fluventic Haplocryolls
+IEFM,Calcic Haplocryolls
+IEFN,Ustic Haplocryolls
+IEFO,Xeric Haplocryolls
+IEFP,Typic Haplocryolls
+IEBA,Typic Natricryolls
+IECA,Aquic Palecryolls
+IECB,Oxyaquic Palecryolls
+IECC,Abruptic Palecryolls
+IECD,Pachic Palecryolls
+IECE,Ustic Palecryolls
+IECF,Xeric Palecryolls
+IECG,Typic Palecryolls
+IDA,Haplogelolls
+IDAA,Lithic Haplogelolls
+IDAB,Andic Haplogelolls
+IDAC,Aquic Haplogelolls
+IDAD,Oxyaquic Haplogelolls
+IDAE,Turbic Haplogelolls
+IDAF,Cumulic Haplogelolls
+IDAG,Typic Haplogelolls
+ICA,Cryrendolls
+ICB,Haprendolls
+ICAA,Lithic Cryrendolls
+ICAB,Typic Cryrendolls
+ICBA,Lithic Haprendolls
+ICBB,Vertic Haprendolls
+ICBC,Inceptic Haprendolls
+ICBD,Entic Haprendolls
+ICBE,Typic Haprendolls
+IHA,Natrudolls
+IHB,Calciudolls
+IHC,Paleudolls
+IHD,Argiudolls
+IHE,Vermudolls
+IHF,Hapludolls
+IHDA,Lithic Argiudolls
+IHDB,Petrocalcic Argiudolls
+IHDC,Aquertic Argiudolls
+IHDD,Oxyaquic Vertic Argiudolls
+IHDE,Pachic Vertic Argiudolls
+IHDF,Alfic Vertic Argiudolls
+IHDG,Vertic Argiudolls
+IHDH,Andic Argiudolls
+IHDI,Vitrandic Argiudolls
+IHDJ,Aquic Pachic Argiudolls
+IHDK,Pachic Argiudolls
+IHDL,Aquic Argiudolls
+IHDM,Oxyaquic Argiudolls
+IHDN,Lamellic Argiudolls
+IHDO,Psammentic Argiudolls
+IHDP,Arenic Argiudolls
+IHDQ,Abruptic Argiudolls
+IHDR,Alfic Argiudolls
+IHDS,Oxic Argiudolls
+IHDT,Calcic Argiudolls
+IHDU,Typic Argiudolls
+IHBA,Lithic Calciudolls
+IHBB,Vertic Calciudolls
+IHBC,Anthropic Petrocalcic Calciudolls
+IHBD,Aquic Calciudolls
+IHBE,Fluventic Calciudolls
+IHBF,Typic Calciudolls
+IHFA,Lithic Hapludolls
+IHFB,Petrocalcic Hapludolls
+IHFC,Aquertic Hapludolls
+IHFD,Pachic Vertic Hapludolls
+IHFE,Vertic Hapludolls
+IHFF,Andic Hapludolls
+IHFG,Vitrandic Hapludolls
+IHFH,Aquic Cumulic Hapludolls
+IHFI,Cumulic Hapludolls
+IHFJ,Fluvaquentic Hapludolls
+IHFK,Fluventic Hapludolls
+IHFL,Aquic Pachic Hapludolls
+IHFM,Pachic Hapludolls
+IHFN,Aquic Hapludolls
+IHFO,Oxyaquic Hapludolls
+IHFP,Vermic Hapludolls
+IHFQ,Calcic Hapludolls
+IHFR,Entic Hapludolls
+IHFS,Typic Hapludolls
+IHAA,Petrocalcic Natrudolls
+IHAB,Leptic Vertic Natrudolls
+IHAC,Glossic Vertic Natrudolls
+IHAD,Vertic Natrudolls
+IHAE,Leptic Natrudolls
+IHAF,Abruptic Natrudolls
+IHAG,Glossic Natrudolls
+IHAH,Calcic Natrudolls
+IHAI,Typic Natrudolls
+IHCA,Vertic Paleudolls
+IHCB,Aquic Pachic Paleudolls
+IHCC,Pachic Paleudolls
+IHCD,Aquic Paleudolls
+IHCE,Oxyaquic Paleudolls
+IHCF,Calcic Paleudolls
+IHCG,Typic Paleudolls
+IHEA,Lithic Vermudolls
+IHEB,Haplic Vermudolls
+IHEC,Typic Vermudolls
+IGA,Durustolls
+IGB,Natrustolls
+IGC,Calciustolls
+IGD,Paleustolls
+IGE,Argiustolls
+IGF,Vermustolls
+IGG,Haplustolls
+IGEA,Aridic Lithic Argiustolls
+IGEB,Alfic Lithic Argiustolls
+IGEC,Lithic Argiustolls
+IGED,Aquertic Argiustolls
+IGEE,Torrertic Argiustolls
+IGEF,Pachic Udertic Argiustolls
+IGEG,Udertic Argiustolls
+IGEH,Pachic Vertic Argiustolls
+IGEI,Vertic Argiustolls
+IGEJ,Andic Argiustolls
+IGEK,Vitritorrandic Argiustolls
+IGEL,Vitrandic Argiustolls
+IGEM,Aquic Argiustolls
+IGEN,Oxyaquic Argiustolls
+IGEO,Pachic Argiustolls
+IGEP,Alfic Argiustolls
+IGEQ,Calcidic Argiustolls
+IGER,Aridic Argiustolls
+IGES,Udic Argiustolls
+IGET,Duric Argiustolls
+IGEU,Typic Argiustolls
+IGCA,Salidic Calciustolls
+IGCB,Lithic Petrocalcic Calciustolls
+IGCC,Lithic Calciustolls
+IGCD,Torrertic Calciustolls
+IGCE,Udertic Calciustolls
+IGCF,Vertic Calciustolls
+IGCG,Petrocalcic Calciustolls
+IGCH,Gypsic Calciustolls
+IGCI,Aquic Calciustolls
+IGCJ,Oxyaquic Calciustolls
+IGCK,Pachic Calciustolls
+IGCL,Aridic Calciustolls
+IGCM,Udic Calciustolls
+IGCN,Typic Calciustolls
+IGAA,Natric Durustolls
+IGAB,Haploduridic Durustolls
+IGAC,Argiduridic Durustolls
+IGAD,Entic Durustolls
+IGAE,Haplic Durustolls
+IGAF,Typic Durustolls
+IGGA,Salidic Haplustolls
+IGGB,Ruptic-Lithic Haplustolls
+IGGC,Aridic Lithic Haplustolls
+IGGD,Lithic Haplustolls
+IGGE,Aquertic Haplustolls
+IGGF,Torrertic Haplustolls
+IGGG,Pachic Udertic Haplustolls
+IGGH,Udertic Haplustolls
+IGGI,Pachic Vertic Haplustolls
+IGGJ,Vertic Haplustolls
+IGGK,Torroxic Haplustolls
+IGGL,Oxic Haplustolls
+IGGM,Andic Haplustolls
+IGGN,Vitritorrandic Haplustolls
+IGGO,Vitrandic Haplustolls
+IGGP,Aquic Cumulic Haplustolls
+IGGQ,Cumulic Haplustolls
+IGGR,Anthraquic Haplustolls
+IGGS,Fluvaquentic Haplustolls
+IGGT,Aquic Haplustolls
+IGGU,Pachic Haplustolls
+IGGV,Oxyaquic Haplustolls
+IGGW,Torrifluventic Haplustolls
+IGGX,Torriorthentic Haplustolls
+IGGY,Aridic Haplustolls
+IGGZ,Fluventic Haplustolls
+IGGZa,Duric Haplustolls
+IGGZb,Udorthentic Haplustolls
+IGGZc,Udic Haplustolls
+IGGZd,Entic Haplustolls
+IGGZe,Typic Haplustolls
+IGBA,Leptic Torrertic Natrustolls
+IGBB,Torrertic Natrustolls
+IGBC,Leptic Vertic Natrustolls
+IGBD,Glossic Vertic Natrustolls
+IGBE,Vertic Natrustolls
+IGBF,Aridic Leptic Natrustolls
+IGBG,Leptic Natrustolls
+IGBH,Aquic Natrustolls
+IGBI,Aridic Natrustolls
+IGBJ,Duric Natrustolls
+IGBK,Glossic Natrustolls
+IGBL,Typic Natrustolls
+IGDA,Torrertic Paleustolls
+IGDB,Udertic Paleustolls
+IGDC,Vertic Paleustolls
+IGDD,Aquic Paleustolls
+IGDE,Pachic Paleustolls
+IGDF,Petrocalcic Paleustolls
+IGDG,Calcidic Paleustolls
+IGDH,Aridic Paleustolls
+IGDI,Udic Paleustolls
+IGDJ,Calcic Paleustolls
+IGDK,Entic Paleustolls
+IGDL,Typic Paleustolls
+IGFA,Lithic Vermustolls
+IGFB,Aquic Vermustolls
+IGFC,Pachic Vermustolls
+IGFD,Entic Vermustolls
+IGFE,Typic Vermustolls
+IFA,Durixerolls
+IFB,Natrixerolls
+IFC,Palexerolls
+IFD,Calcixerolls
+IFE,Argixerolls
+IFF,Haploxerolls
+IFEA,Aridic Lithic Argixerolls
+IFEB,Lithic Ultic Argixerolls
+IFEC,Lithic Argixerolls
+IFED,Torrertic Argixerolls
+IFEE,Vertic Argixerolls
+IFEF,Andic Argixerolls
+IFEG,Vitritorrandic Argixerolls
+IFEH,Vitrandic Argixerolls
+IFEI,Aquultic Argixerolls
+IFEJ,Aquic Argixerolls
+IFEK,Oxyaquic Argixerolls
+IFEL,Alfic Argixerolls
+IFEM,Calcic Pachic Argixerolls
+IFEN,Pachic Ultic Argixerolls
+IFEO,Pachic Argixerolls
+IFEP,Argiduridic Argixerolls
+IFEQ,Duric Argixerolls
+IFER,Calciargidic Argixerolls
+IFES,Aridic Argixerolls
+IFET,Calcic Argixerolls
+IFEU,Ultic Argixerolls
+IFEV,Typic Argixerolls
+IFDA,Aridic Lithic Calcixerolls
+IFDB,Lithic Calcixerolls
+IFDC,Vertic Calcixerolls
+IFDD,Aquic Calcixerolls
+IFDE,Oxyaquic Calcixerolls
+IFDF,Pachic Calcixerolls
+IFDG,Vitrandic Calcixerolls
+IFDH,Aridic Calcixerolls
+IFDI,Vermic Calcixerolls
+IFDJ,Typic Calcixerolls
+IFAA,Vertic Durixerolls
+IFAB,Vitritorrandic Durixerolls
+IFAC,Vitrandic Durixerolls
+IFAD,Aquic Durixerolls
+IFAE,Paleargidic Durixerolls
+IFAF,Abruptic Argiduridic Durixerolls
+IFAG,Cambidic Durixerolls
+IFAH,Haploduridic Durixerolls
+IFAI,Argidic Durixerolls
+IFAJ,Argiduridic Durixerolls
+IFAK,Haplic Palexerollic Durixerolls
+IFAL,Palexerollic Durixerolls
+IFAM,Haplic Haploxerollic Durixerolls
+IFAN,Haploxerollic Durixerolls
+IFAO,Haplic Durixerolls
+IFAP,Typic Durixerolls
+IFFA,Aridic Lithic Haploxerolls
+IFFB,Lithic Ultic Haploxerolls
+IFFC,Lithic Haploxerolls
+IFFD,Torrertic Haploxerolls
+IFFE,Vertic Haploxerolls
+IFFF,Andic Haploxerolls
+IFFG,Vitritorrandic Haploxerolls
+IFFH,Vitrandic Haploxerolls
+IFFI,Aquic Cumulic Haploxerolls
+IFFJ,Cumulic Ultic Haploxerolls
+IFFK,Cumulic Haploxerolls
+IFFL,Fluvaquentic Haploxerolls
+IFFM,Aquic Duric Haploxerolls
+IFFN,Aquultic Haploxerolls
+IFFO,Aquic Haploxerolls
+IFFP,Oxyaquic Haploxerolls
+IFFQ,Calcic Pachic Haploxerolls
+IFFR,Pachic Ultic Haploxerolls
+IFFS,Pachic Haploxerolls
+IFFT,Torrifluventic Haploxerolls
+IFFU,Duridic Haploxerolls
+IFFV,Calcidic Haploxerolls
+IFFW,Torripsammentic Haploxerolls
+IFFX,Torriorthentic Haploxerolls
+IFFY,Aridic Haploxerolls
+IFFZ,Duric Haploxerolls
+IFFZa,Psammentic Haploxerolls
+IFFZb,Fluventic Haploxerolls
+IFFZc,Vermic Haploxerolls
+IFFZd,Calcic Haploxerolls
+IFFZe,Entic Ultic Haploxerolls
+IFFZf,Ultic Haploxerolls
+IFFZg,Entic Haploxerolls
+IFFZh,Typic Haploxerolls
+IFBA,Vertic Natrixerolls
+IFBB,Aquic Duric Natrixerolls
+IFBC,Aquic Natrixerolls
+IFBD,Aridic Natrixerolls
+IFBE,Duric Natrixerolls
+IFBF,Typic Natrixerolls
+IFCA,Vertic Palexerolls
+IFCB,Vitrandic Palexerolls
+IFCC,Aquic Palexerolls
+IFCD,Pachic Palexerolls
+IFCE,Petrocalcidic Palexerolls
+IFCF,Duric Palexerolls
+IFCG,Aridic Palexerolls
+IFCH,Petrocalcic Palexerolls
+IFCI,Ultic Palexerolls
+IFCJ,Haplic Palexerolls
+IFCK,Typic Palexerolls
+EA,Aquox
+EB,Torrox
+EC,Ustox
+ED,Perox
+EE,Udox
+EAA,Acraquox
+EAB,Plinthaquox
+EAC,Eutraquox
+EAD,Haplaquox
+EAAA,Plinthic Acraquox
+EAAB,Aeric Acraquox
+EAAC,Typic Acraquox
+EACA,Histic Eutraquox
+EACB,Plinthic Eutraquox
+EACC,Aeric Eutraquox
+EACD,Humic Eutraquox
+EACE,Typic Eutraquox
+EADA,Histic Haplaquox
+EADB,Plinthic Haplaquox
+EADC,Aeric Haplaquox
+EADD,Humic Haplaquox
+EADE,Typic Haplaquox
+EABA,Aeric Plinthaquox
+EABB,Typic Plinthaquox
+EDA,Sombriperox
+EDB,Acroperox
+EDC,Eutroperox
+EDD,Kandiperox
+EDE,Haploperox
+EDBA,Aquic Petroferric Acroperox
+EDBB,Petroferric Acroperox
+EDBC,Aquic Lithic Acroperox
+EDBD,Lithic Acroperox
+EDBE,Anionic Acroperox
+EDBF,Plinthic Acroperox
+EDBG,Aquic Acroperox
+EDBH,Humic Rhodic Acroperox
+EDBI,Humic Xanthic Acroperox
+EDBJ,Humic Acroperox
+EDBK,Rhodic Acroperox
+EDBL,Xanthic Acroperox
+EDBM,Typic Acroperox
+EDCA,Aquic Petroferric Eutroperox
+EDCB,Petroferric Eutroperox
+EDCC,Aquic Lithic Eutroperox
+EDCD,Lithic Eutroperox
+EDCE,Plinthaquic Eutroperox
+EDCF,Plinthic Eutroperox
+EDCG,Aquic Eutroperox
+EDCH,Kandiudalfic Eutroperox
+EDCI,Humic Inceptic Eutroperox
+EDCJ,Inceptic Eutroperox
+EDCK,Humic Rhodic Eutroperox
+EDCL,Humic Xanthic Eutroperox
+EDCM,Humic Eutroperox
+EDCN,Rhodic Eutroperox
+EDCO,Xanthic Eutroperox
+EDCP,Typic Eutroperox
+EDEA,Aquic Petroferric Haploperox
+EDEB,Petroferric Haploperox
+EDEC,Aquic Lithic Haploperox
+EDED,Lithic Haploperox
+EDEE,Plinthaquic Haploperox
+EDEF,Plinthic Haploperox
+EDEG,Aquic Haploperox
+EDEH,Andic Haploperox
+EDEI,Humic Rhodic Haploperox
+EDEJ,Humic Xanthic Haploperox
+EDEK,Humic Haploperox
+EDEL,Rhodic Haploperox
+EDEM,Xanthic Haploperox
+EDEN,Typic Haploperox
+EDDA,Aquic Petroferric Kandiperox
+EDDB,Petroferric Kandiperox
+EDDC,Aquic Lithic Kandiperox
+EDDD,Lithic Kandiperox
+EDDE,Plinthaquic Kandiperox
+EDDF,Plinthic Kandiperox
+EDDG,Aquic Kandiperox
+EDDH,Andic Kandiperox
+EDDI,Humic Rhodic Kandiperox
+EDDJ,Humic Xanthic Kandiperox
+EDDK,Humic Kandiperox
+EDDL,Rhodic Kandiperox
+EDDM,Xanthic Kandiperox
+EDDN,Typic Kandiperox
+EDAA,Petroferric Sombriperox
+EDAB,Lithic Sombriperox
+EDAC,Humic Sombriperox
+EDAD,Typic Sombriperox
+EBA,Acrotorrox
+EBB,Eutrotorrox
+EBC,Haplotorrox
+EBAA,Petroferric Acrotorrox
+EBAB,Lithic Acrotorrox
+EBAC,Typic Acrotorrox
+EBBA,Petroferric Eutrotorrox
+EBBB,Lithic Eutrotorrox
+EBBC,Typic Eutrotorrox
+EBCA,Petroferric Haplotorrox
+EBCB,Lithic Haplotorrox
+EBCC,Typic Haplotorrox
+EEA,Sombriudox
+EEB,Acrudox
+EEC,Eutrudox
+EED,Kandiudox
+EEE,Hapludox
+EEBA,Aquic Petroferric Acrudox
+EEBB,Petroferric Acrudox
+EEBC,Aquic Lithic Acrudox
+EEBD,Lithic Acrudox
+EEBE,Anionic Aquic Acrudox
+EEBF,Anionic Acrudox
+EEBG,Plinthic Acrudox
+EEBH,Aquic Acrudox
+EEBI,Eutric Acrudox
+EEBJ,Humic Rhodic Acrudox
+EEBK,Humic Xanthic Acrudox
+EEBL,Humic Acrudox
+EEBM,Rhodic Acrudox
+EEBN,Xanthic Acrudox
+EEBO,Typic Acrudox
+EECA,Aquic Petroferric Eutrudox
+EECB,Petroferric Eutrudox
+EECC,Aquic Lithic Eutrudox
+EECD,Lithic Eutrudox
+EECE,Plinthaquic Eutrudox
+EECF,Plinthic Eutrudox
+EECG,Aquic Eutrudox
+EECH,Kandiudalfic Eutrudox
+EECI,Humic Inceptic Eutrudox
+EECJ,Inceptic Eutrudox
+EECK,Humic Rhodic Eutrudox
+EECL,Humic Xanthic Eutrudox
+EECM,Humic Eutrudox
+EECN,Rhodic Eutrudox
+EECO,Xanthic Eutrudox
+EECP,Typic Eutrudox
+EEEA,Aquic Petroferric Hapludox
+EEEB,Petroferric Hapludox
+EEEC,Aquic Lithic Hapludox
+EEED,Lithic Hapludox
+EEEE,Plinthaquic Hapludox
+EEEF,Plinthic Hapludox
+EEEG,Aquic Hapludox
+EEEH,Inceptic Hapludox
+EEEI,Andic Hapludox
+EEEJ,Humic Rhodic Hapludox
+EEEK,Humic Xanthic Hapludox
+EEEL,Humic Hapludox
+EEEM,Rhodic Hapludox
+EEEN,Xanthic Hapludox
+EEEO,Typic Hapludox
+EEDA,Aquic Petroferric Kandiudox
+EEDB,Petroferric Kandiudox
+EEDC,Aquic Lithic Kandiudox
+EEDD,Lithic Kandiudox
+EEDE,Plinthaquic Kandiudox
+EEDF,Plinthic Kandiudox
+EEDG,Aquic Kandiudox
+EEDH,Andic Kandiudox
+EEDI,Humic Rhodic Kandiudox
+EEDJ,Humic Xanthic Kandiudox
+EEDK,Humic Kandiudox
+EEDL,Rhodic Kandiudox
+EEDM,Xanthic Kandiudox
+EEDN,Typic Kandiudox
+EEAA,Petroferric Sombriudox
+EEAB,Lithic Sombriudox
+EEAC,Humic Sombriudox
+EEAD,Typic Sombriudox
+ECA,Sombriustox
+ECB,Acrustox
+ECC,Eutrustox
+ECD,Kandiustox
+ECE,Haplustox
+ECBA,Aquic Petroferric Acrustox
+ECBB,Petroferric Acrustox
+ECBC,Aquic Lithic Acrustox
+ECBD,Lithic Acrustox
+ECBE,Anionic Aquic Acrustox
+ECBF,Anionic Acrustox
+ECBG,Plinthic Acrustox
+ECBH,Aquic Acrustox
+ECBI,Eutric Acrustox
+ECBJ,Humic Rhodic Acrustox
+ECBK,Humic Xanthic Acrustox
+ECBL,Humic Acrustox
+ECBM,Rhodic Acrustox
+ECBN,Xanthic Acrustox
+ECBO,Typic Acrustox
+ECCA,Aquic Petroferric Eutrustox
+ECCB,Petroferric Eutrustox
+ECCC,Aquic Lithic Eutrustox
+ECCD,Lithic Eutrustox
+ECCE,Plinthaquic Eutrustox
+ECCF,Plinthic Eutrustox
+ECCG,Aquic Eutrustox
+ECCH,Kandiustalfic Eutrustox
+ECCI,Humic Inceptic Eutrustox
+ECCJ,Inceptic Eutrustox
+ECCK,Humic Rhodic Eutrustox
+ECCL,Humic Xanthic Eutrustox
+ECCM,Humic Eutrustox
+ECCN,Rhodic Eutrustox
+ECCO,Xanthic Eutrustox
+ECCP,Typic Eutrustox
+ECEA,Aquic Petroferric Haplustox
+ECEB,Petroferric Haplustox
+ECEC,Aquic Lithic Haplustox
+ECED,Lithic Haplustox
+ECEE,Plinthaquic Haplustox
+ECEF,Plinthic Haplustox
+ECEG,Aqueptic Haplustox
+ECEH,Aquic Haplustox
+ECEI,Oxyaquic Haplustox
+ECEJ,Inceptic Haplustox
+ECEK,Humic Rhodic Haplustox
+ECEL,Humic Xanthic Haplustox
+ECEM,Humic Haplustox
+ECEN,Rhodic Haplustox
+ECEO,Xanthic Haplustox
+ECEP,Typic Haplustox
+ECDA,Aquic Petroferric Kandiustox
+ECDB,Petroferric Kandiustox
+ECDC,Aquic Lithic Kandiustox
+ECDD,Lithic Kandiustox
+ECDE,Plinthaquic Kandiustox
+ECDF,Plinthic Kandiustox
+ECDG,Aquic Kandiustox
+ECDH,Humic Rhodic Kandiustox
+ECDI,Humic Xanthic Kandiustox
+ECDJ,Humic Kandiustox
+ECDK,Rhodic Kandiustox
+ECDL,Xanthic Kandiustox
+ECDM,Typic Kandiustox
+ECAA,Petroferric Sombriustox
+ECAB,Lithic Sombriustox
+ECAC,Humic Sombriustox
+ECAD,Typic Sombriustox
+CA,Aquods
+CB,Gelods
+CC,Cryods
+CD,Humods
+CE,Orthods
+CAA,Cryaquods
+CAB,Alaquods
+CAC,Fragiaquods
+CAD,Placaquods
+CAE,Duraquods
+CAF,Epiaquods
+CAG,Endoaquods
+CABA,Lithic Alaquods
+CABB,Duric Alaquods
+CABC,Histic Alaquods
+CABD,Alfic Arenic Alaquods
+CABE,Arenic Ultic Alaquods
+CABF,Arenic Umbric Alaquods
+CABG,Arenic Alaquods
+CABH,Grossarenic Alaquods
+CABI,Alfic Alaquods
+CABJ,Ultic Alaquods
+CABK,Aeric Alaquods
+CABL,Typic Alaquods
+CAAA,Lithic Cryaquods
+CAAB,Placic Cryaquods
+CAAC,Duric Cryaquods
+CAAD,Andic Cryaquods
+CAAE,Entic Cryaquods
+CAAF,Typic Cryaquods
+CAEA,Histic Duraquods
+CAEB,Andic Duraquods
+CAEC,Typic Duraquods
+CAGA,Lithic Endoaquods
+CAGB,Histic Endoaquods
+CAGC,Andic Endoaquods
+CAGD,Argic Endoaquods
+CAGE,Umbric Endoaquods
+CAGF,Typic Endoaquods
+CAFA,Lithic Epiaquods
+CAFB,Histic Epiaquods
+CAFC,Andic Epiaquods
+CAFD,Alfic Epiaquods
+CAFE,Ultic Epiaquods
+CAFF,Umbric Epiaquods
+CAFG,Typic Epiaquods
+CACA,Histic Fragiaquods
+CACB,Haploplaggic Fragiaquods
+CACC,Argic Fragiaquods
+CACD,Typic Fragiaquods
+CADA,Andic Placaquods
+CADB,Typic Placaquods
+CCA,Placocryods
+CCB,Duricryods
+CCC,Humicryods
+CCD,Haplocryods
+CCBA,Aquandic Duricryods
+CCBB,Andic Duricryods
+CCBC,Aquic Duricryods
+CCBD,Oxyaquic Duricryods
+CCBE,Humic Duricryods
+CCBF,Typic Duricryods
+CCDA,Lithic Haplocryods
+CCDB,Aquandic Haplocryods
+CCDC,Andic Haplocryods
+CCDD,Folistic Haplocryods
+CCDE,Aquic Haplocryods
+CCDF,Oxyaquic Haplocryods
+CCDG,Entic Haplocryods
+CCDH,Typic Haplocryods
+CCCA,Lithic Humicryods
+CCCB,Aquandic Humicryods
+CCCC,Andic Humicryods
+CCCD,Folistic Humicryods
+CCCE,Aquic Humicryods
+CCCF,Oxyaquic Humicryods
+CCCG,Typic Humicryods
+CCAA,Andic Placocryods
+CCAB,Humic Placocryods
+CCAC,Typic Placocryods
+CBA,Humigelods
+CBB,Haplogelods
+CBBA,Lithic Haplogelods
+CBBB,Andic Haplogelods
+CBBC,Aquic Haplogelods
+CBBD,Turbic Haplogelods
+CBBE,Typic Haplogelods
+CBAA,Lithic Humigelods
+CBAB,Andic Humigelods
+CBAC,Aquic Humigelods
+CBAD,Turbic Humigelods
+CBAE,Typic Humigelods
+CDA,Placohumods
+CDB,Durihumods
+CDC,Fragihumods
+CDD,Haplohumods
+CDBA,Andic Durihumods
+CDBB,Typic Durihumods
+CDCA,Typic Fragihumods
+CDDA,Lithic Haplohumods
+CDDB,Andic Haplohumods
+CDDC,Haploplaggic Haplohumods
+CDDD,Typic Haplohumods
+CDAA,Andic Placohumods
+CDAB,Typic Placohumods
+CEA,Placorthods
+CEB,Durorthods
+CEC,Fragiorthods
+CED,Alorthods
+CEE,Haplorthods
+CEDA,Oxyaquic Alorthods
+CEDB,Arenic Ultic Alorthods
+CEDC,Arenic Alorthods
+CEDD,Entic Grossarenic Alorthods
+CEDE,Entic Alorthods
+CEDF,Grossarenic Alorthods
+CEDG,Haploplaggic Alorthods
+CEDH,Alfic Alorthods
+CEDI,Ultic Alorthods
+CEDJ,Typic Alorthods
+CEBA,Andic Durorthods
+CEBB,Typic Durorthods
+CECA,Aquic Fragiorthods
+CECB,Alfic Oxyaquic Fragiorthods
+CECC,Oxyaquic Fragiorthods
+CECD,Haploplaggic Fragiorthods
+CECE,Alfic Fragiorthods
+CECF,Ultic Fragiorthods
+CECG,Entic Fragiorthods
+CECH,Typic Fragiorthods
+CEEA,Entic Lithic Haplorthods
+CEEB,Lithic Haplorthods
+CEEC,Fragiaquic Haplorthods
+CEED,Aqualfic Haplorthods
+CEEE,Aquentic Haplorthods
+CEEF,Aquic Haplorthods
+CEEG,Alfic Oxyaquic Haplorthods
+CEEH,Oxyaquic Ultic Haplorthods
+CEEI,Fragic Haplorthods
+CEEJ,Lamellic Oxyaquic Haplorthods
+CEEK,Lamellic Haplorthods
+CEEL,Oxyaquic Haplorthods
+CEEM,Andic Haplorthods
+CEEN,Alfic Haplorthods
+CEEO,Ultic Haplorthods
+CEEP,Entic Haplorthods
+CEEQ,Typic Haplorthods
+CEAA,Typic Placorthods
+HA,Aquults
+HB,Humults
+HC,Udults
+HD,Ustults
+HE,Xerults
+HAA,Plinthaquults
+HAB,Fragiaquults
+HAC,Albaquults
+HAD,Kandiaquults
+HAE,Kanhaplaquults
+HAF,Paleaquults
+HAG,Umbraquults
+HAH,Epiaquults
+HAI,Endoaquults
+HACA,Vertic Albaquults
+HACB,Kandic Albaquults
+HACC,Aeric Albaquults
+HACD,Typic Albaquults
+HAIA,Arenic Endoaquults
+HAIB,Grossarenic Endoaquults
+HAIC,Aeric Endoaquults
+HAID,Typic Endoaquults
+HAHA,Vertic Epiaquults
+HAHB,Aeric Fragic Epiaquults
+HAHC,Arenic Epiaquults
+HAHD,Grossarenic Epiaquults
+HAHE,Fragic Epiaquults
+HAHF,Aeric Epiaquults
+HAHG,Typic Epiaquults
+HABA,Aeric Fragiaquults
+HABB,Plinthic Fragiaquults
+HABC,Umbric Fragiaquults
+HABD,Typic Fragiaquults
+HADA,Acraquoxic Kandiaquults
+HADB,Arenic Plinthic Kandiaquults
+HADC,Arenic Umbric Kandiaquults
+HADD,Arenic Kandiaquults
+HADE,Grossarenic Kandiaquults
+HADF,Plinthic Kandiaquults
+HADG,Aeric Kandiaquults
+HADH,Umbric Kandiaquults
+HADI,Typic Kandiaquults
+HAEA,Aquandic Kanhaplaquults
+HAEB,Plinthic Kanhaplaquults
+HAEC,Aeric Umbric Kanhaplaquults
+HAED,Aeric Kanhaplaquults
+HAEE,Umbric Kanhaplaquults
+HAEF,Typic Kanhaplaquults
+HAFA,Vertic Paleaquults
+HAFB,Arenic Plinthic Paleaquults
+HAFC,Arenic Umbric Paleaquults
+HAFD,Arenic Paleaquults
+HAFE,Grossarenic Paleaquults
+HAFF,Plinthic Paleaquults
+HAFG,Aeric Paleaquults
+HAFH,Umbric Paleaquults
+HAFI,Typic Paleaquults
+HAAA,Kandic Plinthaquults
+HAAB,Typic Plinthaquults
+HAGA,Plinthic Umbraquults
+HAGB,Typic Umbraquults
+HBA,Sombrihumults
+HBB,Plinthohumults
+HBC,Kandihumults
+HBD,Kanhaplohumults
+HBE,Palehumults
+HBF,Haplohumults
+HBFA,Lithic Haplohumults
+HBFB,Aquandic Haplohumults
+HBFC,Aquic Haplohumults
+HBFD,Andic Haplohumults
+HBFE,Plinthic Haplohumults
+HBFF,Oxyaquic Haplohumults
+HBFG,Ustic Haplohumults
+HBFH,Xeric Haplohumults
+HBFI,Typic Haplohumults
+HBCA,Andic Ombroaquic Kandihumults
+HBCB,Ustandic Kandihumults
+HBCC,Andic Kandihumults
+HBCD,Aquic Kandihumults
+HBCE,Ombroaquic Kandihumults
+HBCF,Plinthic Kandihumults
+HBCG,Ustic Kandihumults
+HBCH,Xeric Kandihumults
+HBCI,Anthropic Kandihumults
+HBCJ,Typic Kandihumults
+HBDA,Lithic Kanhaplohumults
+HBDB,Ustandic Kanhaplohumults
+HBDC,Andic Kanhaplohumults
+HBDD,Aquic Kanhaplohumults
+HBDE,Ombroaquic Kanhaplohumults
+HBDF,Ustic Kanhaplohumults
+HBDG,Xeric Kanhaplohumults
+HBDH,Anthropic Kanhaplohumults
+HBDI,Typic Kanhaplohumults
+HBEA,Aquandic Palehumults
+HBEB,Andic Palehumults
+HBEC,Aquic Palehumults
+HBED,Plinthic Palehumults
+HBEE,Oxyaquic Palehumults
+HBEF,Ustic Palehumults
+HBEG,Xeric Palehumults
+HBEH,Typic Palehumults
+HBBA,Typic Plinthohumults
+HBAA,Typic Sombrihumults
+HCA,Plinthudults
+HCB,Fragiudults
+HCC,Kandiudults
+HCD,Kanhapludults
+HCE,Paleudults
+HCF,Rhodudults
+HCG,Hapludults
+HCBA,Arenic Fragiudults
+HCBB,Plinthaquic Fragiudults
+HCBC,Glossaquic Fragiudults
+HCBD,Aquic Fragiudults
+HCBE,Plinthic Fragiudults
+HCBF,Glossic Fragiudults
+HCBG,Humic Fragiudults
+HCBH,Typic Fragiudults
+HCGA,Lithic-Ruptic-Entic Hapludults
+HCGB,Lithic Hapludults
+HCGC,Vertic Hapludults
+HCGD,Fragiaquic Hapludults
+HCGE,Aquic Arenic Hapludults
+HCGF,Aquic Hapludults
+HCGG,Fragic Hapludults
+HCGH,Oxyaquic Hapludults
+HCGI,Lamellic Hapludults
+HCGJ,Psammentic Hapludults
+HCGK,Arenic Hapludults
+HCGL,Grossarenic Hapludults
+HCGM,Inceptic Hapludults
+HCGN,Humic Hapludults
+HCGO,Typic Hapludults
+HCCA,Arenic Plinthaquic Kandiudults
+HCCB,Aquic Arenic Kandiudults
+HCCC,Arenic Plinthic Kandiudults
+HCCD,Arenic Rhodic Kandiudults
+HCCE,Arenic Kandiudults
+HCCF,Grossarenic Plinthic Kandiudults
+HCCG,Grossarenic Kandiudults
+HCCH,Acrudoxic Plinthic Kandiudults
+HCCI,Acrudoxic Kandiudults
+HCCJ,Plinthaquic Kandiudults
+HCCK,Aquandic Kandiudults
+HCCL,Andic Kandiudults
+HCCM,Aquic Kandiudults
+HCCN,Plinthic Kandiudults
+HCCO,Ombroaquic Kandiudults
+HCCP,Oxyaquic Kandiudults
+HCCQ,Sombric Kandiudults
+HCCR,Rhodic Kandiudults
+HCCS,Typic Kandiudults
+HCDA,Lithic Kanhapludults
+HCDB,Plinthaquic Kanhapludults
+HCDC,Arenic Plinthic Kanhapludults
+HCDD,Arenic Kanhapludults
+HCDE,Acrudoxic Kanhapludults
+HCDF,Fragiaquic Kanhapludults
+HCDG,Andic Kanhapludults
+HCDH,Aquic Kanhapludults
+HCDI,Ombroaquic Kanhapludults
+HCDJ,Oxyaquic Kanhapludults
+HCDK,Plinthic Kanhapludults
+HCDL,Fragic Kanhapludults
+HCDM,Rhodic Kanhapludults
+HCDN,Typic Kanhapludults
+HCEA,Vertic Paleudults
+HCEB,Spodic Paleudults
+HCEC,Arenic Plinthaquic Paleudults
+HCED,Aquic Arenic Paleudults
+HCEE,Anthraquic Paleudults
+HCEF,Plinthaquic Paleudults
+HCEG,Fragiaquic Paleudults
+HCEH,Aquic Paleudults
+HCEI,Oxyaquic Paleudults
+HCEJ,Lamellic Paleudults
+HCEK,Arenic Plinthic Paleudults
+HCEL,Psammentic Paleudults
+HCEM,Grossarenic Plinthic Paleudults
+HCEN,Plinthic Paleudults
+HCEO,Arenic Rhodic Paleudults
+HCEP,Arenic Paleudults
+HCEQ,Grossarenic Paleudults
+HCER,Fragic Paleudults
+HCES,Rhodic Paleudults
+HCET,Typic Paleudults
+HCAA,Typic Plinthudults
+HCFA,Lithic Rhodudults
+HCFB,Psammentic Rhodudults
+HCFC,Typic Rhodudults
+HDA,Plinthustults
+HDB,Kandiustults
+HDC,Kanhaplustults
+HDD,Paleustults
+HDE,Rhodustults
+HDF,Haplustults
+HDFA,Lithic Haplustults
+HDFB,Petroferric Haplustults
+HDFC,Aquic Haplustults
+HDFD,Arenic Haplustults
+HDFE,Ombroaquic Haplustults
+HDFF,Plinthic Haplustults
+HDFG,Kanhaplic Haplustults
+HDFH,Typic Haplustults
+HDBA,Acrustoxic Kandiustults
+HDBB,Aquic Kandiustults
+HDBC,Arenic Plinthic Kandiustults
+HDBD,Arenic Kandiustults
+HDBE,Udandic Kandiustults
+HDBF,Andic Kandiustults
+HDBG,Plinthic Kandiustults
+HDBH,Aridic Kandiustults
+HDBI,Udic Kandiustults
+HDBJ,Rhodic Kandiustults
+HDBK,Typic Kandiustults
+HDCA,Lithic Kanhaplustults
+HDCB,Acrustoxic Kanhaplustults
+HDCC,Aquic Kanhaplustults
+HDCD,Arenic Kanhaplustults
+HDCE,Udandic Kanhaplustults
+HDCF,Andic Kanhaplustults
+HDCG,Plinthic Kanhaplustults
+HDCH,Ombroaquic Kanhaplustults
+HDCI,Aridic Kanhaplustults
+HDCJ,Udic Kanhaplustults
+HDCK,Rhodic Kanhaplustults
+HDCL,Typic Kanhaplustults
+HDDA,Typic Paleustults
+HDAA,Haplic Plinthustults
+HDAB,Typic Plinthustults
+HDEA,Lithic Rhodustults
+HDEB,Psammentic Rhodustults
+HDEC,Typic Rhodustults
+HEA,Palexerults
+HEB,Haploxerults
+HEBA,Lithic Ruptic-Inceptic Haploxerults
+HEBB,Lithic Haploxerults
+HEBC,Aquic Haploxerults
+HEBD,Andic Haploxerults
+HEBE,Lamellic Haploxerults
+HEBF,Psammentic Haploxerults
+HEBG,Arenic Haploxerults
+HEBH,Grossarenic Haploxerults
+HEBI,Typic Haploxerults
+HEAA,Aquandic Palexerults
+HEAB,Aquic Palexerults
+HEAC,Andic Palexerults
+HEAD,Typic Palexerults
+FA,Aquerts
+FB,Cryerts
+FC,Xererts
+FD,Torrerts
+FE,Usterts
+FF,Uderts
+FAA,Sulfaquerts
+FAB,Salaquerts
+FAC,Duraquerts
+FAD,Natraquerts
+FAE,Calciaquerts
+FAF,Dystraquerts
+FAG,Epiaquerts
+FAH,Endoaquerts
+FAEA,Aeric Calciaquerts
+FAEB,Typic Calciaquerts
+FACA,Aridic Duraquerts
+FACB,Xeric Duraquerts
+FACC,Ustic Duraquerts
+FACD,Aeric Duraquerts
+FACE,Chromic Duraquerts
+FACF,Typic Duraquerts
+FAFA,Sulfaqueptic Dystraquerts
+FAFB,Aridic Dystraquerts
+FAFC,Ustic Dystraquerts
+FAFD,Aeric Dystraquerts
+FAFE,Leptic Dystraquerts
+FAFF,Entic Dystraquerts
+FAFG,Chromic Dystraquerts
+FAFH,Typic Dystraquerts
+FAHA,Halic Endoaquerts
+FAHB,Sodic Endoaquerts
+FAHC,Aridic Endoaquerts
+FAHD,Xeric Endoaquerts
+FAHE,Ustic Endoaquerts
+FAHF,Aeric Endoaquerts
+FAHG,Leptic Endoaquerts
+FAHH,Entic Endoaquerts
+FAHI,Chromic Endoaquerts
+FAHJ,Typic Endoaquerts
+FAGA,Halic Epiaquerts
+FAGB,Sodic Epiaquerts
+FAGC,Aridic Epiaquerts
+FAGD,Xeric Epiaquerts
+FAGE,Ustic Epiaquerts
+FAGF,Aeric Epiaquerts
+FAGG,Leptic Epiaquerts
+FAGH,Entic Epiaquerts
+FAGI,Chromic Epiaquerts
+FAGJ,Typic Epiaquerts
+FADA,Typic Natraquerts
+FABA,Aridic Salaquerts
+FABB,Ustic Salaquerts
+FABC,Leptic Salaquerts
+FABD,Entic Salaquerts
+FABE,Chromic Salaquerts
+FABF,Typic Salaquerts
+FAAA,Salic Sulfaquerts
+FAAB,Sulfic Sulfaquerts
+FAAC,Typic Sulfaquerts
+FBA,Humicryerts
+FBB,Haplocryerts
+FBBA,Sodic Haplocryerts
+FBBB,Chromic Haplocryerts
+FBBC,Typic Haplocryerts
+FBAA,Sodic Humicryerts
+FBAB,Typic Humicryerts
+FDA,Salitorrerts
+FDB,Gypsitorrerts
+FDC,Calcitorrerts
+FDD,Haplotorrerts
+FDCA,Petrocalcic Calcitorrerts
+FDCB,Leptic Calcitorrerts
+FDCC,Entic Calcitorrerts
+FDCD,Chromic Calcitorrerts
+FDCE,Typic Calcitorrerts
+FDBA,Chromic Gypsitorrerts
+FDBB,Typic Gypsitorrerts
+FDDA,Halic Haplotorrerts
+FDDB,Sodic Haplotorrerts
+FDDC,Leptic Haplotorrerts
+FDDD,Entic Haplotorrerts
+FDDE,Chromic Haplotorrerts
+FDDF,Typic Haplotorrerts
+FDAA,Aquic Salitorrerts
+FDAB,Leptic Salitorrerts
+FDAC,Entic Salitorrerts
+FDAD,Chromic Salitorrerts
+FDAE,Typic Salitorrerts
+FFA,Dystruderts
+FFB,Hapluderts
+FFAA,Aquic Dystruderts
+FFAB,Oxyaquic Dystruderts
+FFAC,Leptic Dystruderts
+FFAD,Entic Dystruderts
+FFAE,Chromic Dystruderts
+FFAF,Typic Dystruderts
+FFBA,Lithic Hapluderts
+FFBB,Aquic Hapluderts
+FFBC,Oxyaquic Hapluderts
+FFBD,Leptic Hapluderts
+FFBE,Entic Hapluderts
+FFBF,Chromic Hapluderts
+FFBG,Typic Hapluderts
+FEA,Dystrusterts
+FEB,Salusterts
+FEC,Gypsiusterts
+FED,Calciusterts
+FEE,Haplusterts
+FEDA,Lithic Calciusterts
+FEDB,Halic Calciusterts
+FEDC,Sodic Calciusterts
+FEDD,Petrocalcic Calciusterts
+FEDE,Aridic Calciusterts
+FEDF,Udic Calciusterts
+FEDG,Leptic Calciusterts
+FEDH,Entic Calciusterts
+FEDI,Chromic Calciusterts
+FEDJ,Typic Calciusterts
+FEAA,Lithic Dystrusterts
+FEAB,Aquic Dystrusterts
+FEAC,Aridic Dystrusterts
+FEAD,Udic Dystrusterts
+FEAE,Leptic Dystrusterts
+FEAF,Entic Dystrusterts
+FEAG,Chromic Dystrusterts
+FEAH,Typic Dystrusterts
+FECA,Lithic Gypsiusterts
+FECB,Halic Gypsiusterts
+FECC,Sodic Gypsiusterts
+FECD,Aridic Gypsiusterts
+FECE,Udic Gypsiusterts
+FECF,Leptic Gypsiusterts
+FECG,Entic Gypsiusterts
+FECH,Chromic Gypsiusterts
+FECI,Typic Gypsiusterts
+FEEA,Lithic Haplusterts
+FEEB,Halic Haplusterts
+FEEC,Sodic Haplusterts
+FEED,Petrocalcic Haplusterts
+FEEE,Gypsic Haplusterts
+FEEF,Calcic Haplusterts
+FEEG,Aridic Leptic Haplusterts
+FEEH,Aridic Haplusterts
+FEEI,Leptic Udic Haplusterts
+FEEJ,Entic Udic Haplusterts
+FEEK,Chromic Udic Haplusterts
+FEEL,Udic Haplusterts
+FEEM,Leptic Haplusterts
+FEEN,Entic Haplusterts
+FEEO,Chromic Haplusterts
+FEEP,Typic Haplusterts
+FEBA,Lithic Salusterts
+FEBB,Sodic Salusterts
+FEBC,Aquic Salusterts
+FEBD,Aridic Salusterts
+FEBE,Leptic Salusterts
+FEBF,Entic Salusterts
+FEBG,Chromic Salusterts
+FEBH,Typic Salusterts
+FCA,Durixererts
+FCB,Calcixererts
+FCC,Haploxererts
+FCBA,Lithic Calcixererts
+FCBB,Petrocalcic Calcixererts
+FCBC,Aridic Calcixererts
+FCBD,Leptic Calcixererts
+FCBE,Entic Calcixererts
+FCBF,Chromic Calcixererts
+FCBG,Typic Calcixererts
+FCAA,Halic Durixererts
+FCAB,Sodic Durixererts
+FCAC,Aquic Durixererts
+FCAD,Aridic Durixererts
+FCAE,Udic Durixererts
+FCAF,Haplic Durixererts
+FCAG,Chromic Durixererts
+FCAH,Typic Durixererts
+FCCA,Lithic Haploxererts
+FCCB,Halic Haploxererts
+FCCC,Sodic Haploxererts
+FCCD,Aridic Haploxererts
+FCCE,Aquic Haploxererts
+FCCF,Udic Haploxererts
+FCCG,Leptic Haploxererts
+FCCH,Entic Haploxererts
+FCCI,Chromic Haploxererts
+FCCJ,Typic Haploxererts
