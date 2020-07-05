@@ -15,13 +15,13 @@ if (file.exists("soiltaxonomy_12th_db_HTML_SP.Rda"))
 #* @param code Taxon code to query
 #* @param language Language database to use
 #* @get /kstl
-function(code = "A", language = "EN") {
+function(code, language) {
  res <- NULL
- if(missing(code))
-    code = "A"
- if(missing(language))
-    language = "EN"
- if (language == "SP") {
+ if(missing(code) | nchar(code) > 5)
+     code <- "A"
+ if(missing(language) | nchar(language) > 2)
+    language <- "EN"
+ if (toupper(language) %in% c("SP","ES")) {
    res <- list(res = spanish.env$st_db12_html[[code]])
    names(res) <- code
  } else {
@@ -30,3 +30,4 @@ function(code = "A", language = "EN") {
  }
  return(res)
 }
+c
