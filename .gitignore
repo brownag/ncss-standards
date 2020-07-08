@@ -1,0 +1,13 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+*.pdf
+*.docx
+*.zip
+proposals/
+reviews/
+guidelines/
+future/
+KST/13th Keys - working chapters*
