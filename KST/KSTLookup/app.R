@@ -211,7 +211,7 @@ Esta herramienta es una demostración básica de una database que aprovecha la e
             " 'background-color': '#216734',", # javascript for DT style
             " 'color': '#fff'",
             "});",
-            "}"), searchHighlight = TRUE),
+            "}"), searchHighlight = FALSE),
     escape = 1, filter = "bottom")
 
     observeEvent(input$show, {
@@ -236,4 +236,4 @@ Esta herramienta es una demostración básica de una database que aprovecha la e
 }
 
 # Run the application
-shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server, )
