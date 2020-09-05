@@ -199,7 +199,7 @@ Esta herramienta es una demostración básica de una database que aprovecha la e
             }
         }
         return(res[,-7])
-    }, options = list(
+    }, server = FALSE, options = list(
         columnDefs = list(list(width = "75%", targets = 1),
                           list(width = "5%", targets = 2:7),
                           list(className = 'dt-center', targets = 2:7)),

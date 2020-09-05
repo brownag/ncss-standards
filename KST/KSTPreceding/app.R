@@ -5,16 +5,16 @@ load("soiltaxonomy_12th_db_preceding.Rda")
 
 ui <- fluidPage(
     titlePanel("Keys to Soil Taxonomy (12th) - Preceding Taxa Lookup Tool [alpha]"),
-    
-    fluidRow(column(width = 6, selectizeInput("taxonname", 
-                   "Enter a taxon name: ", 
+
+    fluidRow(column(width = 6, selectizeInput("taxonname",
+                   "Enter a taxon name: ",
                    choices = as.list(c(codes.lut)),
                    options = list(highlight = FALSE)),
                    shiny::helpText("Subgroup, Great Group, Suborder or Order level taxon.")),
-             
-             column(width = 6, h4("Showing taxa that key out before: "), 
+
+             column(width = 6, h4("Showing taxa that key out before: "),
                     em(h4(textOutput("resulttext", inline = FALSE))))),
-    
+
     fluidRow(column(12, DT::dataTableOutput('taxaPreceding'))),
     actionButton("show", "About")
 )
@@ -22,13 +22,13 @@ ui <- fluidPage(
 server <- function(input, output) {
     length.menu <- c(10, 25, 50, -1)
     names(length.menu) <- c(10, 25, 50, "All")
-    
+
     output$resulttext <- renderText( {
         res <- (taxa.lut[input$taxonname])
         if (!is.na(res))
           sprintf("%s", res)
     })
-    
+
     output$taxaPreceding <- DT::renderDataTable( {
         res <- do.call('rbind', st_db12_taxaonly[st_db12_preceding[[input$taxonname]]])
         if (length(res) == 0) {
@@ -38,7 +38,7 @@ server <- function(input, output) {
                                "Key","Taxa","Code",
                                "#","Logic")
         return(res[,-7])
-    }, options = list(
+    }, server = FALSE, options = list(
         columnDefs = list(list(width = "75%", targets = 1),
                           list(width = "5%", targets = 2:7),
                           list(className = 'dt-center', targets = 2:7)),
@@ -50,9 +50,9 @@ server <- function(input, output) {
             " 'background-color': '#216734',", # javascript for DT style
             " 'color': '#fff'",
             "});",
-            "}"), searchHighlight = TRUE), 
+            "}"), searchHighlight = TRUE),
     escape = 1, filter = "bottom")
-    
+
     observeEvent(input$show, {
         showModal(modalDialog(
             title = "About the App",
@@ -62,5 +62,5 @@ server <- function(input, output) {
     })
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)
