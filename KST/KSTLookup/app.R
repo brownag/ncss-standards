@@ -211,7 +211,7 @@ Esta herramienta es una demostración básica de una database que aprovecha la e
             " 'background-color': '#216734',", # javascript for DT style
             " 'color': '#fff'",
             "});",
-            "}"), searchHighlight = FALSE),
+            "}"), searchHighlight = TRUE),
     escape = 1, filter = "bottom")
 
     observeEvent(input$show, {
