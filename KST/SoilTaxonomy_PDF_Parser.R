@@ -3,7 +3,7 @@
 # @last update: 2020/07/04
 #  new: testing support for spanish language version of keys
 
-language <- "SP"
+language <- "EN"
 
 # markers for each chapter
 chapter.markers.en <- list(
@@ -332,7 +332,8 @@ st <- st[-pgidx, ]
 st <- st[-grep("^CHAPTER|^[A-Z]$|^CAPÍTULO", st$content), ]
 
 # remove multi underscore footnote markup (spanish)
-st <- st[-grep("\\_\\_+", st$content),]
+if(language == "SP")
+  st <- st[-grep("\\_\\_+", st$content),]
 
 # remove floating order names (chapter names)
 # chordernames <- do.call('c', lapply(chtaxa.lut, function(x)
@@ -416,6 +417,9 @@ st[grep("Vitrigelands", st$content),]
 
 # split by chapter
 ch <- split(st, f = st$chapter)
+
+# save ch 1:4 + end chapters for definitions and criteria
+write.csv(do.call('rbind', ch[c(1:4,18)]), "soiltaxonomy_12th_definitions.csv")
 
 # indexes 5 to 17 are the Keys to Order, Suborder, Great Group, Subgroup...
 #  indexes offset by 1 from their "true" chapter number in table
@@ -662,26 +666,26 @@ if (names(st_db12[1]) == "*") {
   stop("somehow Gelisols are not first")
 }
 
-# save to Rda
-save(st_db12,
-     st_db12_unique,
-     st_db12_html,
-     st_db12_preceding,
-     taxa.lut,
-     codes.lut,
-     file = sprintf("KST/soiltaxonomy_12th_db_%s.Rda", language))
-
-save(st_db12_html, codes.lut, taxa.lut,
-   file = sprintf("KST/Plumber/plumber/soiltaxonomy_12th_db_HTML_%s.Rda", language))
-
-if (language == "EN")
-  write.csv(data.frame(code = as.character(codes.lut),
-                       name = names(codes.lut)),
-            row.names = FALSE, quote = FALSE,
-            file = "KST/KSTLookup/soiltaxonomy_12th_db_codes.csv")
-
-save(st_db12_preceding, codes.lut, taxa.lut, st_db12_taxaonly,
-     file = sprintf("KST/KSTPreceding/soiltaxonomy_12th_db_preceding_%s.Rda", language))
+# # save to Rda
+# save(st_db12,
+#      st_db12_unique,
+#      st_db12_html,
+#      st_db12_preceding,
+#      taxa.lut,
+#      codes.lut,
+#      file = sprintf("KST/soiltaxonomy_12th_db_%s.Rda", language))
+#
+# save(st_db12_html, codes.lut, taxa.lut,
+#    file = sprintf("KST/Plumber/plumber/soiltaxonomy_12th_db_HTML_%s.Rda", language))
+#
+# if (language == "EN")
+#   write.csv(data.frame(code = as.character(codes.lut),
+#                        name = names(codes.lut)),
+#             row.names = FALSE, quote = FALSE,
+#             file = "KST/KSTLookup/soiltaxonomy_12th_db_codes.csv")
+#
+# save(st_db12_preceding, codes.lut, taxa.lut, st_db12_taxaonly,
+#      file = sprintf("KST/KSTPreceding/soiltaxonomy_12th_db_preceding_%s.Rda", language))
 
 # inspect
 #st_db12_html$HADA
