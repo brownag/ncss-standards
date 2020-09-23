@@ -1,3 +1,5 @@
+library(tibble)
+
 # diagnostic feature parser
 st_def <- read.csv("KST/soiltaxonomy_12th_definitions.csv")
 
@@ -13,21 +15,29 @@ if (length(bad.idx))
 # idx <- grep("Required Characteristics", ignore.case = FALSE, cst_def$content)
 # lapply(idx, function(i) cst_def$content[(i+1)])
 
-diagnostic_features <- c("Diagnostic Surface Horizons\\:","Anthropic Epipedon","Folistic Epipedon","Histic Epipedon","Melanic Epipedon",
+diagnostic_features <- c("Mineral Soil Material","Organic Soil Material", 
+                         "Distinction Between Mineral Soils and Organic", 
+                         "Soil Surface","Mineral Soil Surface",
+                         "Definition of Mineral Soils","Definition of Organic Soils",
+                         "Diagnostic Surface Horizons\\:","Anthropic Epipedon","Folistic Epipedon",
+                         "Histic Epipedon","Melanic Epipedon",
                          "Mollic Epipedon","Ochric Epipedon","Plaggen Epipedon","Umbric Epipedon",
                          "Diagnostic Subsurface Horizons",
                          "Agric Horizon","Albic Horizon","Anhydritic Horizon","Argillic Horizon",
-                         "Calcic Horizon","Cambic Horizon","Duripan","Fragipan","Glossic Horizon","Gypsic Horizon","Kandic Horizon",
-                         "Natric Horizon","Ortstein","Oxic Horizon","Petrocalcic Horizon", "Petrogypsic Horizon","Placic Horizon",
-                         "Salic Horizon","Sombric Horizon", "Spodic Horizon","Diagnostic Soil Characteristics for Mineral",
+                         "Calcic Horizon","Cambic Horizon","Duripan","Fragipan","Glossic Horizon",
+                         "Gypsic Horizon","Kandic Horizon","Natric Horizon","Ortstein","Oxic Horizon",
+                         "Petrocalcic Horizon", "Petrogypsic Horizon","Placic Horizon",
+                         "Salic Horizon","Sombric Horizon", "Spodic Horizon",
+                         "Diagnostic Soil Characteristics for Mineral",
                          "Abrupt Textural Change","Albic Materials","Andic Soil Properties",
                          "Anhydrous Conditions","Coefficient of Linear Extensibility \\(COLE\\)",
                          "Fragic Soil Properties", "Free Carbonates", "Identifiable Secondary Carbonates",
                          "Interfingering of Albic Materials","Lamellae*", "Linear Extensibility \\(LE\\)",
                          "Lithologic Discontinuities", "n Value", "Petroferric Contact", "Plinthite",
-                         "Resistant Minerals", "Slickensides","Spodic materials", "Volcanic Glass", "Weatherable Minerals",
-                         "Characteristics Diagnostic for", "Kinds of Organic Soil Materials",
-                         "Fibers", "Fibric Soil Materials", "Hemic Soil Materials", "Sapric Soil Materials",
+                         "Resistant Minerals", "Slickensides","Spodic materials", "Volcanic Glass",
+                         "Weatherable Minerals", "Characteristics Diagnostic for", 
+                         "Kinds of Organic Soil Materials","Fibers", "Fibric Soil Materials", 
+                         "Hemic Soil Materials", "Sapric Soil Materials",
                          "Humilluvic Material", "Kinds of Limnic Materials", "Coprogenous Earth",
                          "Diatomaceous Earth", "Marl","Thickness of Organic Soil Materials",
                          "Surface Tier", "Subsurface Tier", "Bottom Tier",
@@ -97,7 +107,28 @@ masterfeaturenames <- c("Diagnostic Surface Horizons: 7", "Diagnostic Subsurface
                         "Family Differentiae for Mineral Soils and 317","Family Differentiae for Organic Soils 331",
                         "Series Differentiae Within a Family 333")
 
+newmasterfeaturenames <- c("Surface","Subsurface","Mineral",
+                           "Organic","Mineral or Organic",
+                           "Human","Mineral Family", 
+                           "Organic Family", "Series")
+
 feat.idx <- c(match(masterfeaturenames, names(features)), length(features))
-mfeatures <- lapply(lapply(1:length(masterfeaturenames), function(i) feat.idx[i]:(feat.idx[i+1]-1)), function(idx) features[idx])
-names(mfeatures) <- masterfeaturenames
-View(mfeatures)
+
+mfeatures <- lapply(lapply(1:length(masterfeaturenames), 
+                           function(i) feat.idx[i]:(feat.idx[i + 1] - 1)),
+                    function(idx) { features[idx] })
+names(mfeatures) <- newmasterfeaturenames
+
+featurelist <- do.call('rbind', lapply(newmasterfeaturenames, function(mfn) { 
+   mf <- mfeatures[[mfn]]
+   res <- cbind(group = mfn, do.call('rbind', lapply(mf, function(mff) {
+      mff$criteria <- list(mff$criteria)
+      tibble::as_tibble(mff)
+     })))
+   return(res)
+  }))
+rownames(featurelist) <- NULL
+View(featurelist)
+
+save(mfeatures, file = "soiltaxonomy_12th_db_EN_features.Rda")
+
