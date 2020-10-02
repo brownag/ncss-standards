@@ -557,6 +557,8 @@ test <- subset_tree(st_criteria_subgroup, crit_levels)[[1]]
 crit_levels <-  decompose_taxon_ID(unique(st_criteria_subgroup$crit))
 crit_levels_u <- lapply(crit_levels, function(cl) return(cl[length(cl)]))
 
+save(st_criteria_subgroup, file = "KST/soiltaxonomy_12th_db_subgroupcrit.Rda")
+
 st_db12_unique <- lapply(crit_levels_u, function(clu) {
   content_to_clause(subset_tree(st_criteria_subgroup, clu)[[1]])
 } )

@@ -23,7 +23,7 @@ By making his analyses freely available (released under GNU GPL) he hopes others
 
  - __[mollic_KSSL_data.R](mollic/mollic_KSSL_data.R)__ - Investigation of 1:1 and CaCl2 pH as _Surrogates for Base Saturation by Ammonium Acetate_ (pH 7)
  
- - __[mollic_NASIS_data.R](mollic/mollic_NASIS_data.R)__ - Investigation of NASIS data to assess mollic thickness requirement sensitivity and effect on presence/absence of epipedon (coming soon)
+ - __[mollic_NASIS_data.R](mollic/mollic_NASIS_data.R)__ - Investigation of NASIS data to assess mollic thickness requirement sensitivity and effect on presence/absence of epipedon
  
  - __[mollic_OSD_data.R](mollic/mollic_OSD_data.R)__ - Investigation of OSD Type Locations of Xeric Mollisols and near-Mollisols for _Structure, Color and Thickness of Mollic Materials_
  

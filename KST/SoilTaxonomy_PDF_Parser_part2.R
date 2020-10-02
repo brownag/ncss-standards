@@ -15,8 +15,8 @@ if (length(bad.idx))
 # idx <- grep("Required Characteristics", ignore.case = FALSE, cst_def$content)
 # lapply(idx, function(i) cst_def$content[(i+1)])
 
-diagnostic_features <- c("Mineral Soil Material","Organic Soil Material", 
-                         "Distinction Between Mineral Soils and Organic", 
+diagnostic_features <- c("Mineral Soil Material","Organic Soil Material",
+                         "Distinction Between Mineral Soils and Organic",
                          "Soil Surface","Mineral Soil Surface",
                          "Definition of Mineral Soils","Definition of Organic Soils",
                          "Diagnostic Surface Horizons\\:","Anthropic Epipedon","Folistic Epipedon",
@@ -34,9 +34,9 @@ diagnostic_features <- c("Mineral Soil Material","Organic Soil Material",
                          "Fragic Soil Properties", "Free Carbonates", "Identifiable Secondary Carbonates",
                          "Interfingering of Albic Materials","Lamellae*", "Linear Extensibility \\(LE\\)",
                          "Lithologic Discontinuities", "n Value", "Petroferric Contact", "Plinthite",
-                         "Resistant Minerals", "Slickensides","Spodic materials", "Volcanic Glass",
-                         "Weatherable Minerals", "Characteristics Diagnostic for", 
-                         "Kinds of Organic Soil Materials","Fibers", "Fibric Soil Materials", 
+                         "Resistant Minerals", "Slickensides","Spodic Materials", "Volcanic Glass",
+                         "Weatherable Minerals", "Characteristics Diagnostic for",
+                         "Kinds of Organic Soil Materials","Fibers", "Fibric Soil Materials",
                          "Hemic Soil Materials", "Sapric Soil Materials",
                          "Humilluvic Material", "Kinds of Limnic Materials", "Coprogenous Earth",
                          "Diatomaceous Earth", "Marl","Thickness of Organic Soil Materials",
@@ -44,7 +44,7 @@ diagnostic_features <- c("Mineral Soil Material","Organic Soil Material",
                          "Horizons and Characteristics",
                          "Aquic Conditions", "Cryoturbation", "Densic Contact", "Densic Materials",
                          "Gelic Materials", "Ice Segregation", "Glacic Layer",
-                         "Lithic contact", "Paralithic Contact", "Paralithic materials",
+                         "Lithic Contact", "Paralithic Contact", "Paralithic materials",
                          "Permafrost", "Soil Moisture Regimes", "Soil Moisture Control Section",
                          "Classes of Soil Moisture Regimes","Sulfidic Materials","Sulfuric Horizon",
                          "Characteristics Diagnostic for","Anthropogenic Landforms",
@@ -109,17 +109,17 @@ masterfeaturenames <- c("Diagnostic Surface Horizons: 7", "Diagnostic Subsurface
 
 newmasterfeaturenames <- c("Surface","Subsurface","Mineral",
                            "Organic","Mineral or Organic",
-                           "Human","Mineral Family", 
+                           "Human","Mineral Family",
                            "Organic Family", "Series")
 
 feat.idx <- c(match(masterfeaturenames, names(features)), length(features))
 
-mfeatures <- lapply(lapply(1:length(masterfeaturenames), 
+mfeatures <- lapply(lapply(1:length(masterfeaturenames),
                            function(i) feat.idx[i]:(feat.idx[i + 1] - 1)),
                     function(idx) { features[idx] })
 names(mfeatures) <- newmasterfeaturenames
 
-featurelist <- do.call('rbind', lapply(newmasterfeaturenames, function(mfn) { 
+featurelist <- do.call('rbind', lapply(newmasterfeaturenames, function(mfn) {
    mf <- mfeatures[[mfn]]
    res <- cbind(group = mfn, do.call('rbind', lapply(mf, function(mff) {
       mff$criteria <- list(mff$criteria)
@@ -128,7 +128,5 @@ featurelist <- do.call('rbind', lapply(newmasterfeaturenames, function(mfn) {
    return(res)
   }))
 rownames(featurelist) <- NULL
-View(featurelist)
-
-save(mfeatures, file = "soiltaxonomy_12th_db_EN_features.Rda")
-
+featurelist <- as_tibble(featurelist)
+save(mfeatures, featurelist, file = "KST/soiltaxonomy_12th_db_EN_features.Rda")
