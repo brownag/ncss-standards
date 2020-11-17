@@ -1,0 +1,144 @@
+---
+output: 
+  xaringan::moon_reader:
+    css: [theme.css, theme-fonts.css, default, hygge, metropolis-fonts]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"   
+      highlightStyle: github
+      highlightLines: true
+---
+class: titleSlide
+<br><br><br>
+.pull-left[
+  ## Haplustolls
+  <br><br><br>
+  #### Soil Taxonomy & R Meeting - 2020/11/17
+]
+
+.right[.large[<br><br><br><br><br><br><br><br>
+              Andrew G. Brown <br>
+              <a href="mailto:andrew.g.brown@usda.gov"><i class="fas  fa-mail-bulk "></i>andrew.g.brown@usda.gov</a>
+              <br><br>
+]]
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(aqp)
+library(soilDB)
+
+if (!file.exists("haplustolls.rda")) {
+  res <- soilDB:::.fetchNASIS_pedons(dfClass = "data.table")
+  # check moist value and chroma, ignore dry value
+  res$is_mollic_color <- hasDarkColors(res, d_value = NA)
+  
+  res$mtr1 <- profileApply(res, mollic.thickness.requirement, clay.attr='clay')
+  darkColorInterval <- function(p) {
+    mss <- getMineralSoilSurfaceDepth(p)
+    p.sub <- glom(p, mss, estimateSoilDepth(p))
+    return(data.frame(peiid = profile_id(p), 
+                      mineral_surface = mss, 
+                      darkness_depth = getSurfaceHorizonDepth(p.sub, pattern = "TRUE", hzdesgn = "is_mollic_color")))
+  }
+  dcdf <- profileApply(res, darkColorInterval, frameify = TRUE)
+  site(res) <- dcdf
+    
+  diagnostic_hz(res) <- rbind(data.frame(peiid = profile_id(res), 
+                                         featkind = "mollic colors", 
+                                         featdept = res$mineral_surface, 
+                                         featdepb = res$darkness_depth),
+                        data.frame(peiid = profile_id(res), 
+                                   featkind = "mollic requirement", 
+                                   featdept = res$mineral_surface, 
+                                   featdepb = res$mtr1))
+  res$prettycolor <- with(horizons(res), sprintf("%s %s/%s", m_hue, m_value, m_chroma))
+  
+  save(res, file = "haplustolls.rda")
+} else {
+  load("haplustolls.rda")
+}
+# 
+# plot(density(mtr1))
+# # abline(v=c(10,18,20,25))
+# # 
+# plot(subset(res, (mtr1 - 20) == -10)[1:10,], max.depth=50)
+```
+
+
+---
+class: bodySlide
+
+<br>
+
+## Strategy
+
+ - Tabulate changes in representative (RV) Component Pedons, stratified by taxonomic Great Group
+ 
+ - Great Group may offer a good balance of data availability v.s. partitioning of taxonomic space and spatial space
+ 
+ - Consitent "chunks" of taxonomy (e.g. the Great Group) facilitate dispatch of potentially problematic taxa, extents, series to the relevant regional and local staff for comment/opinion
+ 
+ - Comments and opinions from Soil Scientists would ideally be available for review by all Regional Committees (i.e. done before the proposals go live for official review)
+
+---
+class: bodySlide
+
+<br>
+
+## NASIS Haplustolls Representative Component Pedons (1/2)
+
+```{r}
+length(res)
+table(res$darkness_depth >= res$mtr1)
+table(res$darkness_depth >= 20)
+```
+
+---
+class: bodySlide
+
+<br>
+
+## NASIS Haplustolls Representative Component Pedons (2/2)
+
+```{r}
+table(res$darkness_depth >= 25)
+table(res$darkness_depth >= 30)
+```
+
+---
+class: bodySlideNOBR
+
+<br>
+
+## Soils that do not meet the mollic requirement
+
+First ten profiles in set.
+
+```{r, echo=FALSE, fig.width=15}
+par(mar=c(0,0,0,2))
+res.sub <- subset(res, darkness_depth < mtr1)[1:10,]
+plotSPC(res.sub, 
+        name = "prettycolor", #color = "is_mollic_color",
+        name.style = 'left-center', cex.names=1, width=0.3)
+addDiagnosticBracket(res.sub, "mollic colors", offset=-0.5)
+addDiagnosticBracket(res.sub, "mollic requirement", lwd=2, col="green", tick.length=0, offset=0)
+```
+
+---
+
+class: bodySlideNOBR
+
+<br>
+
+## Soils that meet mollic requirement
+
+First ten profiles in set.
+
+```{r, echo=FALSE, fig.width=15}
+par(mar=c(0,0,0,2))
+res.mollic <- subset(res, darkness_depth > mtr1)[1:10,]
+plotSPC(res.mollic, 
+        name = "prettycolor", #color = "is_mollic_color",
+        name.style = 'left-center', cex.names=1, width=0.3)
+addDiagnosticBracket(res.mollic, "mollic colors", offset=-0.5)
+addDiagnosticBracket(res.mollic, "mollic requirement", lwd=2, col="green", tick.length=0, offset=0)
+```
