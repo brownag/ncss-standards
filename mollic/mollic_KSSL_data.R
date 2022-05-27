@@ -7,7 +7,7 @@ mlras <- unique(rgdal::readOGR("C:/Geodata/soils/mlra_a_ca.shp")$MLRARSYM)
 
 # get the data
 # mlras <- c("17","18","22A","22B")
-# l <- fetchKSSL(mlra=mlras)
+l <- fetchKSSL(mlra=mlras)
 save(l, file = "ca_kssl.Rda")
 load(file = "ca_kssl.Rda")
 
@@ -17,8 +17,9 @@ kssl <- l
 f <- glomApply(kssl, .fun = function(p) {
   hi <- getMineralSoilSurfaceDepth(p, hzdesgn = 'hzn_desgn')
   lo <-  estimateSoilDepth(p, name = 'hzn_desgn', p = "Cr|R|Cd|qm")
-  if(lo > hi + 25)
-    lo <- hi + 25
+  if(!is.na(lo) && !is.na(hi))
+    if(lo > hi + 25)
+      lo <- hi + 25
   return(c(hi, lo))
 }, truncate = TRUE) %>% 
   mutate_profile(thickness = sum(hzn_bot - hzn_top))

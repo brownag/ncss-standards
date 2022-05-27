@@ -2,12 +2,19 @@ library(aqp)
 
 # load Region 2 NASIS pedons (n=31573; ~87MB uncompressed); 
 #  thanks @smroecker; using soilDB::fetchNASIS(from='pedon_report')
-load("r02_pedons.RData")
+load("E:/r02_pedons.RData")
+
 hzdesgnname(r02_pedons) <- "hzname"
 hztexclname(r02_pedons) <- "texcl"
 
+r02_pedons <- subset(r02_pedons, checkHzDepthLogic(r02_pedons)$valid)
+
 # calculate minimum mollic/umbric thickness requirement
-res <- profileApply(r02_pedons, mollic.thickness.requirement)
+res <- profileApply(r02_pedons, function(x) {
+    mtr <- try(mollic.thickness.requirement(x, clay.attr = 'claytotest'))
+    if(inherits(mtr, 'try-error')) print(profile_id(x))
+    mtr
+  })
 
 # create a histogram
 hist(res, breaks = round(max(res, na.rm=T) - min(res, na.rm=T)), ylim=c(0,25000),

@@ -75,7 +75,7 @@ class: bodySlide
  
  - Great Group may offer a good balance of data availability v.s. partitioning of taxonomic space and spatial space
  
- - Consitent "chunks" of taxonomy (e.g. the Great Group) facilitate dispatch of potentially problematic taxa, extents, series to the relevant regional and local staff for comment/opinion
+ - Consistent "chunks" of taxonomy (e.g. the Great Group) facilitate dispatch of potentially problematic taxa, extents, series to the relevant regional and local staff for comment/opinion
  
  - Comments and opinions from Soil Scientists would ideally be available for review by all Regional Committees (i.e. done before the proposals go live for official review)
 
