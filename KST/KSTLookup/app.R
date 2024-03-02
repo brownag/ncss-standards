@@ -153,7 +153,7 @@ Esta herramienta es una demostración básica de una database que aprovecha la e
 
         #res <- db[[taxon]]
         # now using plumber API to deliver data
-        response <- httr::GET(sprintf("http://138.68.55.88/kstl?code=%s&language=%s",
+        response <- httr::GET(sprintf("http://soilschema.org/kstl/kstl?code=%s&language=%s",
                                       taxon, language))
         r.content <- httr::content(response, as = "text", encoding = "UTF-8")
         res <- jsonlite::fromJSON(r.content)[[1]]
