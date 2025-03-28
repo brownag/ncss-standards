@@ -2,7 +2,7 @@ library(sf)
 library(aqp)
 library(soilDB)
 f <- fetchLDM(dsn = "D:/Geodata/soils/ncss_labdatasqlite/ncss_labdata.sqlite")
-f$oc <- pmax(f$total_carbon_ncs - ifelse(is.na(f$caco3_lt_2_mm), 0, (f$caco3_lt_2_mm * 0.12)),
+f$oc <- pmax(pmax(f$total_carbon_ncs - ifelse(is.na(f$caco3_lt_2_mm), 0, (f$caco3_lt_2_mm * 0.12)), 0, na.rm = TRUE),
              f$organic_carbon_walkley_black, na.rm = TRUE)
 fch <- f#subsetHz(f, oc >= 8 & oc <= 20)
 

@@ -1,6 +1,7 @@
 library(aqp)
 library(labtaxa)
-
+# unlink(list.files(labtaxa::ldm_data_dir(), full.names = TRUE, recursive=TRUE))
+# ldm <- get_LDM_snapshot()
 ldm <- labtaxa::load_labtaxa()
 
 initSpatial(ldm, crs = "OGC:CRS84") <-
@@ -88,3 +89,4 @@ plot(subset(x_paulosodic, natric_depth < paulo_depth), color = "paulo", n.legend
 
 plot(us_states$geometry)
 plot(as(subset(x_paulosodic, natric_depth > 100), "sf")$geometry, add = TRUE)
+

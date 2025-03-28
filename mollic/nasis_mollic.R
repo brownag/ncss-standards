@@ -1,8 +1,8 @@
 # nasis mollic
+library(aqp)
 library(soilDB) 
 
-options(soilDB.NASIS.skip_uncode = FALSE)
-ldm <- fetchLDM(dsn = "E:/Geodata/soils/ncss_labdatasqlite/ncss_labdata.sqlite", 
+ldm <- fetchLDM(dsn = "D:/Geodata/soils/ncss_labdatagpkg/ncss_labdata.gpkg", 
                 chunk.size = NULL,
                 tables = c("lab_physical_properties", "lab_chemical_properties"),
                 prep_code = c('S',''))
@@ -12,9 +12,18 @@ sort(table(ldm$corr_taxsuborder))
 
 system.time(ldm <- repairMissingHzDepths(ldm, max.depth = 152))
 system.time(ldm <- fillHzGaps(ldm))
-f <- fetchNASIS(dsn = "E:/Geodata/soils/NASIS_morphological_20200116.sqlite",
-                SS = F)
-save(f, "mollic/nasis_kssl1.rda")
+save(ldm, file = "mollic/ldm_kssl1.rda")
+
+options(soilDB.NASIS.skip_uncode = TRUE)
+f <- fetchNASIS(dsn = "D:/Geodata/soils/NASIS_Morphological_09142021/NASIS_Morphological_09142021.sqlite",
+                SS = F,
+                mixColors = FALSE)
+save(f, file = "mollic/nasis_kssl1.rda")
+
+dbQueryNASIS(NASIS(dsn = "D:/Geodata/soils/NASIS_Morphological_09142021/NASIS_Morphological_09142021.sqlite"),
+             "SELECT * FROM phcolor") |> 
+  uncode()->test
+
 load("mollic/nasis_kssl1.rda")
 load("mollic/mtr_kssl1.rda")
 
