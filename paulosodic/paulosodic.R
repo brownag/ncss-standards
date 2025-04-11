@@ -76,7 +76,7 @@ x_deepnatric <- subset(xarg3, sodium_absorption_ratio >= 13 | exchangeable_sodiu
 
 
 # take argillic upper bound to MSS + 100cm
-xargupper100 <- trunc(xarg2, xarg$argillic_hzn_top, xarg$mss + 100)
+xargupper100 <- trunc(xarg2, xarg2$argillic_hzn_top, xarg2$mss + 100)
                             # xarg$mss + 100pmin(xarg$argillic_hzn_bot, ))
 
 # quick inspection for soils that meet natric SAR,
